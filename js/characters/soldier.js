@@ -1,4 +1,7 @@
-function Soldier(){
+function Soldier(id, player){
+    this.id = id;
+    this.assetId = 2;
+    this.player = player;
     this.attack = 2;
     this.health = 5;
     this.range = 2;
@@ -11,6 +14,9 @@ function Soldier(){
 Soldier.prototype = Object.create(Character.prototype);
 Soldier.prototype.constructor = Character;
 
+Soldier.prototype.load = function(){
+
+}
 
 Soldier.prototype.select = function(){
 

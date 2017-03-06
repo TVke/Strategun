@@ -10,8 +10,6 @@ function Character(){
 
 Character.prototype.move = function(){
     //TODO: Movement
-
-    
 }
 
 
