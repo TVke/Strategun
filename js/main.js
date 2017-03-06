@@ -14,8 +14,16 @@ let game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.i
     update: update
 });
 
-function preload(){
 
+function preload(){
+    let gameObjects = [
+        new World(game),
+        new Tiles(game),
+    ];
+
+    for(let object = 0; object < gameObjects.length; object++){
+        gameObjects[object].load();
+    }
 }
 
 function create(){
