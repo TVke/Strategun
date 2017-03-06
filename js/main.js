@@ -5,15 +5,25 @@
 
 const width = 0;
 const height = 0;
+scaleRatio = window.devicePixelRatio / 3;
 
-let game = new Phaser.Game(width, height, Phaser.CANVAS, '', {
+let game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio,
+	Phaser.CANVAS, 'strategun', {
     preload: preload,
     create: create,
     update: update
 });
 
-function preload(){
 
+function preload(){
+    let gameObjects = [
+        new World(game),
+        new Tiles(game),
+    ];
+
+    for(let object = 0; object < gameObjects.length; object++){
+        gameObjects[object].load();
+    }
 }
 
 function create(){
