@@ -13,7 +13,7 @@ let game = new Phaser.Game(width, height, Phaser.CANVAS, '', {
 });
 
 function preload(){
-    
+
 }
 
 function create(){
