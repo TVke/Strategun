@@ -19,7 +19,7 @@ function createInvisibleTiles() {
 			invisibleTile.input.useHandCursor = true;
 			invisibleTile.events.onInputOver.add(over, this);
 			invisibleTile.events.onInputOut.add(out, this);
-			invisibleTile.events.onInputDown.add(clickTile, this);
+			invisibleTile.events.onInputUp.add(function() { clickTile(invisibleTile) }, this);
 		}
 	}
 }
@@ -30,7 +30,7 @@ Tile.prototype.createNavTiles = function() {
 			let image = game.add.image(tileSize * i, 0, charactersArray[i]);
 			image.inputEnabled = true;
 			image.input.useHandCursor = true;
-			image.events.onInputDown.add(function() { clickNavTile(i) }, this);
+			image.events.onInputUp.add(function() { clickNavTile(i) }, this);
 		})(i);
 	}
 }
@@ -64,7 +64,7 @@ function clickNavTile(counter) {
 	}
 }
 
-function clickTile() {
+function clickTile(item) {
 	console.log(currentNavTile);
 
 	// if(currentNavTile == 'bomb') {
