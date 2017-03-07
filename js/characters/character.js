@@ -9,7 +9,7 @@ function Character(){
 }
 
 Character.load = function(){
-    // Dummy function
+    game.load.image('selected','assets/grid/selected.png');
 }
 
 Character.prototype.move = function(){
@@ -17,18 +17,30 @@ Character.prototype.move = function(){
 }
 
 Character.moveableLocation = function(x, y){
-
+    game.add.sprite(x*44,y*44,'selected');
 }
 
 Character.events = function(){
 
     game.input.onTap.add(function(pointer, event){
+        var context = this;
         tileX = tileLayer.getTileX(pointer.x);
         tileY = tileLayer.getTileY(pointer.y);
 
         neighbours = Coords.neighbours(tileX, tileY);
         selectedTile = tileData[tileX][tileY];
-        console.log(neighbours);
+        var moveableCharacter = true;
+        if(moveableCharacter){
+            for (var neightbour in neighbours) {
+                if(tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0){
+                    context.Character.moveableLocation(neighbours[neightbour][0],neighbours[neightbour][1]);
+                }
+
+            }
+        }
+
+        // console.log(neighbours);
+        // console.log("x: "+tileX+" y: "+tileY);
 
 
         if(selectedTile === TileStyles.WALL){
