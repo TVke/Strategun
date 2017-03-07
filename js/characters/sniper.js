@@ -14,5 +14,6 @@ Sniper.prototype = Object.create(Character.prototype);
 Sniper.prototype.constructor = Character;
 
 Sniper.load = function(){
-
+  game.load.image('sniperOut','assets/grid/sniper out.png');
+  game.load.image('sniperIn','assets/grid/sniper in.png');
 }

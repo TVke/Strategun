@@ -9,17 +9,22 @@ function World(game) {
 }
 
 World.prototype.load = function () {
+
     let grid = this.game.add.tilemap();
 
     this.game.load.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
-    
+
     this.game.load.image('wall', 'assets/grid/wall.png');
     this.game.load.image('olie', 'assets/grid/olie.png');
     this.game.load.image('red player', 'assets/grid/red player.png');
-    this.game.load.image('blue player', 'assets/grid/blue player.png');   
+    this.game.load.image('blue player', 'assets/grid/blue player.png');
+    this.game.stage.backgroundColor = '#efefef';
+
+    this.game.load.image('red', 'assets/grid/red laser.png');
+    this.game.load.image('blue', 'assets/grid/blue laser.png');
 }
 
-World.prototype.makeMap = function(){
+World.prototype.makeMap = function () {
     let map = this.game.add.tilemap('map');
 
     map.addTilesetImage('wall', 'wall');
@@ -29,23 +34,23 @@ World.prototype.makeMap = function(){
 }
 
 World.prototype.makeGrid = function () {
-    this.game.world.resize((amountOfFields * 2) * tileSize, amountOfFields * tileSize);
+    this.game.world.resize((amountOfFields * 2) * tileSize, amountOfFields * tileSize + tileSize);
 
     for (let i = 1; i < amountOfFields; ++i) {
-        this.game.add.tileSprite(i * tileSize, 0, laserSize, this.game.world.height, 'blue');
-        this.game.add.tileSprite(0, i * tileSize, this.game.world.width / 2, laserSize, 'blue');
-        this.game.add.tileSprite(this.game.world.width / 2 + i * tileSize, 0, laserSize, this.game.world.height, 'red');
-        this.game.add.tileSprite(this.game.world.width / 2, i * tileSize, this.game.world.width / 2, laserSize, 'red');
+        this.game.add.tileSprite(i * tileSize, tileSize, laserSize, this.game.world.height, 'blue');
+        this.game.add.tileSprite(0, i * tileSize + tileSize, this.game.world.width / 2, laserSize, 'blue');
+        this.game.add.tileSprite(this.game.world.width / 2 + i * tileSize, tileSize, laserSize, this.game.world.height, 'red');
+        this.game.add.tileSprite(this.game.world.width / 2, i * tileSize + tileSize, this.game.world.width / 2, laserSize, 'red');
     }
 
-    this.game.add.tileSprite(0, 0, 1, this.game.world.height, 'blue');
-    this.game.add.tileSprite(0, 0, this.game.world.width / 2, 1, 'blue');
-    this.game.add.tileSprite(this.game.world.width / 2 - 1, 0, 1, this.game.world.height, 'blue');
+    this.game.add.tileSprite(0, tileSize, 1, this.game.world.height - tileSize, 'blue');
+    this.game.add.tileSprite(0, tileSize, this.game.world.width / 2, 1, 'blue');
+    this.game.add.tileSprite(this.game.world.width / 2 - 1, tileSize, 1, this.game.world.height - tileSize, 'blue');
     this.game.add.tileSprite(0, this.game.world.height - 1, this.game.world.width / 2, 1, 'blue');
 
-    this.game.add.tileSprite(this.game.world.width / 2, 0, 1, this.game.world.height, 'red');
-    this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 1, 'red');
-    this.game.add.tileSprite(this.game.world.width - 1, 0, 1, this.game.world.height, 'red');
+    this.game.add.tileSprite(this.game.world.width / 2, tileSize, 1, this.game.world.height - tileSize, 'red');
+    this.game.add.tileSprite(this.game.world.width / 2, tileSize, this.game.world.width / 2, 1, 'red');
+    this.game.add.tileSprite(this.game.world.width - 1, tileSize, 1, this.game.world.height - tileSize, 'red');
     this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width, 1, 'red');
 }
 
