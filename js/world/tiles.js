@@ -9,6 +9,11 @@ Tile.prototype.load = function() {
 	createInvisibleTiles();
 }
 
+TileStyles = {
+	WALL: 2,
+	OIL: 1,
+}
+
 function createInvisibleTiles() {
 	for (let i = 0; i < 25; ++i) {
 		for (let j = 0; j < 50; ++j) {
