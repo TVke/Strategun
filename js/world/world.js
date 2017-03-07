@@ -9,8 +9,7 @@ function World(game) {
 }
 
 World.prototype.load = function () {
-
-    let grid = this.game.add.tilemap();
+    grid = this.game.add.tilemap();
 
     this.game.load.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
 
@@ -24,8 +23,28 @@ World.prototype.load = function () {
     this.game.load.image('blue', 'assets/grid/blue laser.png');
 }
 
+World.prototype.tileProperties = function(map, layer){
+    var tileData = new Array(amountOfRows);
+
+    for(let item = 0; item < amountOfRows; item++){
+        tileData[item] = new Array(amountOfFields);
+    }
+
+    for(let tileX = 1; tileX < amountOfRows; tileX++){
+        for(let tileY = 1; tileY < amountOfFields; tileY++){
+            tileData[tileX][tileY] = map.getTile(tileX, tileY, layer);
+        }
+    }
+
+    console.log(tileData[17][7]);
+}
+
 World.prototype.makeMap = function () {
-    map = this.game.add.tilemap('map');
+    var map = this.game.add.tilemap('map');
+
+    // map.forEach(function(tile) {
+    //     console.log("tile " + tile);
+    // }, this);
 
     map.addTilesetImage('wall', 'wall');
     map.addTilesetImage('olie', 'olie');
@@ -34,6 +53,9 @@ World.prototype.makeMap = function () {
 
     layer = map.createLayer(0);
     layer.resizeWorld();
+
+    this.tileProperties(map, layer)    
+    
 }
 
 World.prototype.makeGrid = function () {
