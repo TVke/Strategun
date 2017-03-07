@@ -9,6 +9,7 @@
 var gameObjects = {
 	world: new World(game),
 	tile: new Tile(game),
+  scale: new Scale(game),
 }
 
 var characters = {
