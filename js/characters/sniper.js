@@ -13,6 +13,6 @@ function Sniper(id, player){
 Sniper.prototype = Object.create(Character.prototype);
 Sniper.prototype.constructor = Character;
 
-Sniper.prototype.load = function(){
+Sniper.load = function(){
 
 }

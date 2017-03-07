@@ -13,6 +13,6 @@ function Medic(id, player){
 Medic.prototype = Object.create(Character.prototype);
 Medic.prototype.constructor = Character;
 
-Medic.prototype.load = function(){
+Medic.load = function(){
     
 }

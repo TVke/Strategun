@@ -14,7 +14,7 @@ function Soldier(id, player){
 Soldier.prototype = Object.create(Character.prototype);
 Soldier.prototype.constructor = Character;
 
-Soldier.prototype.load = function(){
+Soldier.load = function(){
 
 }
 

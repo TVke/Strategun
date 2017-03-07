@@ -1,4 +1,4 @@
-function Bomb(id, player, game){
+function Bomb(id, player, game) {
     this.id = id;
     this.assetId = 5;
     this.player = player;
@@ -13,6 +13,6 @@ function Bomb(id, player, game){
 Bomb.prototype = Object.create(Character.prototype);
 Bomb.prototype.constructor = Character;
 
-Bomb.prototype.load = function(){
+Bomb.load = function () {
 
 }

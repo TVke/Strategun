@@ -13,6 +13,6 @@ function Flag(id, player){
 Flag.prototype = Object.create(Character.prototype);
 Flag.prototype.constructor = Character;
 
-Flag.prototype.load = function(){
+Flag.load = function(){
 
 }

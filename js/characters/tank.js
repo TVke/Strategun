@@ -13,6 +13,6 @@ function Tank(id, player){
 Tank.prototype = Object.create(Character.prototype);
 Tank.prototype.constructor = Character;
 
-Tank.prototype.load = function(){
+Tank.load = function(){
     
 }

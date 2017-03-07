@@ -22,6 +22,8 @@ function preload() {
 	Object.keys(gameObjects).forEach(function (object) {
 		gameObjects[object].load();
 	});
+
+	
 }
 
 function create() {
