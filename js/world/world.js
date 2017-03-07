@@ -7,6 +7,11 @@ function World(game) {
 }
 
 World.prototype.load = function () {
+      this.game.stage.backgroundColor = '#efefef';
+
+      this.game.load.image('red','assets/grid/red laser.png');
+      this.game.load.image('blue','assets/grid/blue laser.png');
+
     grid = this.game.add.tilemap();
     map = this.game.add.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
 
