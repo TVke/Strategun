@@ -30,7 +30,6 @@ Tile.prototype.charToImage = function(charId) {
 		case MenuItems.BOMB:
 			image = "bomb";
 			break;
-
 		case MenuItems.FLAG:
 			image = "flag";
 			break;
@@ -50,19 +49,21 @@ Tile.prototype.charToImage = function(charId) {
 		default:
 			break;
 	}
+
+	
 	return image;
 }
 
 Tile.prototype.putCharacter = function (character, tileX, tileY) {
 	//TODO: Put character on screen;
 
-	console.log("char on screen");
 	selectedTile = tileData[tileX][tileY];
 
 	if (selectedTile === 0) {
 		if (tileY !== 0) {
-			tileData[tileX][tileY] = selectedChar;
+			tileData[tileX][tileY] = Character.makeCharacter();
 			game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
+			Setup.handleCharacterLimit(selectedChar);
 			selectedChar = null;
 		}
 	}
@@ -89,6 +90,7 @@ Tile.prototype.createInvisibleTiles = function () {
 }
 
 Tile.prototype.highlightTile = function () {
+	console.log("highlight");
 	for (let y = 0; y < 25; ++y) {
 		for (let x = 0; x < 50; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
