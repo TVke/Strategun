@@ -2,7 +2,7 @@ function Coords(){
 
 }
 
-Coords.prototype.generateNeighbors = function(x, y){
+Coords.neighbours = function(x, y){
     return {
         Right: [x, y+1],
         Left: [x, y-1],
