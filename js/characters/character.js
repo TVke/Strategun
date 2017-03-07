@@ -16,11 +16,10 @@ Character.prototype.move = function(){
     //TODO: Movement
 }
 
-
 Character.events = function(){
 
     game.input.onTap.add(function(pointer, event){
-        console.log("x: " + tileLayer.getTileX(pointer.x) + " y:" + tileLayer.getTileY(pointer.y))
+        neighbours = Coords.neighbours(tileLayer.getTileX(pointer.x), tileLayer.getTileY(pointer.y));
     });
 
 }
