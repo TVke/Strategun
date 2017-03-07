@@ -14,5 +14,6 @@ Medic.prototype = Object.create(Character.prototype);
 Medic.prototype.constructor = Character;
 
 Medic.load = function(){
-    
+    game.load.image('medicOut','assets/grid/dokter out.png');
+    game.load.image('medicIn','assets/grid/dokter in.png');
 }

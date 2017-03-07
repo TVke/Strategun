@@ -15,7 +15,9 @@ Soldier.prototype = Object.create(Character.prototype);
 Soldier.prototype.constructor = Character;
 
 Soldier.load = function(){
-
+  game.load.image('soldierOut','assets/grid/soldaat out.png');
+  game.load.image('soldierInWhite','assets/grid/soldaat in white.png');
+  game.load.image('soldierInBlack','assets/grid/soldaat in black.png');
 }
 
 Soldier.prototype.select = function(){
@@ -23,9 +25,9 @@ Soldier.prototype.select = function(){
 }
 
 Soldier.prototype.move = function(){
-    
+
 }
 
 Soldier.prototype.attack = function(){
-    
+
 }

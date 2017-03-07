@@ -14,5 +14,7 @@ Tank.prototype = Object.create(Character.prototype);
 Tank.prototype.constructor = Character;
 
 Tank.load = function(){
-    
+  game.load.image('tankOut','assets/grid/tank soldaat out.png');
+  game.load.image('tankInWhite','assets/grid/tank soldaat in white.png');
+  game.load.image('tankInBlack','assets/grid/tank soldaat in black.png');
 }

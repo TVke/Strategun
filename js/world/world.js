@@ -14,7 +14,7 @@ World.prototype.load = function () {
 
     // grid = this.game.add.tilemap();
     // map = this.game.add.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
-
+    //
     // grid.addTilesetImage();
 }
 
