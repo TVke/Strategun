@@ -53,6 +53,7 @@ World.prototype.makeMap = function () {
     layer.resizeWorld();
 
     tileLayer = layer;
+    tileMap = map;
 
     this.tileProperties(map, layer)
 
