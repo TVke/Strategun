@@ -8,7 +8,7 @@ function Character(){
     this.asset = "";
 }
 
-Character.prototype.load = function(){
+Character.load = function(){
     // Dummy function
 }
 
@@ -27,9 +27,8 @@ Character.events = function(){
         tileY = tileLayer.getTileY(pointer.y);
 
         neighbours = Coords.neighbours(tileX, tileY);
-
         selectedTile = tileData[tileX][tileY];
-
+        console.log(neighbours);
 
 
         if(selectedTile === TileStyles.WALL){
