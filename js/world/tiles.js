@@ -1,7 +1,7 @@
 let currentNavTile = null;
-let charactersArray = ['bomb', 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
-let randomSoldier;
-let randomTank;
+let activePlayerPrefix = 'b';
+let charactersArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+let randomSoldier,randomTank;
 
 function Tile(game) {
 	this.game = game;
@@ -30,30 +30,30 @@ Tile.prototype.charToImage = function (charId) {
 	image = "";
 	switch (charId) {
 		case MenuItems.BOMB:
-			image = "bomb";
+			image = activePlayerPrefix + "bomb";
 			break;
 		case MenuItems.FLAG:
-			image = "flag";
+			image = activePlayerPrefix + "flag";
 			break;
 		case MenuItems.MEDIC:
-			image = "medicIn";
+			image = activePlayerPrefix + "medicIn";
 			break;
 		case MenuItems.SNIPER:
-			image = "sniperIn";
+			image = activePlayerPrefix + "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
 			if (Math.random() >= 0.5) {
-				randomSoldier = 'soldierInWhite';
+				randomSoldier = activePlayerPrefix + 'soldierInWhite';
 			} else {
-				randomSoldier = 'soldierInBlack';
+				randomSoldier = activePlayerPrefix + 'soldierInBlack';
 			}
 			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
 			if (Math.random() >= 0.5) {
-				randomTank = 'tankInWhite';
+				randomTank = activePlayerPrefix + 'tankInWhite';
 			} else {
-				randomTank = 'tankInBlack';
+				randomTank = activePlayerPrefix + 'tankInBlack';
 			}
 			image = randomTank;
 			break;

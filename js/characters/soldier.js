@@ -15,10 +15,9 @@ Soldier.prototype = Object.create(Character.prototype);
 Soldier.prototype.constructor = Character;
 
 Soldier.load = function(){
-  game.load.image('bsoldierOut','assets/grid/bsoldaat out.png');
+  game.load.image('soldierOut','assets/grid/soldaat out.png');
   game.load.image('bsoldierInWhite','assets/grid/bsoldaat in white.png');
   game.load.image('bsoldierInBlack','assets/grid/bsoldaat in black.png');
-  game.load.image('rsoldierOut','assets/grid/rsoldaat out.png');
   game.load.image('rsoldierInWhite','assets/grid/rsoldaat in white.png');
   game.load.image('rsoldierInBlack','assets/grid/rsoldaat in black.png');
 
