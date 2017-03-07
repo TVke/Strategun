@@ -35,6 +35,8 @@ function preload() {
 function create() {
 	gameObjects.world.makeGrid();
 	gameObjects.world.makeMap();
+
+	console.log(tileData);
     gameObjects.scale.makeButton();
     gameObjects.tile.createNavTiles();
 }
