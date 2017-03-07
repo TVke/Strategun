@@ -1,4 +1,4 @@
-let currentNavTile;
+let currentNavTile = null;
 let charactersArray = ['bomb', 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
 
 function Tile(game){
@@ -15,16 +15,16 @@ TileStyles = {
 }
 
 function createInvisibleTiles() {
-	for (let i = 0; i < 25; ++i) {
-		for (let j = 0; j < 50; ++j) {
+	for (let y = 0; y < 25; ++y) {
+		for (let x = 0; x < 50; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
 			invisibleTile.beginFill(0xFFFFFF);
-			invisibleTile.drawRect(tileSize * j, tileSize * i + tileSize, tileSize, tileSize);
+			invisibleTile.drawRect(tileSize * x, tileSize * y + tileSize, tileSize, tileSize);
 			invisibleTile.inputEnabled = true;
 			invisibleTile.input.useHandCursor = true;
 			invisibleTile.events.onInputOver.add(over, this);
 			invisibleTile.events.onInputOut.add(out, this);
-			invisibleTile.events.onInputUp.add(function() { clickTile(invisibleTile) }, this);
+			invisibleTile.events.onInputUp.add(function() { clickTile(invisibleTile, x, y) }, this);
 		}
 	}
 }
@@ -49,28 +49,41 @@ function out(item) {
 }
 
 function clickNavTile(counter) {
-	if(counter == 0) {
-		currentNavTile = 'bomb';
-	}
-	if(counter == 1) {
-		currentNavTile = 'flag';
-	}
-	if(counter == 2) {
-		currentNavTile = 'medic';
-	}
-	if(counter == 3) {
-		currentNavTile = 'sniper';
-	}
-	if(counter == 4) {
-		currentNavTile = 'soldier';
-	}
-	if(counter == 5) {
-		currentNavTile = 'tank';
-	}
+	currentNavTile = counter;
+
+	// if(counter == 0) {
+	// 	currentNavTile = 'bomb';
+	// }
+	// if(counter == 1) {
+	// 	currentNavTile = 'flag';
+	// }
+	// if(counter == 2) {
+	// 	currentNavTile = 'medic';
+	// }
+	// if(counter == 3) {
+	// 	currentNavTile = 'sniper';
+	// }
+	// if(counter == 4) {
+	// 	currentNavTile = 'soldier';
+	// }
+	// if(counter == 5) {
+	// 	currentNavTile = 'tank';
+	// }
 }
 
-function clickTile(item) {
-	console.log(currentNavTile);
+function clickTile(item, x, y) {
+	tileData[x][y] = currentNavTile + 5;
+
+	// for(let tileX = 0; tileX < amountOfRows; tileX++){
+ //        for(let tileY = 1; tileY < amountOfFields+1; tileY++){
+
+ //            if(map.getTile(tileX, tileY, layer) === null){
+ //                tileData[tileX][tileY] = 0;
+ //            }else{
+ //                tileData[tileX][tileY] = map.getTile(tileX, tileY, layer).index;
+ //            }
+ //        }
+ //    }
 
 	// if(currentNavTile == 'bomb') {
 	// 	console.log('bomb');
