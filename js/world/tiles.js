@@ -1,3 +1,6 @@
+let currentNavTile;
+let charactersArray = ['bomb', 'flag', 'medic', 'sniper', 'soldier', 'tank'];
+
 function Tile(game){
   this.game = game;
 }
@@ -11,26 +14,69 @@ Tile.prototype.load = function(){
 			invisibleTile.inputEnabled = true;
 			invisibleTile.events.onInputOver.add(over, this);
 			invisibleTile.events.onInputOut.add(out, this);
+			invisibleTile.events.onInputDown.add(clickTile, this);
 		}
 	}
 
-    let tileSelectorBackground = game.add.graphics(0, 0);
-    tileSelectorBackground.beginFill(0x000000);
-    tileSelectorBackground.drawRect(0, 0, tileSize * 50, tileSize);
-
-	for (let i = 0; i < 6; ++i) {
-		let invisibleTile = game.add.graphics(0, 0);
-		invisibleTile.beginFill(0x000000);
-		invisibleTile.drawRect(tileSize, tileSize, tileSize, tileSize);
-		invisibleTile.inputEnabled = true;
-		invisibleTile.events.onInputOver.add(over, this);
-		invisibleTile.events.onInputOut.add(out, this);
+	for (var i = 0; i < 6; ++i) {
+		(function(i) {
+			let image = game.add.image(tileSize * i, 0, charactersArray[i])
+			image.inputEnabled = true;
+			image.events.onInputOver.add(over, this);
+			image.events.onInputOut.add(out, this);
+			image.events.onInputDown.add(function() { clickNavTile(i) }, this);
+		})(i);
 	}
 }
 
 function over(item) {
 	item.alpha = 0;
 }
+
 function out(item) {
 	item.alpha = 1;
+}
+
+function clickNavTile(counter) {
+	if(counter == 0) {
+		currentNavTile = 'bomb';
+	}
+	if(counter == 1) {
+		currentNavTile = 'flag';
+	}
+	if(counter == 2) {
+		currentNavTile = 'medic';
+	}
+	if(counter == 3) {
+		currentNavTile = 'sniper';
+	}
+	if(counter == 4) {
+		currentNavTile = 'soldier';
+	}
+	if(counter == 5) {
+		currentNavTile = 'tank';
+	}
+}
+
+function clickTile() {
+	console.log(currentNavTile);
+
+	// if(currentNavTile == 'bomb') {
+	// 	console.log('bomb');
+	// }
+	// if(currentNavTile == 'flag') {
+	// 	console.log('flag');
+	// }
+	// if(currentNavTile == 'medic') {
+	// 	console.log('medic');
+	// }
+	// if(currentNavTile == 'sniper') {
+	// 	console.log('sniper');
+	// }
+	// if(currentNavTile == 'soldier') {
+	// 	console.log('soldier');
+	// }
+	// if(currentNavTile == 'tank') {
+	// 	console.log('tank');
+	// }
 }
