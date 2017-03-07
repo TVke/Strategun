@@ -22,12 +22,12 @@
          "image":"..\/grid\/olie.png",
          "imageheight":46,
          "imagewidth":46,
-         "margin":0,
+         "margin":1,
          "name":"olie",
-         "spacing":0,
+         "spacing":1,
          "tilecount":1,
-         "tileheight":46,
-         "tilewidth":46
+         "tileheight":44,
+         "tilewidth":44
         },
         {
          "columns":1,
@@ -35,12 +35,12 @@
          "image":"..\/grid\/wall.png",
          "imageheight":46,
          "imagewidth":46,
-         "margin":0,
+         "margin":1,
          "name":"wall",
-         "spacing":0,
+         "spacing":1,
          "tilecount":1,
-         "tileheight":46,
-         "tilewidth":46
+         "tileheight":44,
+         "tilewidth":44
         }],
  "tilewidth":44,
  "version":1,
