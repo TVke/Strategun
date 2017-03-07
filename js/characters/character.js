@@ -30,7 +30,7 @@ Character.events = function(){
         neighbours = Coords.neighbours(tileX, tileY);
         selectedTile = tileData[tileX][tileY];
         var moveableCharacter = true;
-        if(moveableCharacter){
+        if(moveableCharacter && gameStarted){
             for (var neightbour in neighbours) {
                 if(tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0){
                     context.Character.moveableLocation(neighbours[neightbour][0],neighbours[neightbour][1]);

@@ -24,14 +24,45 @@ MenuItems = {
 	TANK: 5,
 };
 
+Tile.prototype.charToImage = function(charId) {
+	image = "";
+	switch (charId) {
+		case MenuItems.BOMB:
+			image = "bomb";
+			break;
+
+		case MenuItems.FLAG:
+			image = "flag";
+			break;
+		case MenuItems.MEDIC:
+			image = "medicIn";
+			break;
+		case MenuItems.SNIPER:
+			image = "sniperIn";
+			break;
+		case MenuItems.SOLDIER:
+			//TODO: random generate soldier in white en black;
+			image = "soldierInWhite";
+			break;
+		case MenuItems.TANK:
+			image = "tankInWhite";
+			break;
+		default:
+			break;
+	}
+	return image;
+}
+
 Tile.prototype.putCharacter = function (character, tileX, tileY) {
 	//TODO: Put character on screen;
+
+	console.log("char on screen");
 	selectedTile = tileData[tileX][tileY];
 
-	if(selectedTile === 0){
-		if(tileY !== 0){
+	if (selectedTile === 0) {
+		if (tileY !== 0) {
 			tileData[tileX][tileY] = selectedChar;
-			game.add.image(tileX*44, tileY*44, 'soldierInBlack');
+			game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
 			selectedChar = null;
 		}
 	}
@@ -39,21 +70,17 @@ Tile.prototype.putCharacter = function (character, tileX, tileY) {
 
 Tile.prototype.createInvisibleTiles = function () {
 	var context = this;
+
 	game.input.onTap.add(function (pointer, event) {
 		tileX = tileLayer.getTileX(pointer.x);
 		tileY = tileLayer.getTileY(pointer.y);
-
-		console.log("x: " + tileX + " y: " + tileY);
-		console.log(selectedChar);
-
-		context.putCharacter(1, tileX, tileY);
 
 		if (selectedChar !== null) {
 			context.putCharacter(selectedChar, tileX, tileY);
 		}
 
 		if (tileY === 0) {
-			selectedChar === tileX;
+			selectedChar = tileX;
 		}
 
 
