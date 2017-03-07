@@ -19,13 +19,13 @@ World.prototype.makeGrid = function () {
     lasers = this.game.add.group();
 
     for (let i = 1; i < amountOfFields; ++i) {
-        let blueVerticle = this.game.add.tileSprite(i * tileSize, 0, laserSize, this.game.world.height, 'blue');
+        let blueVertical = this.game.add.tileSprite(i * tileSize, 0, laserSize, this.game.world.height, 'blue');
         let blueHorizontal = this.game.add.tileSprite(0, i * tileSize, this.game.world.width / 2, laserSize, 'blue');
-        let redVerticle = this.game.add.tileSprite(this.game.world.width / 2 + i * tileSize, 0, laserSize, this.game.world.height, 'red');
+        let redVertical = this.game.add.tileSprite(this.game.world.width / 2 + i * tileSize, 0, laserSize, this.game.world.height, 'red');
         let redHorizontal = this.game.add.tileSprite(this.game.world.width / 2, i * tileSize, this.game.world.width / 2, laserSize, 'red');
-        lasers.add(blueVerticle);
+        lasers.add(blueVertical);
         lasers.add(blueHorizontal);
-        lasers.add(redVerticle);
+        lasers.add(redVertical);
         lasers.add(redHorizontal);
     }
 
