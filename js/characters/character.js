@@ -8,6 +8,10 @@ function Character(){
     this.asset = "";
 }
 
+Character.prototype.load = function(){
+    // Dummy function
+}
+
 Character.prototype.move = function(){
     //TODO: Movement
 }

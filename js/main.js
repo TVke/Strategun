@@ -15,6 +15,7 @@ var gameObjects = {
 }
 
 var characters = {
+    character: Character,
 	bomb: Bomb,
 	flag: Flag,
 	medic: Medic,
