@@ -16,4 +16,5 @@ Bomb.prototype.constructor = Character;
 Bomb.load = function () {
   game.load.image('bomb','assets/grid/mijn.png');
   game.load.image('bombGlow','assets/grid/mijn gloed.png');
+  
 }
