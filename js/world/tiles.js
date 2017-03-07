@@ -42,9 +42,19 @@ Tile.prototype.charToImage = function (charId) {
 			image = "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
+			if (Math.random() >= 0.5) {
+				randomSoldier = 'soldierInWhite';
+			} else {
+				randomSoldier = 'soldierInBlack';
+			}
 			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
+			if (Math.random() >= 0.5) {
+				randomTank = 'tankInWhite';
+			} else {
+				randomTank = 'tankInBlack';
+			}
 			image = randomTank;
 			break;
 		default:
@@ -60,7 +70,7 @@ Tile.prototype.putCharacter = function (character, tileX, tileY) {
 	if (selectedTile === 0) {
 		if (tileY !== 0) {
 			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-				tileData[tileX][tileY] = Character.makeCharacter();
+				tileData[tileY][tileX] = Character.makeCharacter();
 				game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
 
 				selectedChar = null;
@@ -88,7 +98,7 @@ Tile.prototype.createInvisibleTiles = function () {
 }
 
 Tile.prototype.highlightTile = function () {
-	
+
 	for (let y = 0; y < 25; ++y) {
 		for (let x = 0; x < 50; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
@@ -124,17 +134,7 @@ function out(item) {
 function clickNavTile(counter) {
 	currentNavTile = counter;
 
-	if(Math.random() >= 0.5) {
-		randomSoldier = 'soldierInWhite';
-	}
-	else {
-		randomSoldier = 'soldierInBlack';
-	}
 
-	if(Math.random() >= 0.5) {
-		randomTank = 'tankInWhite';
-	}
-	else {
-		randomTank = 'tankInBlack';
-	}
+
+
 }

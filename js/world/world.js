@@ -29,9 +29,8 @@ World.prototype.tileProperties = function(map, layer){
         tileData[item] = new Array(amountOfFields);
     }
 
-    for(let tileX = 1; tileX < amountOfFields; tileX++){
-        for(let tileY = 0; tileY < amountOfRows; tileY++){
-
+    for(let tileY = 1; tileY < amountOfFields+1; tileY++){
+        for(let tileX = 0; tileX < amountOfRows; tileX++){
             if(map.getTile(tileX, tileY, layer) === null){
                 tileData[tileY][tileX] = 0;
             }else{
