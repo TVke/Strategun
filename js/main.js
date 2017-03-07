@@ -36,12 +36,11 @@ function preload() {
 function create() {
 	gameObjects.world.makeGrid();
 	gameObjects.world.makeMap();
-
-	console.log(tileData);
-    // gameObjects.scale.makeButton(); extra
+    
     gameObjects.tile.createNavTiles();
 
 	characters.character.events();
+    // gameObjects.scale.makeButton(); extra
 }
 
 function update() {
