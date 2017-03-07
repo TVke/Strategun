@@ -39,6 +39,7 @@ function preload() {
 
 function create() {
 	gameObjects.world.makeGrid();
+	gameObjects.world.makeMap();
 }
 
 function update() {

@@ -1,20 +1,31 @@
 const tileSize = 44;
 const amountOfFields = 25;
+const amountOfRows = 50;
 const laserSize = 2;
 
 function World(game) {
     this.game = game;
+    this.map = null;
 }
 
 World.prototype.load = function () {
-    grid = this.game.add.tilemap();
-    map = this.game.add.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
+    let grid = this.game.add.tilemap();
 
-    grid.addTilesetImage();
+    this.game.load.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
+    
+    this.game.load.image('wall', 'assets/grid/wall.png');
+    this.game.load.image('olie', 'assets/grid/olie.png');
+    this.game.load.image('red player', 'assets/grid/red player.png');
+    this.game.load.image('blue player', 'assets/grid/blue player.png');   
 }
 
 World.prototype.makeMap = function(){
+    let map = this.game.add.tilemap('map');
 
+    map.addTilesetImage('wall', 'wall');
+    map.addTilesetImage('olie', 'olie');
+    map.addTilesetImage('red player', 'red player');
+    map.addTilesetImage('blue player', 'blue player');
 }
 
 World.prototype.makeGrid = function () {
