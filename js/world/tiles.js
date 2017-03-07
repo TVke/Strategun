@@ -24,7 +24,7 @@ MenuItems = {
 	TANK: 5,
 };
 
-Tile.prototype.charToImage = function(charId) {
+Tile.prototype.charToImage = function (charId) {
 	image = "";
 	switch (charId) {
 		case MenuItems.BOMB:
@@ -50,7 +50,7 @@ Tile.prototype.charToImage = function(charId) {
 			break;
 	}
 
-	
+
 	return image;
 }
 
@@ -61,10 +61,12 @@ Tile.prototype.putCharacter = function (character, tileX, tileY) {
 
 	if (selectedTile === 0) {
 		if (tileY !== 0) {
-			tileData[tileX][tileY] = Character.makeCharacter();
-			game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
-			Setup.handleCharacterLimit(selectedChar);
-			selectedChar = null;
+			if (Setup.handleCharacterLimit(selectedChar)) {
+				tileData[tileX][tileY] = Character.makeCharacter();
+				game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
+
+				selectedChar = null;
+			}
 		}
 	}
 }
