@@ -14,8 +14,10 @@ Medic.prototype = Object.create(Character.prototype);
 Medic.prototype.constructor = Character;
 
 Medic.load = function(){
-    game.load.image('medicOut','assets/grid/dokter out.png');
-    game.load.image('medicIn','assets/grid/dokter in.png');
+    game.load.image('bmedicOut','assets/grid/bdokter out.png');
+    game.load.image('bmedicIn','assets/grid/bdokter in.png');
+    game.load.image('rmedicOut','assets/grid/rdokter out.png');
+    game.load.image('rmedicIn','assets/grid/rdokter in.png');
 
     game.load.audio('medicSelect', 'assets/sounds/medic_select.mp3');
     game.load.audio('medicHurt', 'assets/sounds/medic_hurt.mp3');
