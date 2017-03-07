@@ -1,4 +1,4 @@
-function Bomb(id, player){
+function Bomb(id, player, game) {
     this.id = id;
     this.assetId = 5;
     this.player = player;
@@ -13,6 +13,9 @@ function Bomb(id, player){
 Bomb.prototype = Object.create(Character.prototype);
 Bomb.prototype.constructor = Character;
 
-Bomb.prototype.load = function(){
+Bomb.load = function () {
+  game.load.image('bomb','assets/grid/mijn.png');
+  game.load.image('bombGlow','assets/grid/mijn gloed.png');
 
+  game.load.audio('explosionSound', 'assets/sounds/explosion.mp3');
 }
