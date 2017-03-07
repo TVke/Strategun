@@ -1,5 +1,7 @@
 let currentNavTile = null;
 let charactersArray = ['bomb', 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+let randomSoldier;
+let randomTank;
 
 function Tile(game) {
 	this.game = game;
@@ -40,11 +42,10 @@ Tile.prototype.charToImage = function (charId) {
 			image = "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
-			//TODO: random generate soldier in white en black;
-			image = "soldierInWhite";
+			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
-			image = "tankInWhite";
+			image = randomTank;
 			break;
 		default:
 			break;
@@ -54,8 +55,6 @@ Tile.prototype.charToImage = function (charId) {
 }
 
 Tile.prototype.putCharacter = function (character, tileX, tileY) {
-	//TODO: Put character on screen;
-
 	selectedTile = tileData[tileX][tileY];
 
 	if (selectedTile === 0) {
@@ -120,4 +119,22 @@ function over(item) {
 
 function out(item) {
 	item.alpha = 1;
+}
+
+function clickNavTile(counter) {
+	currentNavTile = counter;
+
+	if(Math.random() >= 0.5) {
+		randomSoldier = 'soldierInWhite';
+	}
+	else {
+		randomSoldier = 'soldierInBlack';
+	}
+
+	if(Math.random() >= 0.5) {
+		randomTank = 'tankInWhite';
+	}
+	else {
+		randomTank = 'tankInBlack';
+	}
 }
