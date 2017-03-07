@@ -40,11 +40,13 @@ function create() {
 	console.log(tileData);
     gameObjects.scale.makeButton();
     gameObjects.tile.createNavTiles();
+
+	characters.character.events();
 }
 
 function update() {
 	gameObjects.world.moveMap();
 
-	characters.character.events();
+	
 
 }
