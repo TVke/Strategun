@@ -1,5 +1,7 @@
 let currentNavTile = null;
 let charactersArray = ['bomb', 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+let randomSoldier;
+let randomTank;
 
 function Tile(game) {
 	this.game = game;
@@ -40,11 +42,10 @@ Tile.prototype.charToImage = function (charId) {
 			image = "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
-			//TODO: random generate soldier in white en black;
-			image = "soldierInWhite";
+			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
-			image = "tankInWhite";
+			image = randomTank;
 			break;
 		default:
 			break;
@@ -55,8 +56,6 @@ Tile.prototype.charToImage = function (charId) {
 }
 
 Tile.prototype.putCharacter = function (character, tileX, tileY) {
-	//TODO: Put character on screen;
-
 	selectedTile = tileData[tileX][tileY];
 
 	if (selectedTile === 0) {
@@ -85,9 +84,6 @@ Tile.prototype.createInvisibleTiles = function () {
 		if (tileY === 0) {
 			selectedChar = tileX;
 		}
-
-
-		//clickTile(invisibleTile, x, y)
 	});
 }
 
@@ -130,43 +126,17 @@ function out(item) {
 function clickNavTile(counter) {
 	currentNavTile = counter;
 
-	// if(counter == 0) {
-	// 	currentNavTile = 'bomb';
-	// }
-	// if(counter == 1) {
-	// 	currentNavTile = 'flag';
-	// }
-	// if(counter == 2) {
-	// 	currentNavTile = 'medic';
-	// }
-	// if(counter == 3) {
-	// 	currentNavTile = 'sniper';
-	// }
-	// if(counter == 4) {
-	// 	currentNavTile = 'soldier';
-	// }
-	// if(counter == 5) {
-	// 	currentNavTile = 'tank';
-	// }
-}
+	if(Math.random() >= 0.5) {
+		randomSoldier = 'soldierInWhite';
+	}
+	else {
+		randomSoldier = 'soldierInBlack';
+	}
 
-function clickTile(item, x, y) {
-	// if(currentNavTile == 'bomb') {
-	// 	console.log('bomb');
-	// }
-	// if(currentNavTile == 'flag') {
-	// 	console.log('flag');
-	// }
-	// if(currentNavTile == 'medic') {
-	// 	console.log('medic');
-	// }
-	// if(currentNavTile == 'sniper') {
-	// 	console.log('sniper');
-	// }
-	// if(currentNavTile == 'soldier') {
-	// 	console.log('soldier');
-	// }
-	// if(currentNavTile == 'tank') {
-	// 	console.log('tank');
-	// }
+	if(Math.random() >= 0.5) {
+		randomTank = 'tankInWhite';
+	}
+	else {
+		randomTank = 'tankInBlack';
+	}
 }
