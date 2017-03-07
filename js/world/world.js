@@ -11,7 +11,6 @@ World.prototype.load = function () {
     map = this.game.add.tilemap();
 
     map.addTilesetImage();
-
 }
 
 World.prototype.makeGrid = function () {
@@ -56,18 +55,6 @@ World.prototype.makeGrid = function () {
 }
 
 World.prototype.moveMap = function () {
-    // if (cursors.left.isDown) {
-    //     game.camera.x -= 4;
-    // } else if (cursors.right.isDown) {
-    //     game.camera.x += 4;
-    // }
-    // if (cursors.up.isDown) {
-    //     game.camera.y -= 4;
-    // } else if (cursors.down.isDown) {
-    //     game.camera.y += 4;
-    // }
-
-
     if (this.game.input.activePointer.isDown) {
         if (this.game.origDragPoint) {
             // move the camera by the amount the mouse has moved since last update		
