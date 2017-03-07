@@ -9,18 +9,17 @@ function World(game) {
 }
 
 World.prototype.load = function () {
+    this.game.stage.backgroundColor = '#efefef';
+
+    this.game.load.image('red', 'assets/grid/red laser.png');
+    this.game.load.image('blue', 'assets/grid/blue laser.png');
+
     grid = this.game.add.tilemap();
 
     this.game.load.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
 
     this.game.load.image('wall', 'assets/grid/wall.png');
     this.game.load.image('olie', 'assets/grid/olie.png');
-    this.game.load.image('red player', 'assets/grid/red player.png');
-    this.game.load.image('blue player', 'assets/grid/blue player.png');
-    this.game.stage.backgroundColor = '#efefef';
-
-    this.game.load.image('red', 'assets/grid/red laser.png');
-    this.game.load.image('blue', 'assets/grid/blue laser.png');
 }
 
 World.prototype.tileProperties = function(map, layer){
@@ -55,8 +54,8 @@ World.prototype.makeMap = function () {
 
     tileLayer = layer;
 
-    this.tileProperties(map, layer)    
-    
+    this.tileProperties(map, layer)
+
 }
 
 World.prototype.makeGrid = function () {
