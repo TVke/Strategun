@@ -17,4 +17,9 @@ Tank.load = function(){
   game.load.image('tankOut','assets/grid/tank soldaat out.png');
   game.load.image('tankInWhite','assets/grid/tank soldaat in white.png');
   game.load.image('tankInBlack','assets/grid/tank soldaat in black.png');
+
+  game.load.audio('tankSelect', 'assets/sounds/tank_select.mp3');
+  game.load.audio('tankHurt', 'assets/sounds/tank_hurt.mp3');
+  game.load.audio('tankDeath', 'assets/sounds/tank_death.mp3')
+  game.load.audio('tankPunch', 'assets/sounds/tank_punch.mp3');
 }
