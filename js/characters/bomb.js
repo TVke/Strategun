@@ -14,5 +14,5 @@ Bomb.prototype = Object.create(Character.prototype);
 Bomb.prototype.constructor = Character;
 
 Bomb.load = function () {
-  this.game.load.image('bomb','assets/grid/red laser.png');
+  //this.game.load.image('bomb','assets/grid/mijn.png');
 }
