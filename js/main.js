@@ -34,6 +34,7 @@ function create() {
 	gameObjects.world.makeGrid();
 	gameObjects.world.makeMap();
     gameObjects.scale.makeButton();
+    gameObjects.tile.createNavTiles();
 }
 
 function update() {

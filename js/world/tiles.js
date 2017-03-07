@@ -1,29 +1,35 @@
 let currentNavTile;
-let charactersArray = ['bomb', 'flag', 'medic', 'sniper', 'soldier', 'tank'];
+let charactersArray = ['bomb', 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
 
 function Tile(game){
   this.game = game;
 }
 
-Tile.prototype.load = function(){
+Tile.prototype.load = function() {
+	createInvisibleTiles();
+}
+
+function createInvisibleTiles() {
 	for (let i = 0; i < 25; ++i) {
 		for (let j = 0; j < 50; ++j) {
 			let invisibleTile = game.add.graphics(0, 0);
 			invisibleTile.beginFill(0xFFFFFF);
 			invisibleTile.drawRect(tileSize * j, tileSize * i + tileSize, tileSize, tileSize);
 			invisibleTile.inputEnabled = true;
+			invisibleTile.input.useHandCursor = true;
 			invisibleTile.events.onInputOver.add(over, this);
 			invisibleTile.events.onInputOut.add(out, this);
 			invisibleTile.events.onInputDown.add(clickTile, this);
 		}
 	}
+}
 
+Tile.prototype.createNavTiles = function() {
 	for (var i = 0; i < 6; ++i) {
 		(function(i) {
-			let image = game.add.image(tileSize * i, 0, charactersArray[i])
+			let image = game.add.image(tileSize * i, 0, charactersArray[i]);
 			image.inputEnabled = true;
-			image.events.onInputOver.add(over, this);
-			image.events.onInputOut.add(out, this);
+			image.input.useHandCursor = true;
 			image.events.onInputDown.add(function() { clickNavTile(i) }, this);
 		})(i);
 	}
