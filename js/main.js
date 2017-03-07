@@ -11,7 +11,7 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS,
 var gameObjects = {
 	world: new World(game),
 	tile: new Tile(game),
-	scale: new Scale(game),
+	// scale: new Scale(game), extra
 }
 
 var characters = {
@@ -38,7 +38,7 @@ function create() {
 	gameObjects.world.makeMap();
 
 	console.log(tileData);
-    gameObjects.scale.makeButton();
+    // gameObjects.scale.makeButton(); extra
     gameObjects.tile.createNavTiles();
 
 	characters.character.events();
@@ -47,6 +47,6 @@ function create() {
 function update() {
 	gameObjects.world.moveMap();
 
-	
+
 
 }
