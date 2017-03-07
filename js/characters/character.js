@@ -79,6 +79,17 @@ Character.events = function(){
             console.log("it's oil, lets burn");
         }
 
+        items = "";
+
+        for(let x = 0; x < 50; x++){
+            for(let y = 1; y < 26; y++){
+                items += tileData[x][y];
+            }
+
+            items += "\n";
+        }
+
+        console.log(items);
     });
 
 }

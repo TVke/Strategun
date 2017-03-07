@@ -50,7 +50,6 @@ Tile.prototype.charToImage = function (charId) {
 			break;
 	}
 
-
 	return image;
 }
 
@@ -61,7 +60,7 @@ Tile.prototype.putCharacter = function (character, tileX, tileY) {
 
 	if (selectedTile === 0) {
 		if (tileY !== 0) {
-			if (Setup.handleCharacterLimit(selectedChar)) {
+			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
 				tileData[tileX][tileY] = Character.makeCharacter();
 				game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
 
@@ -86,13 +85,11 @@ Tile.prototype.createInvisibleTiles = function () {
 			selectedChar = tileX;
 		}
 
-
-		//clickTile(invisibleTile, x, y)
 	});
 }
 
 Tile.prototype.highlightTile = function () {
-	console.log("highlight");
+	
 	for (let y = 0; y < 25; ++y) {
 		for (let x = 0; x < 50; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
@@ -104,6 +101,7 @@ Tile.prototype.highlightTile = function () {
 			invisibleTile.events.onInputOut.add(out, this);
 		}
 	}
+
 }
 
 Tile.prototype.createNavTiles = function () {
@@ -112,9 +110,6 @@ Tile.prototype.createNavTiles = function () {
 			let image = game.add.image(tileSize * i, 0, charactersArray[i]);
 			image.inputEnabled = true;
 			image.input.useHandCursor = true;
-			image.events.onInputUp.add(function () {
-				clickNavTile(i)
-			}, this);
 		})(i);
 	}
 }
@@ -125,48 +120,4 @@ function over(item) {
 
 function out(item) {
 	item.alpha = 1;
-}
-
-function clickNavTile(counter) {
-	currentNavTile = counter;
-
-	// if(counter == 0) {
-	// 	currentNavTile = 'bomb';
-	// }
-	// if(counter == 1) {
-	// 	currentNavTile = 'flag';
-	// }
-	// if(counter == 2) {
-	// 	currentNavTile = 'medic';
-	// }
-	// if(counter == 3) {
-	// 	currentNavTile = 'sniper';
-	// }
-	// if(counter == 4) {
-	// 	currentNavTile = 'soldier';
-	// }
-	// if(counter == 5) {
-	// 	currentNavTile = 'tank';
-	// }
-}
-
-function clickTile(item, x, y) {
-	// if(currentNavTile == 'bomb') {
-	// 	console.log('bomb');
-	// }
-	// if(currentNavTile == 'flag') {
-	// 	console.log('flag');
-	// }
-	// if(currentNavTile == 'medic') {
-	// 	console.log('medic');
-	// }
-	// if(currentNavTile == 'sniper') {
-	// 	console.log('sniper');
-	// }
-	// if(currentNavTile == 'soldier') {
-	// 	console.log('soldier');
-	// }
-	// if(currentNavTile == 'tank') {
-	// 	console.log('tank');
-	// }
 }

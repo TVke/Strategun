@@ -15,6 +15,20 @@ Setup.prototype.changePlayer = function () {
     playerAtSetup++;
 }
 
+Setup.sideControl = function(player, x, y){
+    if(player === 0){
+        if(y > 25){
+            return false;
+        }
+    }else if(player === 1){
+        if(y < 25){
+            return false;
+        }
+    }
+
+    return true;
+}
+
 Setup.handleCharacterLimit = function (character) {
     handlesIt = true;
 
