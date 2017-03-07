@@ -72,19 +72,6 @@ function clickNavTile(counter) {
 }
 
 function clickTile(item, x, y) {
-	tileData[x][y] = currentNavTile + 5;
-
-	// for(let tileX = 0; tileX < amountOfRows; tileX++){
- //        for(let tileY = 1; tileY < amountOfFields+1; tileY++){
-
- //            if(map.getTile(tileX, tileY, layer) === null){
- //                tileData[tileX][tileY] = 0;
- //            }else{
- //                tileData[tileX][tileY] = map.getTile(tileX, tileY, layer).index;
- //            }
- //        }
- //    }
-
 	// if(currentNavTile == 'bomb') {
 	// 	console.log('bomb');
 	// }
