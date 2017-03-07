@@ -1,7 +1,6 @@
 const tileSize = 44;
 const amountOfFields = 25;
 const laserSize = 2;
-var lasers;
 
 function World(game) {
     this.game = game;
@@ -11,7 +10,6 @@ World.prototype.load = function () {
     map = this.game.add.tilemap();
 
     map.addTilesetImage();
-
 }
 
 World.prototype.makeGrid = function () {
@@ -33,10 +31,6 @@ World.prototype.makeGrid = function () {
     this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 1, 'red');
     this.game.add.tileSprite(this.game.world.width - 1, 0, 1, this.game.world.height, 'red');
     this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width, 1, 'red');
-
-    // lasers.inputEnabled = true;
-    // lasers.input.enableDrag();
-    // lasers.input.enableSnap(32, 32, false, true);
 }
 
 World.prototype.moveMap = function () {
