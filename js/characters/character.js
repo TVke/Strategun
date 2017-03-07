@@ -8,10 +8,6 @@ function Character(){
     this.asset = "";
 }
 
-Character.load = function(){
-    //Dummy load
-}
-
 Character.prototype.move = function(){
     //TODO: Movement
 }
@@ -30,17 +26,14 @@ Character.events = function(){
 
         selectedTile = tileData[tileX][tileY];
 
-        
+
 
         if(selectedTile === TileStyles.WALL){
             console.log("it's a wall");
         }else if(selectedTile === TileStyles.OIL){
             console.log("it's oil, lets burn");
         }
-        
+
     });
 
 }
-
-
-
