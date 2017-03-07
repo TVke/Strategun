@@ -24,7 +24,7 @@ World.prototype.load = function () {
 }
 
 World.prototype.tileProperties = function(map, layer){
-    var tileData = new Array(amountOfRows);
+    tileData = new Array(amountOfRows);
 
     for(let item = 0; item < amountOfRows; item++){
         tileData[item] = new Array(amountOfFields);
@@ -35,8 +35,6 @@ World.prototype.tileProperties = function(map, layer){
             tileData[tileX][tileY] = map.getTile(tileX, tileY, layer);
         }
     }
-
-    console.log(tileData[17][7]);
 }
 
 World.prototype.makeMap = function () {
