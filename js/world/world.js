@@ -7,9 +7,14 @@ function World(game) {
 }
 
 World.prototype.load = function () {
-    map = this.game.add.tilemap();
+    grid = this.game.add.tilemap();
+    map = this.game.add.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
 
-    map.addTilesetImage();
+    grid.addTilesetImage();
+}
+
+World.prototype.makeMap = function(){
+
 }
 
 World.prototype.makeGrid = function () {
