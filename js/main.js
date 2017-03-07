@@ -7,7 +7,7 @@
 //const height = 0;
 //scaleRatio = window.devicePixelRatio / 3;
 
-var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, '', {
+var game = new Phaser.Game(window.innerWidth / window.devicePixelRatio, window.innerHeight / window.devicePixelRatio, Phaser.CANVAS, '', {
 	preload: preload,
 	create: create,
 	update: update
