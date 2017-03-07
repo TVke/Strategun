@@ -1,13 +1,16 @@
 
 
-function Tiles(game){
-
+function Tile(game){
+  this.game = game;
 }
 
-Tiles.prototype.load = function(){
-    
+Tile.prototype.load = function(){
+  this.game.stage.backgroundColor = '#efefef';
+
+  this.game.load.image('red','assets/grid/red laser.png');
+  this.game.load.image('blue','assets/grid/blue laser.png');
 }
 
-Tiles.prototype.highlight = function(position, range){
-    
+Tile.prototype.highlight = function(position, range){
+  
 }
