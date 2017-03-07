@@ -25,7 +25,7 @@ World.prototype.load = function () {
 }
 
 World.prototype.makeMap = function () {
-    let map = this.game.add.tilemap('map');
+    // map = this.game.add.tilemap('map');
 
     map.addTilesetImage('wall', 'wall');
     map.addTilesetImage('olie', 'olie');
