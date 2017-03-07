@@ -30,19 +30,20 @@ World.prototype.tileProperties = function(map, layer){
         tileData[item] = new Array(amountOfFields);
     }
 
-    for(let tileX = 1; tileX < amountOfRows; tileX++){
-        for(let tileY = 1; tileY < amountOfFields; tileY++){
-            tileData[tileX][tileY] = map.getTile(tileX, tileY, layer);
+    for(let tileX = 0; tileX < amountOfRows; tileX++){
+        for(let tileY = 0; tileY < amountOfFields; tileY++){
+
+            if(map.getTile(tileX, tileY, layer) === null){
+                tileData[tileX][tileY] = 0;
+            }else{
+                tileData[tileX][tileY] = map.getTile(tileX, tileY, layer).index;
+            }
         }
     }
 }
 
 World.prototype.makeMap = function () {
     var map = this.game.add.tilemap('map');
-
-    // map.forEach(function(tile) {
-    //     console.log("tile " + tile);
-    // }, this);
 
     map.addTilesetImage('wall', 'wall');
     map.addTilesetImage('olie', 'olie');
