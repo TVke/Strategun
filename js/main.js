@@ -15,6 +15,7 @@ var gameObjects = {
 }
 
 var characters = {
+	character: Character,
 	bomb: Bomb,
 	flag: Flag,
 	medic: Medic,
@@ -43,4 +44,7 @@ function create() {
 
 function update() {
 	gameObjects.world.moveMap();
+
+	characters.character.events();
+
 }

@@ -30,7 +30,7 @@ Soldier.prototype.select = function(){
 }
 
 Soldier.prototype.move = function(){
-
+  
 }
 
 Soldier.prototype.attack = function(){
