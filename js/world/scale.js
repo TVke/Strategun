@@ -17,7 +17,7 @@ Scale.prototype.changeZoomLevel = function () {
         zoomButton = game.add.button(window.innerWidth - (buttonSpace + assetSize), 0, 'scaleIn',gameObjects.scale.changeZoomLevel);
         zoomButton.fixedToCamera = true;
         zoomIn = false;
-        //game.world.scale.
+        //game.scale.setGameSize(1000,500);
     }else{
         zoomButton = game.add.button(window.innerWidth - (buttonSpace + assetSize), 0, 'scaleOut',gameObjects.scale.changeZoomLevel);
         zoomButton.fixedToCamera = true;
