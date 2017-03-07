@@ -16,4 +16,9 @@ Sniper.prototype.constructor = Character;
 Sniper.load = function(){
   game.load.image('sniperOut','assets/grid/sniper out.png');
   game.load.image('sniperIn','assets/grid/sniper in.png');
+
+  game.load.audio('sniperSelect', 'assets/sounds/sniper_select.mp3');
+  game.load.audio('sniperHurt', 'assets/sounds/sniper_hurt.mp3');
+  game.load.audio('sniperDeath', 'assets/sounds/sniper_hurt.mp3');
+  game.load.audio('sniperFire', 'assets/sounds/sniper_fire.mp3');
 }
