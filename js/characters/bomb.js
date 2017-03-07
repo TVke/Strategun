@@ -1,4 +1,4 @@
-function Bomb(id, player){
+function Bomb(id, player, game){
     this.id = id;
     this.assetId = 5;
     this.player = player;

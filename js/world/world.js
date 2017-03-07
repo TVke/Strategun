@@ -37,22 +37,9 @@ World.prototype.makeGrid = function () {
     // lasers.inputEnabled = true;
     // lasers.input.enableDrag();
     // lasers.input.enableSnap(32, 32, false, true);
-    cursors = this.game.input.keyboard.createCursorKeys();
 }
 
 World.prototype.moveMap = function () {
-    // if (cursors.left.isDown) {
-    //     game.camera.x -= 4;
-    // } else if (cursors.right.isDown) {
-    //     game.camera.x += 4;
-    // }
-    // if (cursors.up.isDown) {
-    //     game.camera.y -= 4;
-    // } else if (cursors.down.isDown) {
-    //     game.camera.y += 4;
-    // }
-
-
     if (this.game.input.activePointer.isDown) {
         if (this.game.origDragPoint) {
             // move the camera by the amount the mouse has moved since last update
