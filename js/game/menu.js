@@ -19,8 +19,8 @@ Menu.prototype.load = function(){
 
 Menu.prototype.placeOnTile = function(event){
     event.preventDefault();
-    selectedChar = e.target.id;
-    this.toggleSelectClass(selectedChar);
+    selectedChar = event.target.id;
+    toggleSelectClass(selectedChar);
 
 
     tileX = tileLayer.getTileX(pointer.x);
@@ -36,6 +36,6 @@ Menu.prototype.placeOnTile = function(event){
 
 	});
 }
-Menu.prototype.toggleSelectClass(id){
-    document.getElementById(id).classList.toggle("selected");
+function toggleSelectClass(id){
+    document.getElementById(id.toString()).classList.toggle("selected");
 }
