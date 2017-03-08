@@ -77,18 +77,6 @@ Character.events = function(){
             console.log("it's oil, lets burn");
         }
 
-        //TODO: Remove if all good with map
-        items = "";
-
-        for(let y = 1; y <= 10; y++){
-            for(let x = 0; x < 20; x++){
-                items += tileData[y][x];
-            }
-            items += "\n";
-        }
-
-        console.log(items);
-
     });
 
 }
