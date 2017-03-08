@@ -76,7 +76,7 @@ World.prototype.makeGrid = function () {
 
     this.game.add.tileSprite(this.game.world.width / 2, 0, 1, this.game.world.height, 'black');
     this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 1, 'red');
-    this.game.add.tileSprite(this.game.world.width - 1, tileSize, 1, this.game.world.height - tileSize, 'red');
+    this.game.add.tileSprite(this.game.world.width - 1, 0, 1, this.game.world.height, 'red');
     this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width / 2, 1, 'red');
 }
 
