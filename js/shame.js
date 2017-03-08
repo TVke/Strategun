@@ -5,7 +5,7 @@ function endTurn()
 {
     console.log('ending turn');
 
-    //buttonEndTurn.visible = false;
+    buttonEndTurn.visible = false;
 	
 	//setTimeout(transitionTurn, 2000);
 }
@@ -14,21 +14,21 @@ function startTurn()
 {
     console.log('starting turn');
 
- //    buttonStartTurn.visible = false;
+    buttonStartTurn.visible = false;
     
- //    swapPlayer(players);
+    swapPlayer(players);
     
- //    if(textTurn !== '')
- //    {
- //        textTurn.text = players[1];
- //    }
- //    else
- //    {
- //        textTurn = game.add.text(game.world.centerX + 100, 0, players[0], { fill: '#ff0000' });
- //    }
-	// // zoom map in
-	// // maak pionnen van huidige speler herkenbaar
-	// //setTimeout(function(){ buttonEndTurn.visible = true; }, 2000);
+    if(textTurn !== '')
+    {
+        textTurn.text = players[1];
+    }
+    else
+    {
+        textTurn = game.add.text(game.world.width - 150, 0, players[0], { fill: '#ff0000' });
+    }
+	// zoom map in
+	// maak pionnen van huidige speler herkenbaar
+	//setTimeout(function(){ buttonEndTurn.visible = true; }, 2000);
 }
 
 function transitionTurn()
@@ -64,11 +64,24 @@ function shoot(shooter, target)
     
     if((differenceX <= shooter.range && shooterPosY == targetPosY) || (differenceY <= shooter.range && shooterPosX == targetPosX))
     {
-        //targetHealth -= damageDone;
+        target.health -= shooter.attack;
+
+        if(target.health <= 0)
+        {
+        	killUnit(target);
+        }
+
         console.log('MY BABY SHOT ME DOWN');
     }
     else
     {
         console.log('NOT IN RANGE');
     }
+}
+
+function killUnit(unit)
+{
+	// play death sound of zo?
+	target.destroy();
+	// score bijtellen of zo?
 }
