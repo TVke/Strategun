@@ -114,24 +114,6 @@ Tile.prototype.highlightTile = function () {
 
 }
 
-Tile.prototype.createNavTiles = function () {
-	for (var i = 0; i < 6; ++i) {
-		(function (i) {
-			let image = game.add.image(tileSize * i, 0, characterImagesArray[i]);
-			image.inputEnabled = true;
-			image.input.useHandCursor = true;
-			let tooltip = new Phasetips(game, {
-			    targetObject: image,
-			    context: characterNamesArray[i],
-			    padding: 6,
-			    positionOffset: 0,
-			    fontStrokeThickness: 0,
-			    strokeWeight: 0
-		  	});
-		})(i);
-	}
-}
-
 function clickNavTile(counter) {
 	currentNavTile = counter;
 }
