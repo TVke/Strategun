@@ -5,3 +5,13 @@
 body{
   background: #efefef;
 }
+nav{
+    list-style: none;
+    display: -webkit-flex;
+    display: flex;
+}
+nav a{
+    display: block;
+    padding: 5px;
+    margin: 5px;
+}

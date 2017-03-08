@@ -24,9 +24,9 @@ Setup.sideControl = function(player, x, y){
         if(y < amountOfRows/2){
             return false;
         }
+    }else{
+        return true;
     }
-
-    return true;
 }
 
 Setup.prototype.gameStart = function(){

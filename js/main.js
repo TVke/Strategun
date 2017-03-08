@@ -11,6 +11,7 @@ var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS,
 var gameObjects = {
 	world: new World(game),
 	tile: new Tile(game),
+	menu: new Menu(),
 	// scale: new Scale(game), extra
 }
 
