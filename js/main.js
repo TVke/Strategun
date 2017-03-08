@@ -40,8 +40,6 @@ function preload() {
 function create() {
 	gameObjects.world.makeGrid();
 	gameObjects.world.makeMap();
-    
-    gameObjects.tile.createNavTiles();
 
 	characters.character.events();
     // gameObjects.scale.makeButton(); extra
