@@ -6,3 +6,6 @@
 * move op basis van active player
 * health
 * replace sprites of not active player
+* green select
+* soldaat more color
+* range calcutating
