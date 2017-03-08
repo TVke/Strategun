@@ -42,3 +42,12 @@ nav a figure figcaption {
     position: relative;
     font-size: 13px;
 }
+button#red {
+    border-radius: 1px;
+    background-color: #d90909;
+    border: 5px solid #ef1717;
+    padding: 10px;
+    margin: auto;
+    font-size: 20px;
+    cursor: pointer;
+}
