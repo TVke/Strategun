@@ -57,9 +57,9 @@ Character.destroySelected = function () {
     selectedSprites = [];
 }
 
-Character.selectedListener = function (neighbours, x, y, prevObject) {
+Character.selectedListener = function (neighbours, x, y, selectedObject) {
     for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
-        Character.move(neighbours, x, y, prevObject);
+        Character.move(neighbours, x, y, selectedObject);
     }
 }
 
@@ -99,6 +99,10 @@ Character.move = function (neighbours, x, y, objectToMove) {
     objectToMove.sprite.destroy();
 }
 
+Character.shoot = function(){
+    
+}
+
 Character.isMoveable = function (selectedTile) {
     var moveable = false;
 
@@ -124,13 +128,13 @@ Character.events = function () {
 
         if (Character.isMoveable(selectedTile)) {
             moveableCharacter = true;
-            prevObject = selectedTile;
+            selectedObject = selectedTile;
         } else {
             moveableCharacter = false;
         }
 
         if (characterSelected) {
-            context.selectedListener(neighbours, pointer.x, pointer.y, prevObject);
+            context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject);
         } else {
             if (moveableCharacter && gameStarted) {
                 context.destroySelected();
