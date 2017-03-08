@@ -49,8 +49,8 @@ function swapPlayer(array)
 	array[1] = temp;
 }
 
-var
-
+// shoot(selectedObject, targetedObject);
+// selected = soldier, targeted = sniper
 function shoot(shooter, target)
 {
     shooterPosX = shooter.world.x;
@@ -62,13 +62,13 @@ function shoot(shooter, target)
     differenceX = targetPosX - shooterPosX;
     differenceY = targetPosY - shooterPosY;
     
-    if((differenceX <= 100 && shooterPosY == targetPosY) || (differenceY <= 100 && shooterPosX == targetPosX))
+    if((differenceX <= shooter.range && shooterPosY == targetPosY) || (differenceY <= shooter.range && shooterPosX == targetPosX))
     {
         //targetHealth -= damageDone;
-        textDisplay.text = 'MY BABY SHOT ME DOWN';
+        console.log('MY BABY SHOT ME DOWN');
     }
     else
     {
-        textDisplay.text = 'NOT IN RANGE';
+        console.log('NOT IN RANGE');
     }
 }
