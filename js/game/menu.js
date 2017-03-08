@@ -49,6 +49,10 @@ Menu.prototype.placeChar = function(){
                     break;
             }
             Tile.putCharacter(charId,tileX,tileY);
+            
+            selectedChar.remove();
+            selectedChar = null;
+            clearSelection();
         }
     });
 
