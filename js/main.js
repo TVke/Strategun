@@ -3,9 +3,7 @@
 /// <reference path="../node_modules/phaser/typescript/pixi.d.ts" />
 /// <reference path="../node_modules/phaser/typescript/p2.d.ts" />
 
-
-
-var game = new Phaser.Game(window.innerWidth, window.innerHeight - 66, Phaser.CANVAS, '',
+var game = new Phaser.Game(window.innerWidth, window.innerHeight - document.getElementsByTagName('nav')[0].offsetHeight, Phaser.CANVAS, '',
  {preload:preload,create:create,update:update});
 
 var gameObjects = {
