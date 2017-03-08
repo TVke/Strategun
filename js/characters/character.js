@@ -56,12 +56,13 @@ Character.destroySelected = function () {
 }
 
 Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) {
+    console.log(enemy);
     for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
         if (characterMode === "move") {
             Character.move(neighbours, x, y, selectedObject);
         }
         
-        if(enemy){
+        if(enemy && characterMode === "shoot"){
             Character.shoot(neighbours, x, y, selectedObject);
         }
     }
@@ -112,7 +113,11 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
     tileY = tileLayer.getTileY(y);
 
     if(tileData[tileX][tileY].constructor === Character){
-        console.log("you shot: " + tileData[tileX][tileY].id);
+        if (Character.isValidMove(tileX, tileY)) {
+            console.log("you shot: " + tileData[tileX][tileY].id);
+            return;
+        }
+        
     }else{
         console.log("you shot nobody");
     }

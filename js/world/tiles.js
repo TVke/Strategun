@@ -17,6 +17,7 @@ Tile.prototype.loadChar = function () {
 	Tile.putCharacter(4, 1, 1, false);
 	playerAtSetup = 1;
 	Tile.putCharacter(4, 1, 3, false);
+	Tile.putCharacter(4, 2, 3, false);
 	playerAtSetup = 0;
 }
 
