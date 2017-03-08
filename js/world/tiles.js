@@ -128,6 +128,7 @@ Tile.prototype.createNavTiles = function () {
 			    padding: 6,
 			    positionOffset: 0,
 			    fontStrokeThickness: 0,
+			    strokeWeight: 0
 		  	});
 		})(i);
 	}
