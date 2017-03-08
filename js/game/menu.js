@@ -68,6 +68,8 @@ function checkNav(){
         }else{
             EndTurnButton.id="red";
         }
+        //console.log(Turns);
+        EndTurnButton.addEventListener("click",Turns.end);
         document.getElementsByTagName('nav')[0].appendChild(EndTurnButton);
     }
 }
