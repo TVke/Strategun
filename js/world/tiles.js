@@ -1,6 +1,6 @@
 let currentNavTile = null;
 let activePlayerPrefix = 'b';
-let characterImagesArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+//let characterImagesArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
 let characterNamesArray = ['Bomb', 'Flag', 'Medic', 'Sniper', 'Soldier', 'Tank'];
 let randomSoldier, randomTank;
 
@@ -9,7 +9,7 @@ function Tile(game) {
 }
 
 Tile.prototype.load = function () {
-	this.createInvisibleTiles();
+	//this.createInvisibleTiles();
 	this.highlightTile();
 }
 
@@ -18,8 +18,8 @@ Tile.prototype.loadChar = function () {
 }
 
 TileStyles = {
-	WALL: 1,
-	OIL: 2,
+	WALL: 2,
+	OIL: 1,
 };
 
 MenuItems = {
