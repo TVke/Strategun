@@ -10,6 +10,7 @@ var gameObjects = {
 	world: new World(game),
 	tile: new Tile(game),
 	menu: new Menu(),
+    turns: new Turns(),
 }
 
 var characters = {
