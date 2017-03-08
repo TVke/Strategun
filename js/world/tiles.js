@@ -98,7 +98,6 @@ Tile.prototype.createInvisibleTiles = function () {
 }
 
 Tile.prototype.highlightTile = function () {
-
 	for (let y = 0; y < amountOfFields; ++y) {
 		for (let x = 0; x < amountOfRows; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
