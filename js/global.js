@@ -11,7 +11,7 @@ var selectedCharMov = {
     y: null
 };
 
-var prevObject = null;
+var selectedObject = null;
 var selectedSprites = []
 var characterSelected = false;
 

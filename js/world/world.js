@@ -46,8 +46,6 @@ World.prototype.makeMap = function () {
 
     map.addTilesetImage('wall', 'wall');
     map.addTilesetImage('olie', 'olie');
-    map.addTilesetImage('red player', 'red player');
-    map.addTilesetImage('blue player', 'blue player');
 
     layer = map.createLayer(0);
     layer.resizeWorld();
