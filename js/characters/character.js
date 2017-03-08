@@ -57,9 +57,9 @@ Character.events = function(){
         tileY = tileLayer.getTileY(pointer.y);
 
         neighbours = Coords.neighbours(tileX, tileY);
-        selectedTile = tileData[tileY][tileX];
+        selectedTile = tileData[tileX][tileY];
         var moveableCharacter = true;
-        if(moveableCharacter && gameStarted){
+        if(moveableCharacter /*&& gameStarted*/){
             for (var neightbour in neighbours) {
                 if(tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0){
                     context.Character.moveableLocation(neighbours[neightbour][0],neighbours[neightbour][1]);
@@ -76,18 +76,6 @@ Character.events = function(){
         }else if(selectedTile === TileStyles.OIL){
             console.log("it's oil, lets burn");
         }
-
-        //TODO: Remove if all good with map
-        items = "";
-
-        for(let y = 1; y <= 10; y++){
-            for(let x = 0; x < 20; x++){
-                items += tileData[y][x];
-            }
-            items += "\n";
-        }
-
-        console.log(items);
 
     });
 

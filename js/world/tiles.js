@@ -14,8 +14,8 @@ Tile.prototype.load = function () {
 }
 
 TileStyles = {
-	WALL: 2,
-	OIL: 1,
+	WALL: 1,
+	OIL: 2,
 };
 
 MenuItems = {
@@ -68,12 +68,14 @@ Tile.prototype.charToImage = function (charId) {
 Tile.prototype.putCharacter = function (character, tileX, tileY) {
 	selectedTile = tileData[tileX][tileY];
 
+	console.log("x: " + tileX + " y: " + tileY);
+
 	if (selectedTile === 0) {
 		if (tileY !== 0) {
-			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-				tileData[tileY][tileX] = Character.makeCharacter();
-				game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
 
+			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
+				tileData[tileX][tileY] = Character.makeCharacter();
+				game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
 				selectedChar = null;
 			}
 		}
