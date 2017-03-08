@@ -18,7 +18,10 @@ Menu.prototype.load = function(){
 }
 
 Menu.prototype.placeOnTile = function(event){
-    selectedChar = e.target.id;
+    event.preventDefault();
+    selectedChar = event.target.id;
+    toggleSelectClass(selectedChar);
+
 
     tileX = tileLayer.getTileX(pointer.x);
 		tileY = tileLayer.getTileY(pointer.y);
@@ -29,7 +32,10 @@ Menu.prototype.placeOnTile = function(event){
 
 
     game.input.onTap.add(function (pointer, event) {
-		
+
 
 	});
+}
+function toggleSelectClass(id){
+    document.getElementById(id.toString()).classList.toggle("selected");
 }
