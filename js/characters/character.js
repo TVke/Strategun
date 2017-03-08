@@ -80,8 +80,8 @@ Character.events = function(){
         //TODO: Remove if all good with map
         items = "";
 
-        for(let y = 1; y <= 26; y++){
-            for(let x = 0; x <= 50; x++){
+        for(let y = 1; y <= 10; y++){
+            for(let x = 0; x < 20; x++){
                 items += tileData[y][x];
             }
             items += "\n";
