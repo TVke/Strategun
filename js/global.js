@@ -1,4 +1,3 @@
-
 var tileData = null;
 var tileMap = null;
 var tileLayer = null;
@@ -31,4 +30,3 @@ var setup = {
         flag: 1
     }
 }
-

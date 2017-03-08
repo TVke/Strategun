@@ -30,7 +30,6 @@ Character.makeCharacter = function(character, id, player){
 			break;
 		case MenuItems.SOLDIER:
             charObject = new Soldier(id, player);
-			//TODO: random generate soldier in white en black;
 			break;
 		case MenuItems.TANK:
             charObject = new Tank(id, player);
