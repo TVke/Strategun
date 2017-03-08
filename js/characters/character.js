@@ -1,12 +1,4 @@
-function Character() {
-    this.id = 0;
-    this.attack = 0;
-    this.health = 0;
-    this.range = 0;
-    this.type = "";
-    this.icon = "";
-    this.asset = "";
-}
+function Character() {}
 
 Character.load = function () {
     game.load.image('selected', 'assets/grid/selected.png');
@@ -100,7 +92,7 @@ Character.move = function (neighbours, x, y, objectToMove) {
 }
 
 Character.shoot = function(){
-    
+
 }
 
 Character.isMoveable = function (selectedTile) {
@@ -128,6 +120,8 @@ Character.events = function () {
 
         if (Character.isMoveable(selectedTile)) {
             moveableCharacter = true;
+            Character.destroySelected();
+            characterSelected = false;
             selectedObject = selectedTile;
         } else {
             moveableCharacter = false;
