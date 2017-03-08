@@ -1,7 +1,8 @@
 let currentNavTile = null;
 let activePlayerPrefix = 'b';
-let charactersArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
-let randomSoldier,randomTank;
+let characterImagesArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+let characterNamesArray = ['Bomb', 'Flag', 'Medic', 'Sniper', 'Soldier', 'Tank'];
+let randomSoldier, randomTank;
 
 function Tile(game) {
 	this.game = game;
@@ -115,9 +116,18 @@ Tile.prototype.highlightTile = function () {
 Tile.prototype.createNavTiles = function () {
 	for (var i = 0; i < 6; ++i) {
 		(function (i) {
-			let image = game.add.image(tileSize * i, 0, charactersArray[i]);
+
+			let image = game.add.image(tileSize * i, 0, characterImagesArray[i]);
 			image.inputEnabled = true;
 			image.input.useHandCursor = true;
+			let tooltip = new Phasetips(game, {
+			    targetObject: image,
+			    context: characterNamesArray[i],
+			    padding: 6,
+			    positionOffset: 0,
+			    roundedCornersRadius: 8,
+			    fontStrokeThickness: 0
+		  	});
 		})(i);
 	}
 }
