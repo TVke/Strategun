@@ -104,12 +104,11 @@ Tile.prototype.highlightTile = function () {
 	for (let y = 0; y < amountOfFields; ++y) {
 		for (let x = 0; x < amountOfRows; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
-			invisibleTile.beginFill(0xFFFFFF);
+			invisibleTile.beginFill(0xEFEFEF);
 			invisibleTile.drawRect(tileSize * x, tileSize * y + tileSize, tileSize, tileSize);
 			invisibleTile.inputEnabled = true;
 			invisibleTile.input.useHandCursor = true;
-			invisibleTile.events.onInputOver.add(over, this);
-			invisibleTile.events.onInputOut.add(out, this);
+			invisibleTile.endFill();
 		}
 	}
 
@@ -118,7 +117,6 @@ Tile.prototype.highlightTile = function () {
 Tile.prototype.createNavTiles = function () {
 	for (var i = 0; i < 6; ++i) {
 		(function (i) {
-
 			let image = game.add.image(tileSize * i, 0, characterImagesArray[i]);
 			image.inputEnabled = true;
 			image.input.useHandCursor = true;
@@ -132,14 +130,6 @@ Tile.prototype.createNavTiles = function () {
 		  	});
 		})(i);
 	}
-}
-
-function over(item) {
-	item.alpha = 0;
-}
-
-function out(item) {
-	item.alpha = 1;
 }
 
 function clickNavTile(counter) {
