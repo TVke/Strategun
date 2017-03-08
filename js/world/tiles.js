@@ -31,10 +31,10 @@ MenuItems = {
 	TANK: 5,
 };
 
-Tile.calcTileFromSprite = function(x, y){
+Tile.calcTileFromSprite = function (x, y) {
 	return {
-		x: (x/44),
-		y: (y/44),
+		x: (x / 44),
+		y: (y / 44),
 	}
 }
 
@@ -54,18 +54,22 @@ Tile.charToImage = function (charId) {
 			image = activePlayerPrefix + "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
-			if (Math.random() >= .5) {
-				randomSoldier = activePlayerPrefix + 'soldierInWhite';
-			} else {
-				randomSoldier = activePlayerPrefix + 'soldierInBlack';
+			if (!gameStarted) {
+				if (Math.random() >= .5) {
+					randomSoldier = activePlayerPrefix + 'soldierInWhite';
+				} else {
+					randomSoldier = activePlayerPrefix + 'soldierInBlack';
+				}
 			}
 			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
-			if (Math.random() >= .5) {
-				randomTank = activePlayerPrefix + 'tankInWhite';
-			} else {
-				randomTank = activePlayerPrefix + 'tankInBlack';
+			if (!gameStarted) {
+				if (Math.random() >= .5) {
+					randomTank = activePlayerPrefix + 'tankInWhite';
+				} else {
+					randomTank = activePlayerPrefix + 'tankInBlack';
+				}
 			}
 			image = randomTank;
 			break;
@@ -83,10 +87,10 @@ Tile.putCharacter = function (character, tileX, tileY, onPlacement) {
 		y: tileY
 	}
 
-	if(!onPlacement){
+	if (!onPlacement) {
 		char = game.add.sprite(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
 		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
-	}else if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
+	} else if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
 		char = game.add.image(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
 		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
 	}

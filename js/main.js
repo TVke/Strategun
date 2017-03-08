@@ -10,7 +10,6 @@ var gameObjects = {
 	world: new World(game),
 	tile: new Tile(game),
 	menu: new Menu(),
-	// scale: new Scale(game), extra
 }
 
 var characters = {
@@ -43,13 +42,6 @@ function create() {
 	gameObjects.tile.loadChar();
 
 	characters.character.events();
-    // gameObjects.scale.makeButton(); extra
-
-    // trials turn skipping
-    buttonEndTurn = game.add.button(game.world.width - 10, 0, 'buttonEndTurn', endTurn);
-    buttonStartTurn = game.add.button(game.world.centerX - 100, 0, 'buttonStartTurn', startTurn);
-
-    buttonStartTurn.visible = false;
 }
 
 function update() {

@@ -122,7 +122,7 @@ Character.events = function () {
         if (characterSelected) {
             context.selectedListener(neighbours, pointer.x, pointer.y, prevObject);
         } else {
-            if (moveableCharacter /*&& gameStarted*/ ) {
+            if (moveableCharacter && gameStarted) {
                 context.destroySelected();
                 for (var neightbour in neighbours) {
                     if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
@@ -131,12 +131,6 @@ Character.events = function () {
                 }
             }
         }
-
-
-
-        // console.log(neighbours);
-        // console.log("x: "+tileX+" y: "+tileY);
-
 
         if (selectedTile === TileStyles.WALL) {
             console.log("it's a wall");
