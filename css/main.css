@@ -9,9 +9,21 @@ nav{
     list-style: none;
     display: -webkit-flex;
     display: flex;
+    max-width: 100%;
+    overflow: auto;
 }
 nav a{
     display: block;
     padding: 5px;
     margin: 5px;
+}
+nav a img{
+    display: block;
+    border-radius: 50%;
+}
+nav a.selected{
+    margin: 4px;
+}
+nav a.selected img{
+    border: 1px solid black;
 }
