@@ -12,9 +12,10 @@ var selectedCharMov = {
 };
 
 var selectedObject = null;
+var characterMode = "";
 var selectedSprites = []
 var characterSelected = false;
-var clickedCount = 0;
+var clickedCount = 1;
 
 var clickedCoord = {
     x: "",

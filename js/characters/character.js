@@ -2,6 +2,7 @@ function Character() {}
 
 Character.load = function () {
     game.load.image('selected', 'assets/grid/selected.png');
+    game.load.image('shoot', 'assets/grid/schiet.png');
 }
 
 //return char object
@@ -35,8 +36,13 @@ Character.makeCharacter = function (character, id, player, position, char) {
     return charObject;
 }
 
-Character.moveableLocation = function (x, y) {
-    var selectedSprite = game.add.sprite(x * 44, y * 44, 'selected');
+Character.moveableLocation = function (x, y, shoot) {
+    if (shoot) {
+        var selectedSprite = game.add.sprite(x * 44, y * 44, 'shoot');
+    } else {
+        var selectedSprite = game.add.sprite(x * 44, y * 44, 'selected');
+    }
+
     selectedSprites.push(selectedSprite)
     characterSelected = true;
 }
@@ -49,9 +55,15 @@ Character.destroySelected = function () {
     selectedSprites = [];
 }
 
-Character.selectedListener = function (neighbours, x, y, selectedObject) {
+Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) {
     for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
-        Character.move(neighbours, x, y, selectedObject);
+        if (characterMode === "move") {
+            Character.move(neighbours, x, y, selectedObject);
+        }
+        
+        if(enemy){
+            Character.shoot(neighbours, x, y, selectedObject);
+        }
     }
 }
 
@@ -91,8 +103,19 @@ Character.move = function (neighbours, x, y, objectToMove) {
     objectToMove.sprite.destroy();
 }
 
-Character.shoot = function () {
+Character.isEnemyChar = function(){
 
+}
+
+Character.shoot = function (neighbours, x, y, objectToMove) {
+    tileX = tileLayer.getTileX(x);
+    tileY = tileLayer.getTileY(y);
+
+    if(tileData[tileX][tileY].constructor === Character){
+        console.log("you shot: " + tileData[tileX][tileY].id);
+    }else{
+        console.log("you shot nobody");
+    }
 }
 
 Character.isMoveable = function (selectedTile) {
@@ -112,65 +135,59 @@ Character.isMoveable = function (selectedTile) {
 }
 
 Character.handleMove = function (context, neighbours, pointer) {
-    console.log("move");
-    if (characterSelected) {
-        context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject);
-    } else {
-        if (moveableCharacter && gameStarted) {
-            context.destroySelected();
-            for (var neightbour in neighbours) {
-                if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0],
-                        neighbours[neightbour][1]
-                    );
-                }
+    if (moveableCharacter && gameStarted) {
+        context.destroySelected();
+        for (var neightbour in neighbours) {
+            if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
+                Character.moveableLocation(
+                    neighbours[neightbour][0],
+                    neighbours[neightbour][1],
+                    false
+                );
             }
         }
     }
-}
 
-Character.placeTile = function (neighbours, neightbour) {
-
+    characterMode = "move";
 }
 
 Character.handleShoot = function (context, neighbours, pointer) {
-    console.log("shoot")
     Character.destroySelected();
     characterSelected = false;
 
-    console.log(neighbours)
-
     if (moveableCharacter && gameStarted) {
         for (var neightbour in neighbours) {
-            console.log(neightbour);
 
-            if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
-                if (neightbour === "Bottom") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0]+1,
-                        neighbours[neightbour][1]+selectedObject.range
-                    );
-                } else if (neightbour === "Left") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0]-selectedObject.range,
-                        neighbours[neightbour][1]+1
-                    );
-                } else if (neightbour === "Right") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0]+selectedObject.range,
-                        neighbours[neightbour][1]-1
-                    );
-                } else if (neightbour === "Top") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0]-1,
-                        neighbours[neightbour][1]-selectedObject.range
-                    );
-                }
-
+            if (neightbour === "Bottom") {
+                Character.moveableLocation(
+                    neighbours[neightbour][0] + 1,
+                    neighbours[neightbour][1] + selectedObject.range,
+                    true
+                );
+            } else if (neightbour === "Left") {
+                Character.moveableLocation(
+                    neighbours[neightbour][0] - selectedObject.range,
+                    neighbours[neightbour][1] + 1,
+                    true
+                );
+            } else if (neightbour === "Right") {
+                Character.moveableLocation(
+                    neighbours[neightbour][0] + selectedObject.range,
+                    neighbours[neightbour][1] - 1,
+                    true
+                );
+            } else if (neightbour === "Top") {
+                Character.moveableLocation(
+                    neighbours[neightbour][0] - 1,
+                    neighbours[neightbour][1] - selectedObject.range,
+                    true
+                );
             }
+
         }
     }
+
+    characterMode = "shoot";
 }
 
 Character.events = function () {
@@ -184,6 +201,11 @@ Character.events = function () {
         neighbours = Coords.neighbours(tileX, tileY);
         selectedTile = tileData[tileX][tileY];
 
+        if(selectedTile.player !== playerAtSetup){
+            context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
+            return;
+        }
+
         if (Character.isMoveable(selectedTile)) {
             moveableCharacter = true;
             Character.destroySelected();
@@ -193,12 +215,14 @@ Character.events = function () {
             moveableCharacter = false;
         }
 
-        context.handleMove(context, neighbours, pointer);
-
-        if (clickedCount === 1) {
-            context.handleMove(context, neighbours, pointer);
-        } else if (clickedCount === 2) {
-            context.handleShoot(context, neighbours, pointer);
+        if (characterSelected) {
+            context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, false);
+        } else {
+            if (clickedCount === 1) {
+                context.handleMove(context, neighbours, pointer);
+            } else if (clickedCount === 2) {
+                context.handleShoot(context, neighbours, pointer);
+            }
         }
 
         clickedCount++;
@@ -206,6 +230,8 @@ Character.events = function () {
         if (clickedCount > 2) {
             clickedCount = 1;
         }
+
+
 
     });
 
