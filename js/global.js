@@ -5,6 +5,8 @@ var neighbours = null;
 
 var gameStarted = false;
 var selectedChar = null;
+var selectedSprites = []
+var characterSelected = false;
 
 
 var playerAtSetup = 0;

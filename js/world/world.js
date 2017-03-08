@@ -30,12 +30,12 @@ World.prototype.tileProperties = function(map, layer){
         tileData[item] = new Array(amountOfFields);
     }
 
-    for(let tileY = 1; tileY <= amountOfFields+1; tileY++){
+    for(let tileY = 0; tileY < amountOfFields; tileY++){
         for(let tileX = 0; tileX < amountOfRows; tileX++){
             if(map.getTile(tileX, tileY, layer) === null){
-                tileData[tileY][tileX] = 0;
+                tileData[tileX][tileY] = 0;
             }else{
-                tileData[tileY][tileX] = map.getTile(tileX, tileY, layer).index;
+                tileData[tileX][tileY] = map.getTile(tileX, tileY, layer).index;
             }
         }
     }

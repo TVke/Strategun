@@ -13,6 +13,10 @@ Tile.prototype.load = function () {
 	this.highlightTile();
 }
 
+Tile.prototype.loadChar = function () {
+	this.putCharacter(4, 1, 1, true);
+}
+
 TileStyles = {
 	WALL: 1,
 	OIL: 2,
@@ -65,20 +69,17 @@ Tile.prototype.charToImage = function (charId) {
 	return image;
 }
 
-Tile.prototype.putCharacter = function (character, tileX, tileY) {
+Tile.prototype.putCharacter = function (character, tileX, tileY, onLoad) {
 	selectedTile = tileData[tileX][tileY];
 
-	console.log("x: " + tileX + " y: " + tileY);
-
-	if (selectedTile === 0) {
-		if (tileY !== 0) {
-
-			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-				tileData[tileX][tileY] = Character.makeCharacter();
-				game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
-				selectedChar = null;
-			}
-		}
+	if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
+		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
+		game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
+		selectedChar = null;
+	} else if(onLoad){
+		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
+		game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
+		selectedChar = null;
 	}
 }
 
