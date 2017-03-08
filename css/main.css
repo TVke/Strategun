@@ -11,6 +11,7 @@ nav{
     display: flex;
     max-width: 100%;
     overflow: auto;
+    background: #efefef;
 }
 nav a{
     display: block;
