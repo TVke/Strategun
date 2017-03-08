@@ -25,32 +25,37 @@ Menu.prototype.placeChar = function(){
     game.input.onTap.add(function (pointer, event) {
         tileX = tileLayer.getTileX(this.game.camera.x + pointer.x);
         tileY = tileLayer.getTileY(this.game.camera.y + pointer.y);
-        // check wall or oil or other char
-        console.log("x: "+tileX+" y: "+tileY);
-        if (true){
+        selectedTile = tileData[tileX][tileY];
+        if (selectedTile === 0 && selectedChar !== null){
             context.putCharacter(selectedChar,tileX,tileY);
         }
     });
 
 }
 Menu.prototype.putCharacter = function(character, tileX, tileY, onLoad){
-    console.log(character, tileX, tileY);
-    // selectedTile = tileData[tileX][tileY];
-    // 	if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-    // 		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
-    // 		game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
-    // 		selectedChar = null;
-    // 	} else if(onLoad){
-    // 		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
-    // 		game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
-    // 		selectedChar = null;
-    // 	}
+    //selectedTile = tileData[tileX][tileY];
+    console.log(Tile);
+    Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
+	// if (Setup.handleCharacterLimit(character) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
+	// 	tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
+	// 	game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
+	// 	selectedChar = null;
+    //     clearSelection();
+	// } else if(onLoad){
+	// 	tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
+	// 	game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
+	// 	selectedChar = null;
+    //     clearSelection();
+	// }
 }
-function toggleSelectClass(pos){
+function clearSelection(){
     for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
         if(characterItems[menuItem].className !== ""){
             characterItems[menuItem].removeAttribute("class");
         }
     }
+}
+function toggleSelectClass(pos){
+    clearSelection();
     characterItems[pos].classList.add("selected");
 }
