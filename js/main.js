@@ -42,6 +42,8 @@ function create() {
 	gameObjects.world.makeGrid();
 	gameObjects.world.makeMap();
 
+	gameObjects.tile.loadChar();
+	
 	characters.character.events();
     // gameObjects.scale.makeButton(); extra
 
