@@ -27,37 +27,46 @@ Menu.prototype.placeChar = function(){
         tileY = tileLayer.getTileY(this.game.camera.y + pointer.y);
         selectedTile = tileData[tileX][tileY];
         if (selectedTile === 0 && selectedChar !== null){
-            let charId;
-            switch (selectedChar.querySelector("figure figcaption").innerHTML) {
-                case "Soldaat":
-                    charId = MenuItems.SOLDIER;
-                    break;
-                case "Radar":
-                    charId = MenuItems.FLAG;
-                    break;
-                case "Mijn":
-                    charId = MenuItems.BOMB;
-                    break;
-                case "Dokter":
-                    charId = MenuItems.MEDIC;
-                    break;
-                case "Sniper":
-                    charId = MenuItems.SNIPER;
-                    break;
-                case "Tank":
-                    charId = MenuItems.TANK;
-                    break;
+            if(playerAtSetup === 0){
+                let charId;
+                switch (selectedChar.querySelector("figure figcaption").innerHTML) {
+                    case "Soldaat":
+                        charId = MenuItems.SOLDIER;
+                        break;
+                    case "Radar":
+                        charId = MenuItems.FLAG;
+                        break;
+                    case "Mijn":
+                        charId = MenuItems.BOMB;
+                        break;
+                    case "Dokter":
+                        charId = MenuItems.MEDIC;
+                        break;
+                    case "Sniper":
+                        charId = MenuItems.SNIPER;
+                        break;
+                    case "Tank":
+                        charId = MenuItems.TANK;
+                        break;
+                }
+                Tile.putCharacter(charId,tileX,tileY);
+                selectedChar.remove();
+                selectedChar = null;
+                clearSelection();
+                checkNav();
             }
-            Tile.putCharacter(charId,tileX,tileY);
-            
-            selectedChar.remove();
-            selectedChar = null;
-            clearSelection();
+
         }
     });
 
 }
-
+function checkNav(){
+    if(document.querySelectorAll('nav a').length === 0){
+        var EndTurnButton = document.createElement('button');
+        EndTurnButton.innerHTML = "Einde Beurt";
+        document.getElementsByTagName('nav')[0].appendChild(EndTurnButton);
+    }
+}
 function clearSelection(){
     for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
         if(characterItems[menuItem].className !== ""){
