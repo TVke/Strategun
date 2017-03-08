@@ -127,8 +127,7 @@ Tile.prototype.createNavTiles = function () {
 			    context: characterNamesArray[i],
 			    padding: 6,
 			    positionOffset: 0,
-			    roundedCornersRadius: 8,
-			    fontStrokeThickness: 0
+			    fontStrokeThickness: 0,
 		  	});
 		})(i);
 	}
