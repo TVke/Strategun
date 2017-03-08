@@ -112,6 +112,7 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
+    //TODO: implementeer dat alles in range kan beschoten worden en dat schieten door muur illegaal is
     if(tileData[tileX][tileY].constructor === Character){
         if (Character.isValidMove(tileX, tileY)) {
             console.log("you shot: " + tileData[tileX][tileY].id);
