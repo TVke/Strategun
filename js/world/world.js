@@ -61,7 +61,7 @@ World.prototype.makeMap = function () {
 World.prototype.makeGrid = function () {
     this.game.world.resize((amountOfFields * 2) * tileSize, amountOfFields * tileSize + tileSize);
 
-    for (let i = 1; i < amountOfFields; ++i) {
+    for (let i = 0; i < amountOfFields; ++i) {
         this.game.add.tileSprite(i * tileSize, tileSize, laserSize, this.game.world.height - tileSize, 'blue');
         this.game.add.tileSprite(0, i * tileSize + tileSize, this.game.world.width / 2, laserSize, 'blue');
         this.game.add.tileSprite(this.game.world.width / 2 + i * tileSize, tileSize, laserSize, this.game.world.height - tileSize, 'red');
@@ -70,7 +70,7 @@ World.prototype.makeGrid = function () {
 
     this.game.add.tileSprite(0, tileSize, laserSize / 2, this.game.world.height - tileSize, 'blue');
     this.game.add.tileSprite(0, tileSize, this.game.world.width / 2, laserSize / 2, 'blue');
-    this.game.add.tileSprite(this.game.world.width / 2 - 1, tileSize, laserSize / 2, this.game.world.height - tileSize, 'blue');
+    this.game.add.tileSprite(this.game.world.width / 2 -1, tileSize, laserSize / 2, this.game.world.height - tileSize, 'blue');
     this.game.add.tileSprite(0, this.game.world.height - 1, this.game.world.width / 2, laserSize / 2, 'blue');
 
     this.game.add.tileSprite(this.game.world.width / 2, tileSize, laserSize / 2, this.game.world.height - tileSize, 'red');

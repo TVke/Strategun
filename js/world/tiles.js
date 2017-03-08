@@ -85,19 +85,24 @@ Tile.prototype.putCharacter = function (character, tileX, tileY) {
 Tile.prototype.createInvisibleTiles = function () {
 	var context = this;
 
-	game.input.onTap.add(function (pointer, event) {
-		tileX = tileLayer.getTileX(pointer.x);
-		tileY = tileLayer.getTileY(pointer.y);
 
-		if (selectedChar !== null) {
-			context.putCharacter(selectedChar, tileX, tileY);
-		}
+	/**
+	 * Oude functie gebaseerd op bovenst tiles, moet uitgevoerd worden met events op de div
+	 */
 
-		if (tileY === 0) {
-			selectedChar = tileX;
-		}
+	// game.input.onTap.add(function (pointer, event) {
+	// 	tileX = tileLayer.getTileX(pointer.x);
+	// 	tileY = tileLayer.getTileY(pointer.y);
 
-	});
+	// 	if (selectedChar !== null) {
+	// 		context.putCharacter(selectedChar, tileX, tileY);
+	// 	}
+
+	// 	if (tileY === 0) {
+	// 		selectedChar = tileX;
+	// 	}
+
+	// });
 }
 
 Tile.prototype.highlightTile = function () {
@@ -121,8 +126,4 @@ function over(item) {
 
 function out(item) {
 	item.alpha = 1;
-}
-
-function clickNavTile(counter) {
-	currentNavTile = counter;
 }
