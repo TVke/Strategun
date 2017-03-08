@@ -42,7 +42,7 @@ Tile.prototype.charToImage = function (charId) {
 			image = activePlayerPrefix + "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
-			if (Math.random() >= 0.5) {
+			if (Math.random() >= .5) {
 				randomSoldier = activePlayerPrefix + 'soldierInWhite';
 			} else {
 				randomSoldier = activePlayerPrefix + 'soldierInBlack';
@@ -50,7 +50,7 @@ Tile.prototype.charToImage = function (charId) {
 			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
-			if (Math.random() >= 0.5) {
+			if (Math.random() >= .5) {
 				randomTank = activePlayerPrefix + 'tankInWhite';
 			} else {
 				randomTank = activePlayerPrefix + 'tankInBlack';
@@ -133,8 +133,4 @@ function out(item) {
 
 function clickNavTile(counter) {
 	currentNavTile = counter;
-
-
-
-
 }
