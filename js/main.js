@@ -5,7 +5,7 @@
 
 
 
-var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.CANVAS, '',
+var game = new Phaser.Game(tileSize * amountOfRows + 132, tileSize * amountOfFields, Phaser.CANVAS, '',
  {preload:preload,create:create,update:update});
 
 var gameObjects = {
