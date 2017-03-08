@@ -110,7 +110,7 @@ Tile.prototype.highlightTile = function () {
 		for (let x = 0; x < amountOfRows; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
 			invisibleTile.beginFill(0xEFEFEF);
-			invisibleTile.drawRect(tileSize * x, tileSize * y + tileSize, tileSize, tileSize);
+			invisibleTile.drawRect(tileSize * x, tileSize * y, tileSize, tileSize);
 			invisibleTile.inputEnabled = true;
 			invisibleTile.input.useHandCursor = true;
 			invisibleTile.endFill();
