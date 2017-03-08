@@ -27,27 +27,33 @@ Menu.prototype.placeChar = function(){
         tileY = tileLayer.getTileY(this.game.camera.y + pointer.y);
         selectedTile = tileData[tileX][tileY];
         if (selectedTile === 0 && selectedChar !== null){
-            context.putCharacter(selectedChar,tileX,tileY);
+            let charId;
+            switch (selectedChar.querySelector("figure figcaption").innerHTML) {
+                case "Soldaat":
+                    charId = MenuItems.SOLDIER;
+                    break;
+                case "Radar":
+                    charId = MenuItems.FLAG;
+                    break;
+                case "Mijn":
+                    charId = MenuItems.BOMB;
+                    break;
+                case "Dokter":
+                    charId = MenuItems.MEDIC;
+                    break;
+                case "Sniper":
+                    charId = MenuItems.SNIPER;
+                    break;
+                case "Tank":
+                    charId = MenuItems.TANK;
+                    break;
+            }
+            Tile.putCharacter(charId,tileX,tileY);
         }
     });
 
 }
-Menu.prototype.putCharacter = function(character, tileX, tileY, onLoad){
-    //selectedTile = tileData[tileX][tileY];
-    console.log(Tile);
-    Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
-	// if (Setup.handleCharacterLimit(character) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-	// 	tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
-	// 	game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
-	// 	selectedChar = null;
-    //     clearSelection();
-	// } else if(onLoad){
-	// 	tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
-	// 	game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
-	// 	selectedChar = null;
-    //     clearSelection();
-	// }
-}
+
 function clearSelection(){
     for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
         if(characterItems[menuItem].className !== ""){
