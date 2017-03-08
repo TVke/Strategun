@@ -1,6 +1,6 @@
 const tileSize = 44;
-const amountOfFields = 25;
-const amountOfRows = 50;
+const amountOfFields = 10;
+const amountOfRows = 20;
 const laserSize = 2;
 
 function World(game) {

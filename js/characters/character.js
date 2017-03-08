@@ -65,7 +65,6 @@ Character.events = function(){
                 if(tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0){
                     context.Character.moveableLocation(neighbours[neightbour][0],neighbours[neightbour][1]);
                 }
-
             }
         }
 
@@ -88,6 +87,8 @@ Character.events = function(){
             }
             items += "\n";
         }
+
+        console.log(items);
 
     });
 
