@@ -1,4 +1,3 @@
-
 var tileData = null;
 var tileMap = null;
 var tileLayer = null;
@@ -6,6 +5,20 @@ var neighbours = null;
 
 var gameStarted = false;
 var selectedChar = null;
+var selectedCharMov = {
+    charObj: null,
+    x: null,
+    y: null
+};
+
+var selectedObject = null;
+var selectedSprites = []
+var characterSelected = false;
+
+var clickedCoord = {
+    x: "",
+    y: ""
+};
 
 
 var playerAtSetup = 0;
@@ -31,4 +44,3 @@ var setup = {
         flag: 1
     }
 }
-

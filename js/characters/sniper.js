@@ -8,6 +8,7 @@ function Sniper(id, player){
     this.type = "sniper";
     this.icon = "";
     this.asset = "";
+    this.moveable = true;
 }
 
 Sniper.prototype = Object.create(Character.prototype);

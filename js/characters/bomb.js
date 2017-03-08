@@ -1,4 +1,4 @@
-function Bomb(id, player, game) {
+function Bomb(id, player) {
     this.id = id;
     this.assetId = 5;
     this.player = player;
@@ -8,6 +8,7 @@ function Bomb(id, player, game) {
     this.type = "bomb";
     this.icon = "";
     this.asset = "";
+    this.moveable = false;
 }
 
 Bomb.prototype = Object.create(Character.prototype);

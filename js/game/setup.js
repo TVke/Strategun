@@ -17,16 +17,39 @@ Setup.prototype.changePlayer = function () {
 
 Setup.sideControl = function(player, x, y){
     if(player === 0){
-        if(y > 25){
+        if(y > amountOfRows/2){
             return false;
         }
     }else if(player === 1){
-        if(y < 25){
+        if(y < amountOfRows/2){
             return false;
         }
+    }else{
+        return true;
+    }
+}
+
+Setup.prototype.gameStart = function(){
+
+}
+
+Setup.placementComplete = function(){
+    
+    var context = this;
+    var empty = true;
+
+    Object.keys(setup[playerAtSetup]).forEach(function(chars){
+        if(chars !== 0){
+            empty = false;
+        }
+    });
+    
+    if(playerAtSetup === 1){
+        context.gameStart();
+    }else{
+        playerAtSetup = 1;
     }
 
-    return true;
 }
 
 Setup.handleCharacterLimit = function (character) {

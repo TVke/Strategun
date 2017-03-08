@@ -1,15 +1,20 @@
 let currentNavTile = null;
 let activePlayerPrefix = 'b';
-let charactersArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
-let randomSoldier,randomTank;
+//let characterImagesArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+let characterNamesArray = ['Bomb', 'Flag', 'Medic', 'Sniper', 'Soldier', 'Tank'];
+let randomSoldier, randomTank;
 
 function Tile(game) {
 	this.game = game;
 }
 
 Tile.prototype.load = function () {
-	this.createInvisibleTiles();
+	//this.createInvisibleTiles();
 	this.highlightTile();
+}
+
+Tile.prototype.loadChar = function () {
+	Tile.putCharacter(4, 1, 1, false);
 }
 
 TileStyles = {
@@ -26,7 +31,14 @@ MenuItems = {
 	TANK: 5,
 };
 
-Tile.prototype.charToImage = function (charId) {
+Tile.calcTileFromSprite = function (x, y) {
+	return {
+		x: (x / 44),
+		y: (y / 44),
+	}
+}
+
+Tile.charToImage = function (charId) {
 	image = "";
 	switch (charId) {
 		case MenuItems.BOMB:
@@ -42,18 +54,22 @@ Tile.prototype.charToImage = function (charId) {
 			image = activePlayerPrefix + "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
-			if (Math.random() >= 0.5) {
-				randomSoldier = activePlayerPrefix + 'soldierInWhite';
-			} else {
-				randomSoldier = activePlayerPrefix + 'soldierInBlack';
+			if (!gameStarted) {
+				if (Math.random() >= .5) {
+					randomSoldier = activePlayerPrefix + 'soldierInWhite';
+				} else {
+					randomSoldier = activePlayerPrefix + 'soldierInBlack';
+				}
 			}
 			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
-			if (Math.random() >= 0.5) {
-				randomTank = activePlayerPrefix + 'tankInWhite';
-			} else {
-				randomTank = activePlayerPrefix + 'tankInBlack';
+			if (!gameStarted) {
+				if (Math.random() >= .5) {
+					randomTank = activePlayerPrefix + 'tankInWhite';
+				} else {
+					randomTank = activePlayerPrefix + 'tankInBlack';
+				}
 			}
 			image = randomTank;
 			break;
@@ -64,77 +80,55 @@ Tile.prototype.charToImage = function (charId) {
 	return image;
 }
 
-Tile.prototype.putCharacter = function (character, tileX, tileY) {
+Tile.putCharacter = function (character, tileX, tileY, onPlacement) {
 	selectedTile = tileData[tileX][tileY];
+	position = {
+		x: tileX,
+		y: tileY
+	}
 
-	if (selectedTile === 0) {
-		if (tileY !== 0) {
-			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-				tileData[tileY][tileX] = Character.makeCharacter();
-				game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
-
-				selectedChar = null;
-			}
-		}
+	if (!onPlacement) {
+		char = game.add.sprite(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
+		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
+	} else if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
+		char = game.add.image(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
+		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
 	}
 }
 
 Tile.prototype.createInvisibleTiles = function () {
 	var context = this;
 
-	game.input.onTap.add(function (pointer, event) {
-		tileX = tileLayer.getTileX(pointer.x);
-		tileY = tileLayer.getTileY(pointer.y);
 
-		if (selectedChar !== null) {
-			context.putCharacter(selectedChar, tileX, tileY);
-		}
+	/**
+	 * Oude functie gebaseerd op bovenst tiles, moet uitgevoerd worden met events op de div
+	 */
 
-		if (tileY === 0) {
-			selectedChar = tileX;
-		}
+	// game.input.onTap.add(function (pointer, event) {
+	// 	tileX = tileLayer.getTileX(pointer.x);
+	// 	tileY = tileLayer.getTileY(pointer.y);
 
-	});
+	// 	if (selectedChar !== null) {
+	// 		context.putCharacter(selectedChar, tileX, tileY);
+	// 	}
+
+	// 	if (tileY === 0) {
+	// 		selectedChar = tileX;
+	// 	}
+
+	// });
 }
 
 Tile.prototype.highlightTile = function () {
-
-	for (let y = 0; y < 25; ++y) {
-		for (let x = 0; x < 50; ++x) {
+	for (let y = 0; y < amountOfFields; ++y) {
+		for (let x = 0; x < amountOfRows; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
-			invisibleTile.beginFill(0xFFFFFF);
-			invisibleTile.drawRect(tileSize * x, tileSize * y + tileSize, tileSize, tileSize);
+			invisibleTile.beginFill(0xEFEFEF);
+			invisibleTile.drawRect(tileSize * x, tileSize * y, tileSize, tileSize);
 			invisibleTile.inputEnabled = true;
 			invisibleTile.input.useHandCursor = true;
-			invisibleTile.events.onInputOver.add(over, this);
-			invisibleTile.events.onInputOut.add(out, this);
+			invisibleTile.endFill();
 		}
 	}
-
-}
-
-Tile.prototype.createNavTiles = function () {
-	for (var i = 0; i < 6; ++i) {
-		(function (i) {
-			let image = game.add.image(tileSize * i, 0, charactersArray[i]);
-			image.inputEnabled = true;
-			image.input.useHandCursor = true;
-		})(i);
-	}
-}
-
-function over(item) {
-	item.alpha = 0;
-}
-
-function out(item) {
-	item.alpha = 1;
-}
-
-function clickNavTile(counter) {
-	currentNavTile = counter;
-
-
-
 
 }

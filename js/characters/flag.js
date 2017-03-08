@@ -8,12 +8,13 @@ function Flag(id, player){
     this.type = "flag";
     this.icon = "";
     this.asset = "";
+    this.moveable = false;
 }
 
 Flag.prototype = Object.create(Character.prototype);
 Flag.prototype.constructor = Character;
 
 Flag.load = function(){
-  game.load.image('bflag','assets/grid/bantenne.png');
-  game.load.image('rflag','assets/grid/rantenne.png');
+  game.load.image('bflag','assets/grid/bradar.png');
+  game.load.image('rflag','assets/grid/rradar.png');
 }

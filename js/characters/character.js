@@ -1,4 +1,4 @@
-function Character(){
+function Character() {
     this.id = 0;
     this.attack = 0;
     this.health = 0;
@@ -8,85 +8,148 @@ function Character(){
     this.asset = "";
 }
 
-Character.load = function(){
-    game.load.image('selected','assets/grid/selected.png');
+Character.load = function () {
+    game.load.image('selected', 'assets/grid/selected.png');
 }
 
 //return char object
-Character.makeCharacter = function(character, id, player){
+Character.makeCharacter = function (character, id, player, position, char) {
     charObject = null;
     switch (character) {
-		case MenuItems.BOMB:
-            charObject = new Bomb(id, player);
-			break;
-		case MenuItems.FLAG:
-            charObject = new Flag(id, player);
-			break;
-		case MenuItems.MEDIC:
-            charObject = new Medic(id, player);
-			break;
-		case MenuItems.SNIPER:
-            charObject = new Sniper(id, player);
-			break;
-		case MenuItems.SOLDIER:
-            charObject = new Soldier(id, player);
-			//TODO: random generate soldier in white en black;
-			break;
-		case MenuItems.TANK:
-            charObject = new Tank(id, player);
-			break;
-		default:
-			break;
-	}
+        case MenuItems.BOMB:
+            charObject = new Bomb(id, player, position, char);
+            break;
+        case MenuItems.FLAG:
+            charObject = new Flag(id, player, position, char);
+            break;
+        case MenuItems.MEDIC:
+            charObject = new Medic(id, player, position, char);
+            break;
+        case MenuItems.SNIPER:
+            charObject = new Sniper(id, player, position, char);
+            break;
+        case MenuItems.SOLDIER:
+            charObject = new Soldier(id, player, position, char);
+            break;
+        case MenuItems.TANK:
+            charObject = new Tank(id, player, position, char);
+            break;
+        default:
+            break;
+    }
+
+    setup[player].idForChar++;
 
     return charObject;
 }
 
-Character.prototype.move = function(){
-    //TODO: Movement
+Character.moveableLocation = function (x, y) {
+    var selectedSprite = game.add.sprite(x * 44, y * 44, 'selected');
+    selectedSprites.push(selectedSprite)
+    characterSelected = true;
 }
 
-Character.moveableLocation = function(x, y){
-    game.add.sprite(x*44,y*44,'selected');
+Character.destroySelected = function () {
+    for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
+        selectedSprites[sprite].destroy();
+    }
+
+    selectedSprites = [];
 }
 
-Character.events = function(){
+Character.selectedListener = function (neighbours, x, y, selectedObject) {
+    for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
+        Character.move(neighbours, x, y, selectedObject);
+    }
+}
 
-    game.input.onTap.add(function(pointer, event){
-        var context = this;
+Character.isValidMove = function (x, y) {
+    moveable = false;
+
+    for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
+        spriteX = selectedSprites[sprite].position.x;
+        spriteY = selectedSprites[sprite].position.y;
+
+        spriteTile = Tile.calcTileFromSprite(spriteX, spriteY);
+
+        if (spriteTile.x === x && spriteTile.y === y) {
+            moveable = true;
+        }
+    }
+
+    return moveable;
+}
+
+Character.move = function (neighbours, x, y, objectToMove) {
+    
+    tileX = tileLayer.getTileX(x);
+    tileY = tileLayer.getTileY(y);
+
+    if (!Character.isValidMove(tileX, tileY)) {
+        return;
+    }
+
+    Tile.putCharacter(objectToMove.assetId, tileX, tileY, false);
+
+    Character.destroySelected();
+    characterSelected = false;
+
+    tileData[objectToMove.tilePosition.x][objectToMove.tilePosition.y] = 0;
+    
+    objectToMove.sprite.destroy();
+}
+
+Character.shoot = function(){
+    
+}
+
+Character.isMoveable = function (selectedTile) {
+    var moveable = false;
+
+    //Het moet zo want als ik me niet moveable doe dan gaan hem buggen
+    if(selectedTile instanceof Soldier || selectedTile instanceof Medic || selectedTile instanceof Sniper || selectedTile instanceof Tank){
+        moveable = true;
+    }
+
+    return moveable;
+}
+
+Character.events = function () {
+    var context = this;
+
+
+    game.input.onTap.add(function (pointer, event) {
+
         tileX = tileLayer.getTileX(pointer.x);
         tileY = tileLayer.getTileY(pointer.y);
 
         neighbours = Coords.neighbours(tileX, tileY);
-        selectedTile = tileData[tileY][tileX];
-        var moveableCharacter = true;
-        if(moveableCharacter && gameStarted){
-            for (var neightbour in neighbours) {
-                if(tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0){
-                    context.Character.moveableLocation(neighbours[neightbour][0],neighbours[neightbour][1]);
+        selectedTile = tileData[tileX][tileY];
+
+        if (Character.isMoveable(selectedTile)) {
+            moveableCharacter = true;
+            selectedObject = selectedTile;
+        } else {
+            moveableCharacter = false;
+        }
+
+        if (characterSelected) {
+            context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject);
+        } else {
+            if (moveableCharacter && gameStarted) {
+                context.destroySelected();
+                for (var neightbour in neighbours) {
+                    if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
+                        context.moveableLocation(neighbours[neightbour][0], neighbours[neightbour][1]);
+                    }
                 }
-
             }
         }
 
-        // console.log(neighbours);
-        // console.log("x: "+tileX+" y: "+tileY);
-
-
-        if(selectedTile === TileStyles.WALL){
+        if (selectedTile === TileStyles.WALL) {
             console.log("it's a wall");
-        }else if(selectedTile === TileStyles.OIL){
+        } else if (selectedTile === TileStyles.OIL) {
             console.log("it's oil, lets burn");
-        }
-
-        //TODO: Remove if all good with map
-        items = "";
-
-        for(let y = 1; y <= 26; y++){
-            for(let x = 0; x <= 50; x++){
-                items += tileData[y][x];
-            }
-            items += "\n";
         }
 
     });
