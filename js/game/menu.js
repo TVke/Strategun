@@ -27,7 +27,7 @@ Menu.prototype.placeChar = function(){
         tileY = tileLayer.getTileY(this.game.camera.y + pointer.y);
         selectedTile = tileData[tileX][tileY];
         if (selectedTile === 0 && selectedChar !== null){
-            if(playerAtSetup === 0){
+            if((playerAtSetup === 0 && tileX<10) || (playerAtSetup === 1 && tileX>=10)){
                 let charId;
                 switch (selectedChar.querySelector("figure figcaption").innerHTML) {
                     case "Soldaat":
@@ -55,7 +55,6 @@ Menu.prototype.placeChar = function(){
                 clearSelection();
                 checkNav();
             }
-
         }
     });
 
