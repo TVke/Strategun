@@ -14,7 +14,7 @@ Tile.prototype.load = function () {
 }
 
 Tile.prototype.loadChar = function () {
-	this.putCharacter(4, 1, 1, true);
+	Tile.putCharacter(4, 1, 1, false);
 }
 
 TileStyles = {
@@ -31,7 +31,14 @@ MenuItems = {
 	TANK: 5,
 };
 
-Tile.prototype.charToImage = function (charId) {
+Tile.calcTileFromSprite = function(x, y){
+	return {
+		x: (x/44),
+		y: (y/44),
+	}
+}
+
+Tile.charToImage = function (charId) {
 	image = "";
 	switch (charId) {
 		case MenuItems.BOMB:
@@ -69,17 +76,19 @@ Tile.prototype.charToImage = function (charId) {
 	return image;
 }
 
-Tile.prototype.putCharacter = function (character, tileX, tileY, onLoad) {
+Tile.putCharacter = function (character, tileX, tileY, onPlacement) {
 	selectedTile = tileData[tileX][tileY];
+	position = {
+		x: tileX,
+		y: tileY
+	}
 
-	if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
-		game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
-		selectedChar = null;
-	} else if(onLoad){
-		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup);
-		game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
-		selectedChar = null;
+	if(!onPlacement){
+		char = game.add.sprite(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
+		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
+	}else if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
+		char = game.add.image(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
+		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
 	}
 }
 

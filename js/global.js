@@ -5,8 +5,20 @@ var neighbours = null;
 
 var gameStarted = false;
 var selectedChar = null;
+var selectedCharMov = {
+    charObj: null,
+    x: null,
+    y: null
+};
+
+var prevObject = null;
 var selectedSprites = []
 var characterSelected = false;
+
+var clickedCoord = {
+    x: "",
+    y: ""
+};
 
 
 var playerAtSetup = 0;

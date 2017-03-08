@@ -1,11 +1,12 @@
-function Soldier(id, player){
+function Soldier(id, player, position, sprite){
     this.id = id;
     this.assetId = 2;
     this.player = player;
     this.attack = 2;
     this.health = 5;
     this.range = 2;
-    this.position = 0;
+    this.tilePosition = position;
+    this.sprite = sprite;
     this.type = "soldier";
     this.icon = "assets/images/soldier.png";
     this.asset = "";
