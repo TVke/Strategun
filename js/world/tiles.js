@@ -1,5 +1,7 @@
 let currentNavTile = null;
-let charactersArray = ['bomb', 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+let activePlayerPrefix = 'b';
+let charactersArray = [activePlayerPrefix + 'bomb', activePlayerPrefix + 'flag', 'medicOut', 'sniperOut', 'soldierOut', 'tankOut'];
+let randomSoldier,randomTank;
 
 function Tile(game) {
 	this.game = game;
@@ -24,46 +26,55 @@ MenuItems = {
 	TANK: 5,
 };
 
-Tile.prototype.charToImage = function(charId) {
+Tile.prototype.charToImage = function (charId) {
 	image = "";
 	switch (charId) {
 		case MenuItems.BOMB:
-			image = "bomb";
+			image = activePlayerPrefix + "bomb";
 			break;
-
 		case MenuItems.FLAG:
-			image = "flag";
+			image = activePlayerPrefix + "flag";
 			break;
 		case MenuItems.MEDIC:
-			image = "medicIn";
+			image = activePlayerPrefix + "medicIn";
 			break;
 		case MenuItems.SNIPER:
-			image = "sniperIn";
+			image = activePlayerPrefix + "sniperIn";
 			break;
 		case MenuItems.SOLDIER:
-			//TODO: random generate soldier in white en black;
-			image = "soldierInWhite";
+			if (Math.random() >= 0.5) {
+				randomSoldier = activePlayerPrefix + 'soldierInWhite';
+			} else {
+				randomSoldier = activePlayerPrefix + 'soldierInBlack';
+			}
+			image = randomSoldier;
 			break;
 		case MenuItems.TANK:
-			image = "tankInWhite";
+			if (Math.random() >= 0.5) {
+				randomTank = activePlayerPrefix + 'tankInWhite';
+			} else {
+				randomTank = activePlayerPrefix + 'tankInBlack';
+			}
+			image = randomTank;
 			break;
 		default:
 			break;
 	}
+
 	return image;
 }
 
 Tile.prototype.putCharacter = function (character, tileX, tileY) {
-	//TODO: Put character on screen;
-
-	console.log("char on screen");
 	selectedTile = tileData[tileX][tileY];
 
 	if (selectedTile === 0) {
 		if (tileY !== 0) {
-			tileData[tileX][tileY] = selectedChar;
-			game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
-			selectedChar = null;
+			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
+				tileData[tileY][tileX] = Character.makeCharacter();
+				game.add.image(tileX * 44, tileY * 44, this.charToImage(character));
+
+				selectedChar = null;
+			}
 		}
 	}
 }
@@ -83,12 +94,11 @@ Tile.prototype.createInvisibleTiles = function () {
 			selectedChar = tileX;
 		}
 
-
-		//clickTile(invisibleTile, x, y)
 	});
 }
 
 Tile.prototype.highlightTile = function () {
+
 	for (let y = 0; y < 25; ++y) {
 		for (let x = 0; x < 50; ++x) {
 			let invisibleTile = game.add.graphics(0, 0);
@@ -100,6 +110,7 @@ Tile.prototype.highlightTile = function () {
 			invisibleTile.events.onInputOut.add(out, this);
 		}
 	}
+
 }
 
 Tile.prototype.createNavTiles = function () {
@@ -108,9 +119,6 @@ Tile.prototype.createNavTiles = function () {
 			let image = game.add.image(tileSize * i, 0, charactersArray[i]);
 			image.inputEnabled = true;
 			image.input.useHandCursor = true;
-			image.events.onInputUp.add(function () {
-				clickNavTile(i)
-			}, this);
 		})(i);
 	}
 }
@@ -126,43 +134,7 @@ function out(item) {
 function clickNavTile(counter) {
 	currentNavTile = counter;
 
-	// if(counter == 0) {
-	// 	currentNavTile = 'bomb';
-	// }
-	// if(counter == 1) {
-	// 	currentNavTile = 'flag';
-	// }
-	// if(counter == 2) {
-	// 	currentNavTile = 'medic';
-	// }
-	// if(counter == 3) {
-	// 	currentNavTile = 'sniper';
-	// }
-	// if(counter == 4) {
-	// 	currentNavTile = 'soldier';
-	// }
-	// if(counter == 5) {
-	// 	currentNavTile = 'tank';
-	// }
-}
 
-function clickTile(item, x, y) {
-	// if(currentNavTile == 'bomb') {
-	// 	console.log('bomb');
-	// }
-	// if(currentNavTile == 'flag') {
-	// 	console.log('flag');
-	// }
-	// if(currentNavTile == 'medic') {
-	// 	console.log('medic');
-	// }
-	// if(currentNavTile == 'sniper') {
-	// 	console.log('sniper');
-	// }
-	// if(currentNavTile == 'soldier') {
-	// 	console.log('soldier');
-	// }
-	// if(currentNavTile == 'tank') {
-	// 	console.log('tank');
-	// }
+
+
 }

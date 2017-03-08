@@ -16,8 +16,10 @@ Soldier.prototype.constructor = Character;
 
 Soldier.load = function(){
   game.load.image('soldierOut','assets/grid/soldaat out.png');
-  game.load.image('soldierInWhite','assets/grid/soldaat in white.png');
-  game.load.image('soldierInBlack','assets/grid/soldaat in black.png');
+  game.load.image('bsoldierInWhite','assets/grid/bsoldaat in white.png');
+  game.load.image('bsoldierInBlack','assets/grid/bsoldaat in black.png');
+  game.load.image('rsoldierInWhite','assets/grid/rsoldaat in white.png');
+  game.load.image('rsoldierInBlack','assets/grid/rsoldaat in black.png');
 
   game.load.audio('soldierSelect', 'assets/sounds/soldier_fire.mp3');
   game.load.audio('soldierHurt', 'assets/sounds/soldier_hurt.mp3');
@@ -30,7 +32,7 @@ Soldier.prototype.select = function(){
 }
 
 Soldier.prototype.move = function(){
-  
+
 }
 
 Soldier.prototype.attack = function(){

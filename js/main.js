@@ -45,7 +45,4 @@ function create() {
 
 function update() {
 	gameObjects.world.moveMap();
-
-
-
 }
