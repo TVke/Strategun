@@ -64,6 +64,11 @@ function checkNav(){
     if(document.querySelectorAll('nav a').length === 0){
         var EndTurnButton = document.createElement('button');
         EndTurnButton.innerHTML = "Einde Beurt";
+        if(playerAtSetup === 0){
+            EndTurnButton.id="blue";
+        }else{
+            EndTurnButton.id="red";
+        }
         document.getElementsByTagName('nav')[0].appendChild(EndTurnButton);
     }
 }
