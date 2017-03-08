@@ -94,8 +94,6 @@ Character.move = function (neighbours, x, y, objectToMove) {
     Character.destroySelected();
     characterSelected = false;
 
-    console.log(objectToMove);
-
     tileData[objectToMove.tilePosition.x][objectToMove.tilePosition.y] = 0;
     
     objectToMove.sprite.destroy();
@@ -134,7 +132,7 @@ Character.events = function () {
         if (characterSelected) {
             context.selectedListener(neighbours, pointer.x, pointer.y, prevObject);
         } else {
-            if (moveableCharacter /*&& gameStarted*/) {
+            if (moveableCharacter && gameStarted) {
                 context.destroySelected();
                 for (var neightbour in neighbours) {
                     if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
