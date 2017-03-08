@@ -1,5 +1,3 @@
-
-
 function Menu(){
 
 }
@@ -24,18 +22,16 @@ Menu.prototype.placeOnTile = function(event){
 
 
     tileX = tileLayer.getTileX(pointer.x);
-		tileY = tileLayer.getTileY(pointer.y);
+	tileY = tileLayer.getTileY(pointer.y);
 
-		if (selectedChar !== null) {
-			context.putCharacter(selectedChar, tileX, tileY);
-		}
-
+	if (selectedChar !== null) {
+		context.putCharacter(selectedChar, tileX, tileY);
+	}
 
     game.input.onTap.add(function (pointer, event) {
-
 
 	});
 }
 function toggleSelectClass(id){
-    document.getElementById(id.toString()).classList.toggle("selected");
+    document.getElementsBy(id.toString()).classList.toggle("selected");
 }
