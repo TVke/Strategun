@@ -73,7 +73,7 @@ Character.isValidMove = function (x, y) {
 }
 
 Character.move = function (neighbours, x, y, objectToMove) {
-    
+
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
@@ -87,11 +87,11 @@ Character.move = function (neighbours, x, y, objectToMove) {
     characterSelected = false;
 
     tileData[objectToMove.tilePosition.x][objectToMove.tilePosition.y] = 0;
-    
+
     objectToMove.sprite.destroy();
 }
 
-Character.shoot = function(){
+Character.shoot = function () {
 
 }
 
@@ -99,16 +99,82 @@ Character.isMoveable = function (selectedTile) {
     var moveable = false;
 
     //Het moet zo want als ik me niet moveable doe dan gaan hem buggen
-    if(selectedTile instanceof Soldier || selectedTile instanceof Medic || selectedTile instanceof Sniper || selectedTile instanceof Tank){
+    if (
+        selectedTile instanceof Soldier ||
+        selectedTile instanceof Medic ||
+        selectedTile instanceof Sniper ||
+        selectedTile instanceof Tank
+    ) {
         moveable = true;
     }
 
     return moveable;
 }
 
+Character.handleMove = function (context, neighbours, pointer) {
+    console.log("move");
+    if (characterSelected) {
+        context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject);
+    } else {
+        if (moveableCharacter && gameStarted) {
+            context.destroySelected();
+            for (var neightbour in neighbours) {
+                if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0],
+                        neighbours[neightbour][1]
+                    );
+                }
+            }
+        }
+    }
+}
+
+Character.placeTile = function (neighbours, neightbour) {
+
+}
+
+Character.handleShoot = function (context, neighbours, pointer) {
+    console.log("shoot")
+    Character.destroySelected();
+    characterSelected = false;
+
+    console.log(neighbours)
+
+    if (moveableCharacter && gameStarted) {
+        for (var neightbour in neighbours) {
+            console.log(neightbour);
+
+            if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
+                if (neightbour === "Bottom") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0]+1,
+                        neighbours[neightbour][1]+selectedObject.range
+                    );
+                } else if (neightbour === "Left") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0]-selectedObject.range,
+                        neighbours[neightbour][1]+1
+                    );
+                } else if (neightbour === "Right") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0]+selectedObject.range,
+                        neighbours[neightbour][1]-1
+                    );
+                } else if (neightbour === "Top") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0]-1,
+                        neighbours[neightbour][1]-selectedObject.range
+                    );
+                }
+
+            }
+        }
+    }
+}
+
 Character.events = function () {
     var context = this;
-
 
     game.input.onTap.add(function (pointer, event) {
 
@@ -127,23 +193,18 @@ Character.events = function () {
             moveableCharacter = false;
         }
 
-        if (characterSelected) {
-            context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject);
-        } else {
-            if (moveableCharacter && gameStarted) {
-                context.destroySelected();
-                for (var neightbour in neighbours) {
-                    if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
-                        context.moveableLocation(neighbours[neightbour][0], neighbours[neightbour][1]);
-                    }
-                }
-            }
+        context.handleMove(context, neighbours, pointer);
+
+        if (clickedCount === 1) {
+            context.handleMove(context, neighbours, pointer);
+        } else if (clickedCount === 2) {
+            context.handleShoot(context, neighbours, pointer);
         }
 
-        if (selectedTile === TileStyles.WALL) {
-            console.log("it's a wall");
-        } else if (selectedTile === TileStyles.OIL) {
-            console.log("it's oil, lets burn");
+        clickedCount++;
+
+        if (clickedCount > 2) {
+            clickedCount = 1;
         }
 
     });

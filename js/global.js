@@ -14,6 +14,7 @@ var selectedCharMov = {
 var selectedObject = null;
 var selectedSprites = []
 var characterSelected = false;
+var clickedCount = 0;
 
 var clickedCoord = {
     x: "",
