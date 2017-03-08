@@ -73,7 +73,7 @@ Tile.prototype.putCharacter = function (character, tileX, tileY) {
 		if (tileY !== 0) {
 
 			if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
-				tileData[tileY][tileX] = Character.makeCharacter();
+				tileData[tileX][tileY] = Character.makeCharacter();
 				game.add.image(tileX * tileSize, tileY * tileSize, this.charToImage(character));
 				selectedChar = null;
 			}
