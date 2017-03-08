@@ -48,3 +48,27 @@ function swapPlayer(array)
 	array[0] = array[1];
 	array[1] = temp;
 }
+
+var
+
+function shoot(shooter, target)
+{
+    shooterPosX = shooter.world.x;
+    shooterPosY = shooter.world.y;
+    
+    targetPosX = target.world.x;
+    targetPosY = target.world.y;
+    
+    differenceX = targetPosX - shooterPosX;
+    differenceY = targetPosY - shooterPosY;
+    
+    if((differenceX <= 100 && shooterPosY == targetPosY) || (differenceY <= 100 && shooterPosX == targetPosX))
+    {
+        //targetHealth -= damageDone;
+        textDisplay.text = 'MY BABY SHOT ME DOWN';
+    }
+    else
+    {
+        textDisplay.text = 'NOT IN RANGE';
+    }
+}
