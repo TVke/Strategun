@@ -13,8 +13,8 @@ Tile.prototype.load = function () {
 }
 
 TileStyles = {
-	WALL: 2,
-	OIL: 1,
+	WALL: 1,
+	OIL: 2,
 };
 
 MenuItems = {
