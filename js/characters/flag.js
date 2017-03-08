@@ -8,6 +8,7 @@ function Flag(id, player){
     this.type = "flag";
     this.icon = "";
     this.asset = "";
+    this.moveable = false;
 }
 
 Flag.prototype = Object.create(Character.prototype);

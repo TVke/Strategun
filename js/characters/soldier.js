@@ -1,6 +1,6 @@
 function Soldier(id, player, position, sprite){
     this.id = id;
-    this.assetId = 2;
+    this.assetId = 4;
     this.player = player;
     this.attack = 2;
     this.health = 5;
@@ -10,6 +10,7 @@ function Soldier(id, player, position, sprite){
     this.type = "soldier";
     this.icon = "assets/images/soldier.png";
     this.asset = "";
+    this.moveable = true;
 }
 
 Soldier.prototype = Object.create(Character.prototype);

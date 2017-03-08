@@ -63,16 +63,16 @@ Character.selectedListener = function (neighbours, x, y, prevObject) {
     }
 }
 
-Character.isMoveable = function(x, y){
+Character.isValidMove = function (x, y) {
     moveable = false;
 
-    for(let sprite = 0; sprite < selectedSprites.length; sprite++){
+    for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
         spriteX = selectedSprites[sprite].position.x;
         spriteY = selectedSprites[sprite].position.y;
 
         spriteTile = Tile.calcTileFromSprite(spriteX, spriteY);
 
-        if(spriteTile.x === x && spriteTile.y === y){
+        if (spriteTile.x === x && spriteTile.y === y) {
             moveable = true;
         }
     }
@@ -80,22 +80,36 @@ Character.isMoveable = function(x, y){
     return moveable;
 }
 
-Character.move = function(neighbours, x, y, objectToMove) {
-
+Character.move = function (neighbours, x, y, objectToMove) {
+    
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
-    if(!Character.isMoveable(tileX, tileY)){
+    if (!Character.isValidMove(tileX, tileY)) {
         return;
     }
 
-    Tile.putCharacter(4, tileX, tileY, false);
+    Tile.putCharacter(objectToMove.assetId, tileX, tileY, false);
 
     Character.destroySelected();
     characterSelected = false;
-    
+
+    console.log(objectToMove);
+
     tileData[objectToMove.tilePosition.x][objectToMove.tilePosition.y] = 0;
+    
     objectToMove.sprite.destroy();
+}
+
+Character.isMoveable = function (selectedTile) {
+    var moveable = false;
+
+    //Het moet zo want als ik me niet moveable doe dan gaan hem buggen
+    if(selectedTile instanceof Soldier || selectedTile instanceof Medic || selectedTile instanceof Sniper || selectedTile instanceof Tank){
+        moveable = true;
+    }
+
+    return moveable;
 }
 
 Character.events = function () {
@@ -110,19 +124,17 @@ Character.events = function () {
         neighbours = Coords.neighbours(tileX, tileY);
         selectedTile = tileData[tileX][tileY];
 
-        if (selectedTile instanceof Soldier) {
+        if (Character.isMoveable(selectedTile)) {
             moveableCharacter = true;
             prevObject = selectedTile;
-        }else{
+        } else {
             moveableCharacter = false;
         }
-
-
 
         if (characterSelected) {
             context.selectedListener(neighbours, pointer.x, pointer.y, prevObject);
         } else {
-            if (moveableCharacter && gameStarted) {
+            if (moveableCharacter /*&& gameStarted*/) {
                 context.destroySelected();
                 for (var neightbour in neighbours) {
                     if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {

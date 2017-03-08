@@ -8,6 +8,7 @@ function Tank(id, player){
     this.type = "tank";
     this.icon = "";
     this.asset = "";
+    this.moveable = true;
 }
 
 Tank.prototype = Object.create(Character.prototype);

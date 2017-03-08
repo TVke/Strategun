@@ -8,6 +8,7 @@ function Medic(id, player){
     this.type = "medic";
     this.icon = "";
     this.asset = "";
+    this.moveable = true;
 }
 
 Medic.prototype = Object.create(Character.prototype);

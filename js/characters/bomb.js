@@ -8,6 +8,7 @@ function Bomb(id, player) {
     this.type = "bomb";
     this.icon = "";
     this.asset = "";
+    this.moveable = false;
 }
 
 Bomb.prototype = Object.create(Character.prototype);
