@@ -59,36 +59,43 @@ Character.destroySelected = function () {
 
 Character.selectedListener = function (neighbours, x, y, prevObject) {
     for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
-        console.log(selectedSprites[sprite]);
         Character.move(neighbours, x, y, prevObject);
     }
 }
 
+Character.isMoveable = function(x, y){
+    moveable = false;
+
+    for(let sprite = 0; sprite < selectedSprites.length; sprite++){
+        spriteX = selectedSprites[sprite].position.x;
+        spriteY = selectedSprites[sprite].position.y;
+
+        spriteTile = Tile.calcTileFromSprite(spriteX, spriteY);
+
+        if(spriteTile.x === x && spriteTile.y === y){
+            moveable = true;
+        }
+    }
+
+    return moveable;
+}
+
 Character.move = function(neighbours, x, y, objectToMove) {
-    
 
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
-    Tile.putCharacter(4, tileX, tileY, false);
+    if(!Character.isMoveable(tileX, tileY)){
+        return;
+    }
 
-    console.log(selectedCharMov);
+    Tile.putCharacter(4, tileX, tileY, false);
 
     Character.destroySelected();
     characterSelected = false;
-
     
     tileData[objectToMove.tilePosition.x][objectToMove.tilePosition.y] = 0;
     objectToMove.sprite.destroy();
-    // selectedCharMov.charObj.destroy();
-
-    // selectedCharMov.charObj = null;
-    // selectedCharMov.x = null;
-    // selectedCharMov.y = null;
-}
-
-Character.prototype.registerClick = function () {
-
 }
 
 Character.events = function () {
