@@ -1,3 +1,4 @@
+var menuElement = document.getElementsByTagName('nav')[0];
 var characterItems = document.querySelectorAll('nav a');
 var selectedChar;
 function Menu(){
@@ -69,7 +70,7 @@ function checkNav(){
             EndTurnButton.id="red";
         }
         EndTurnButton.addEventListener("click",Turns.end);
-        document.getElementsByTagName('nav')[0].appendChild(EndTurnButton);
+        menuElement.appendChild(EndTurnButton);
     }
 }
 function clearSelection(){
@@ -82,4 +83,10 @@ function clearSelection(){
 function toggleSelectClass(pos){
     clearSelection();
     characterItems[pos].classList.add("selected");
+}
+
+Menu.addElement = function(tag,content){
+    let object = document.createElement(tag);
+    object.innerHTML = content;
+    menuElement.appendChild(object);
 }
