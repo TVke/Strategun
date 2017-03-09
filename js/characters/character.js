@@ -124,7 +124,7 @@ Character.damage = function (source, tileX, tileY) {
 
 Character.heal = function (x, y, source) {
 
-    if(source.type !== "medic"){
+    if (source.type !== "medic") {
         return;
     }
 
@@ -136,11 +136,11 @@ Character.heal = function (x, y, source) {
     //TODO: fix hardcoded heal trolololo
     target.health = target.health + 4;
 
-    if(target.health > target.maxHealth){
+    if (target.health > target.maxHealth) {
         target.health = target.maxHealth + 0;
     }
 
-    if(target.constructor === Character){
+    if (target.constructor === Character) {
         if (Character.isValidMove(tileX, tileY)) {
             Medic.healAnimation(source, target)
 
@@ -213,7 +213,7 @@ Character.handleShoot = function (context, neighbours, pointer) {
         }
     }
 
-    
+
     characterMode = "shoot";
 }
 
@@ -295,7 +295,7 @@ Character.events = function () {
         if (selectedTile.player !== playerAtSetup) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
             return;
-        }else{            
+        } else {
             Character.heal(pointer.x, pointer.y, selectedTile);
         }
 
@@ -308,13 +308,13 @@ Character.events = function () {
             moveableCharacter = false;
         }
 
+        if (gameStarted) {
+            Menu.showHealth(selectedTile.health);
+        }
+
         if (characterSelected) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, false);
         } else {
-            if(gameStarted){
-                Menu.showHealth(selectedObject.health);
-            }
-            
             if (clickedCount === 1) {
                 context.handleMove(context, neighbours, pointer);
             } else if (clickedCount === 2) {
