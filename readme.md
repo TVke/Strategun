@@ -7,3 +7,4 @@
 * range calcutating
 * sprite duidelijker kleuren
 * heart css responsive
+* bug fixes turns
