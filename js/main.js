@@ -33,7 +33,7 @@ function preload() {
 
 	game.load.image('buttonStartTurn', 'assets/sprites/buttonStartTurn.png');
 	game.load.image('buttonEndTurn', 'assets/sprites/buttonEndTurn.png');
-	game.load.spritesheet('heartSpritesheet', 'assets/sprites/heart_spritesheet.png');
+	game.load.spritesheet('heartSpritesheet', 'assets/sprites/heart_spritesheet.png', 46, 46);
 }
 
 function create() {
