@@ -7,7 +7,7 @@ Character.load = function () {
 
 //return char object
 Character.makeCharacter = function (character, id, player, position, char) {
-    charObject = null;
+
     switch (character) {
         case MenuItems.BOMB:
             charObject = new Bomb(id, player, position, char);
@@ -124,7 +124,7 @@ Character.damage = function (source, tileX, tileY) {
 
 Character.heal = function (x, y, source) {
 
-    if(source.type === "medic"){
+    if(source.type !== "medic"){
         return;
     }
 
@@ -297,6 +297,7 @@ Character.events = function () {
             return;
         }else{
             console.log(selectedTile);
+            console.log(selectedObject);
             
             Character.heal(pointer.x, pointer.y, selectedTile);
             

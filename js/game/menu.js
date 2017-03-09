@@ -36,7 +36,7 @@ Menu.placeChar = function(){
                     case "radar":
                         charId = MenuItems.FLAG;
                         break;
-                    case "mijn":
+                    case "bom":
                         charId = MenuItems.BOMB;
                         break;
                     case "dokter":

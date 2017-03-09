@@ -63,6 +63,7 @@ Tile.charToImage = function (charId) {
 				}
 			}
 			image = randomSoldier;
+			console.log(image);
 			break;
 		case MenuItems.TANK:
 			if (!gameStarted) {

@@ -1,6 +1,6 @@
 function Bomb(id, player, position, sprite) {
     this.id = id;
-    this.assetId = 5;
+    this.assetId = MenuItems.BOMB;
     this.player = player;
     this.attack = 3;
     this.health = 3;

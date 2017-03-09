@@ -1,6 +1,6 @@
 function Flag(id, player, position, sprite){
     this.id = id;
-    this.assetId = 6;
+    this.assetId = MenuItems.FLAG;
     this.player = player;
     this.attack = 0;
     this.health = 15;

@@ -12,12 +12,12 @@ var selectedCharMov = {
 };
 
 MenuItems = {
-	BOMB: 0,
-	FLAG: 1,
-	MEDIC: 2,
-	SNIPER: 3,
-	SOLDIER: 4,
-	TANK: 5,
+	BOMB: 1,
+	FLAG: 2,
+	MEDIC: 3,
+	SNIPER: 4,
+	SOLDIER: 5,
+	TANK: 6,
 };
 
 var selectedObject = null;
