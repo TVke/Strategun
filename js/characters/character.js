@@ -119,12 +119,20 @@ Character.damage = function (source, tileX, tileY) {
 
     target.health = target.health - source.attack;
 
+    //bom knalt u dood
+    if(target.type === "bomb"){
+        source.health = 0;
+        Soldier.attackAnimation(target, source);
+    }
+
+    
+
     Soldier.attackAnimation(source, target)
 }
 
 Character.heal = function (x, y, source) {
 
-    if (source.type !== "medic") {
+    if (source.type === "medic") {
         return;
     }
 

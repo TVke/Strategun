@@ -3,7 +3,7 @@ function Bomb(id, player, position, sprite) {
     this.assetId = MenuItems.BOMB;
     this.player = player;
     this.attack = 3;
-    this.health = 3;
+    this.health = 1;
     this.maxHealth = 0;
     this.tilePosition = position;
     this.sprite = sprite;
