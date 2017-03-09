@@ -13,7 +13,7 @@ Tile.prototype.load = function () {
 }
 
 Tile.prototype.loadChar = function () {
-	Tile.putCharacter(4, 8, 9, false);
+	Tile.putCharacter(4, 1, 1, false);
 	playerAtSetup = 1;
 	Tile.putCharacter(4, 1, 2, false);
 	Tile.putCharacter(4, 1, 3, false);

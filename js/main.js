@@ -37,6 +37,7 @@ function preload() {
 	game.load.audio('move_piece', 'assets/sounds/move_piece.mp3');
 	game.load.audio('end_turn', 'assets/sounds/end_turn.mp3');
 	game.load.audio('start_turn', 'assets/sounds/start_turn.mp3');
+	game.load.spritesheet('heartSpritesheet', 'assets/sprites/heart_spritesheet.png', 46, 46);
 }
 
 function create() {

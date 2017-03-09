@@ -31,7 +31,7 @@ Character.makeCharacter = function (character, id, player, position, char) {
             break;
     }
 
-    setup[player].idForChar++;
+    idForChar++;
 
     return charObject;
 }
@@ -56,15 +56,12 @@ Character.destroySelected = function () {
 }
 
 Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) {
-    console.log(enemy);
-    for (let sprite = 0; sprite < selectedSprites.length; sprite++) {
-        if (characterMode === "move") {
-            Character.move(neighbours, x, y, selectedObject);
-        }
+    if (characterMode === "move") {
+        Character.move(neighbours, x, y, selectedObject);
+    }
 
-        if (enemy && characterMode === "shoot") {
-            Character.shoot(neighbours, x, y, selectedObject);
-        }
+    if (enemy && characterMode === "shoot") {
+        Character.shoot(neighbours, x, y, selectedObject);
     }
 }
 
@@ -107,19 +104,28 @@ Character.move = function (neighbours, x, y, objectToMove) {
     movePieceSound.play();
 }
 
+Character.damage = function (source, target) {
+    target.health = target.health - source.attack;
+
+    console.log("source \n ");
+    console.log(source)
+    console.log("\n target \n")
+    console.log(target);
+}
+
 Character.shoot = function (neighbours, x, y, objectToMove) {
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
-    //TODO: implementeer dat alles in range kan beschoten worden en dat schieten door muur illegaal is
-    if (tileData[tileX][tileY].constructor === Character) {
+    tile = tileData[tileX][tileY];
+
+    if (tile.constructor === Character) {
         if (Character.isValidMove(tileX, tileY)) {
-            console.log("you shot: " + tileData[tileX][tileY].id);
+            Character.damage(selectedObject, tile);
             return;
         }
-
     } else {
-        console.log("you shot nobody");
+
     }
 }
 
@@ -170,16 +176,13 @@ Character.handleShoot = function (context, neighbours, pointer) {
 }
 
 Character.placeable = function (tileX, tileY) {
-    console.log("shoot");
-    console.log("x: " + tileX + "y: " + tileY);
-
     if (tileX < 0 || tileY < 0 || tileX >= amountOfRows || tileY >= amountOfFields) {
         return 0;
     }
 
     tile = tileData[tileX][tileY];
 
-    if(tile === undefined){
+    if (tile === undefined) {
         return 0;
     }
 
