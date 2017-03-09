@@ -54,7 +54,6 @@ World.prototype.makeMap = function () {
     tileMap = map;
 
     this.tileProperties(map, layer)
-
 }
 
 World.prototype.makeGrid = function () {
@@ -67,13 +66,13 @@ World.prototype.makeGrid = function () {
         this.game.add.tileSprite(this.game.world.width / 2, i * tileSize, this.game.world.width / 2, laserSize, 'red');
     }
 
-    this.game.add.tileSprite(0, 0, 1, this.game.world.height - tileSize, 'blue');
-    this.game.add.tileSprite(0, 0, this.game.world.width / 2, 1, 'blue');
-    this.game.add.tileSprite(0, this.game.world.height - 1, this.game.world.width / 2, 1, 'blue');
+    this.game.add.tileSprite(0, 0, 2, this.game.world.height, 'blue');
+    this.game.add.tileSprite(0, 0, this.game.world.width / 2, 2, 'blue');
+    this.game.add.tileSprite(0, this.game.world.height - 1, this.game.world.width / 2, 2, 'blue');
 
-    this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 1, 'red');
-    this.game.add.tileSprite(this.game.world.width - 1, 0, 1, this.game.world.height, 'red');
-    this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width / 2, 1, 'red');
+    this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 2, 'red');
+    this.game.add.tileSprite(this.game.world.width - 1, 0, 2, this.game.world.height, 'red');
+    this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width / 2, 2, 'red');
 }
 
 World.prototype.moveMap = function () {
