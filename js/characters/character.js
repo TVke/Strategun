@@ -104,10 +104,6 @@ Character.move = function (neighbours, x, y, objectToMove) {
     objectToMove.sprite.destroy();
 }
 
-Character.isEnemyChar = function () {
-
-}
-
 Character.shoot = function (neighbours, x, y, objectToMove) {
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
@@ -171,7 +167,10 @@ Character.handleShoot = function (context, neighbours, pointer) {
 }
 
 Character.placeable = function (tileX, tileY) {
-    if (tileX < 0 || tileY < 0) {
+    console.log("shoot");
+    console.log("x: " + tileX + "y: " + tileY);
+
+    if (tileX < 0 || tileY < 0 /*|| tileX < amountOfRows || tileY < amountOfFields*/) {
         return 0;
     }
 
@@ -217,7 +216,7 @@ Character.drawShootRange = function (neightbour, neighbours) {
             tileX = neighbours[neightbour][0] + rangeTile + 1;
             tileY = neighbours[neightbour][1] - 1;
 
-            rangeTile = Character.tileControl(tileX, tileY);
+            rangeTile = Character.tileControl(tileX, tileY, rangeTile);
         } else if (neightbour === "Top") {
             tileX = neighbours[neightbour][0] - 1;
             tileY = neighbours[neightbour][1] - rangeTile - 1;
