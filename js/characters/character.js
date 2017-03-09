@@ -251,6 +251,9 @@ Character.events = function () {
 
         if (selectedTile.player !== playerAtSetup) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
+            if (gameStarted) {
+                Turns.showEndTurn();
+            }
             return;
         }
 
@@ -268,14 +271,8 @@ Character.events = function () {
         } else {
             if (clickedCount === 1) {
                 context.handleMove(context, neighbours, pointer);
-                if(gameStarted){
-                    Turns.showEndTurn();
-                }
             } else if (clickedCount === 2) {
                 context.handleShoot(context, neighbours, pointer);
-                if(gameStarted){
-                    Turns.showEndTurn();
-                }
             }
         }
 
