@@ -80,5 +80,5 @@ Turns.endGame = function(loser) {
 	}
 
 	document.getElementById('end').style.display = 'initial';
-	document.getElementById('overlay').style.display = 'initial';
+	document.getElementById('overlay').style.display = 'flex';
 }
