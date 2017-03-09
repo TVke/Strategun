@@ -25,9 +25,17 @@ Medic.load = function(){
     // game.load.audio('medicSelect', 'assets/sounds/medic_select.mp3');
     // game.load.audio('medicHurt', 'assets/sounds/medic_hurt.mp3');
     // game.load.audio('medicDeath', 'assets/sounds/medic_death.mp3');
-    // game.load.audio('medicHeal', 'assets/sounds/medic_heal.mp3');
+    game.load.audio('medicHeal', 'assets/sounds/medic_heal.mp3');
 }
 
-Medic.healAnimation = function(source, target){
 
+Medic.healAnimation = function(source, target)
+{
+        healSheet = game.add.sprite(target.tilePosition.x, target.tilePosition.y, 'medicHeal');
+        healAnim = healSheet.animations.add('healAnimation');
+
+        healSound = game.add.audio('medicHeal');
+        healSound.play();
+
+        healSheet.animations.play('healAnimation', 10, false);
 }

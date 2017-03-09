@@ -79,9 +79,21 @@ function shoot(shooter, target)
     }
 }
 
-function killUnit(unit)
+/*
+function getHeart(unit)
 {
-	// play death sound of zo?
-	target.destroy();
-	// score bijtellen of zo?
+	health = unit.health;
+
+	heartSpritesheet = game.add.sprite(game.width.centerX, 0, 'heartSpritesheet');
+	heartSpritesheet.frame = health;
+	
+	text = game.add.text(0, 0, health, { font: '20px Arial', fill: '#000000', wordWrap: true, wordWrapWidth: heartSprite.width, align: 'center' });
+	text.fontWeight = 'bold';
+	text.anchor.set(0.5);
+	text.x = Math.floor(heartSprite.x + (heartSprite.width/2));
+	text.y = Math.floor(heartSprite.y + (heartSprite.height/2));
+
+	Menu.addElement('p', heartSprite);
+	Menu.addElement('p', text);
 }
+*/
