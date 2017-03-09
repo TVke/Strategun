@@ -11,6 +11,15 @@ var selectedCharMov = {
     y: null
 };
 
+MenuItems = {
+	BOMB: 0,
+	FLAG: 1,
+	MEDIC: 2,
+	SNIPER: 3,
+	SOLDIER: 4,
+	TANK: 5,
+};
+
 var selectedObject = null;
 var characterMode = "";
 var selectedSprites = []

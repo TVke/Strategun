@@ -25,15 +25,6 @@ TileStyles = {
 	OIL: 1,
 };
 
-MenuItems = {
-	BOMB: 0,
-	FLAG: 1,
-	MEDIC: 2,
-	SNIPER: 3,
-	SOLDIER: 4,
-	TANK: 5,
-};
-
 Tile.calcTileFromSprite = function (x, y) {
 	return {
 		x: (x / 44),
