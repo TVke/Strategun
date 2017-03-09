@@ -29,26 +29,26 @@ Menu.placeChar = function(){
             if((playerAtSetup === 0 && tileX < 10) || (playerAtSetup === 1 && tileX >= 10)){
                 let charId;
                 switch (selectedChar.querySelector("figure figcaption").innerHTML) {
-                    case "Soldaat":
+                    case "soldaat":
                         charId = MenuItems.SOLDIER;
                         break;
-                    case "Radar":
+                    case "radar":
                         charId = MenuItems.FLAG;
                         break;
-                    case "Mijn":
+                    case "mijn":
                         charId = MenuItems.BOMB;
                         break;
-                    case "Dokter":
+                    case "dokter":
                         charId = MenuItems.MEDIC;
                         break;
-                    case "Sniper":
+                    case "sniper":
                         charId = MenuItems.SNIPER;
                         break;
-                    case "Tank":
+                    case "tank":
                         charId = MenuItems.TANK;
                         break;
                 }
-                Tile.putCharacter(charId,tileX,tileY);
+                Tile.putCharacter(charId,tileX,tileY,false);
                 selectedChar.remove();
                 selectedChar = null;
                 clearSelection();
