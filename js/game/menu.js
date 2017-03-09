@@ -73,6 +73,7 @@ function checkNav(){
             EndTurnButton.id="red";
         }
         EndTurnButton.addEventListener("click",Turns.end);
+        Menu.emptyNav();
         menuElement.appendChild(EndTurnButton);
     }
 }
@@ -109,4 +110,9 @@ Menu.removeHealth = function(){
     if(menuElement.querySelector("figure.heart")){
         menuElement.querySelector("figure.heart").remove();
     }
+}
+Menu.emptyNav = function(){
+    for (let i = 0,ilen = menuElement.children.length; i < ilen; ++i) {
+		menuElement.children[i].remove();
+	}
 }
