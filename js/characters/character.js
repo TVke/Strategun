@@ -63,6 +63,8 @@ Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) 
     if (enemy && characterMode === "shoot") {
         Character.shoot(neighbours, x, y, selectedObject);
     }
+
+    
 }
 
 Character.isValidMove = function (x, y) {
@@ -106,15 +108,6 @@ Character.move = function (neighbours, x, y, objectToMove) {
 
 Character.damage = function (source, target) {
     target.health = target.health - source.attack;
-
-    console.log("source \n ");
-    console.log(source)
-    console.log("\n target \n")
-    console.log(target);
-}
-
-Character.damage = function (source, target) {
-    target.health = target.health - source.attack;
 }
 
 Character.shoot = function (neighbours, x, y, objectToMove) {
@@ -125,6 +118,8 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
 
     if (tile.constructor === Character) {
         if (Character.isValidMove(tileX, tileY)) {
+            shootSound = game.add.audio('fire')
+            shootSound.play();
             Character.damage(selectedObject, tile);
             return;
         }
