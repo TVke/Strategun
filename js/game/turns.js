@@ -52,11 +52,11 @@ Turns.startNewTurn = function(){
 	Menu.emptyNav();
 	if(playerAtSetup === 0){
 		playerAtSetup = 1;
-		actionPerformed = false;
+		actionPerformed = true;
 	}
 	else if(playerAtSetup === 1){
 		playerAtSetup = 0;
-		actionPerformed = false;
+		actionPerformed = true;
 	}
 	if(gameStarted){
 		// otherplayers turn
