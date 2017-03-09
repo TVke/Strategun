@@ -132,5 +132,17 @@ Menu.displayMessage = function(message, buttonTekst = "",callback = function(){c
     }
 }
 Menu.startStrategy = function(){
-    
+    if(playerAtSetup === 0){
+		// blue
+	}
+	else if(playerAtSetup === 1){
+        // red
+	}
+}
+
+document.getElementsByClassName('purple')[0].addEventListener('click', removeOverlay);
+
+function removeOverlay() {
+    Menu.startStrategy();
+    document.getElementById('overlay').remove();
 }
