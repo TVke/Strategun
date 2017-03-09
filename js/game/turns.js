@@ -76,5 +76,5 @@ Turns.endGame = function(loser) {
 		winnerElem.innerHTML = 'Blauwe speler wint!';
 	}
 
-	winnerElem.style.display = 'initial';
+	document.getElementById('end').style.display = 'initial';
 }
