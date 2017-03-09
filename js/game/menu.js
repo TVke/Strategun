@@ -2,6 +2,7 @@ var menuElement = document.getElementsByTagName('nav')[0];
 var characterItems;
 var navCounter = 0;
 var selectedChar;
+var strategySet = 0;
 
 function Menu(){
 
@@ -105,6 +106,9 @@ Menu.removeHealth = function(){
 }
 Menu.emptyNav = function(){
         menuElement.innerHTML = "";
+        if(strategySet!== 0 && strategySet%2 === 0){
+            gameStarted = true;
+        }
 }
 
 
@@ -193,7 +197,7 @@ Menu.startStrategy = function(){
 	})
     Menu.addListeners();
     Menu.placeChar();
-    navCounter = 0;
+    ++strategySet;
 }
 
 document.getElementsByClassName('purple')[0].addEventListener('click', removeOverlay);

@@ -42,10 +42,10 @@ var playerAtSetup = 0;
 //controleert het plaatsen van de karakters bij het opzetten van het spelbord. Speler kan pas klaar zijn als alles op 0 staat
 var setup = {
     flag: 1,
-    bombs: 5,
-    medics: 1,
+    // bombs: 5,
+    // medics: 1,
     snipers: 2,
-    tanks: 4,
-    soldiers: 10,
+    // tanks: 4,
+    // soldiers: 10,
 
 }

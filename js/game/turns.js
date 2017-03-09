@@ -9,7 +9,7 @@ Turns.prototype.load = function(){
 };
 Turns.showEndTurn = function(){
 	var EndTurnButton = document.createElement('button');
-	EndTurnButton.innerHTML = "Einde Beurt";
+	EndTurnButton.innerHTML = "einde beurt";
 	if(playerAtSetup === 0){
 		EndTurnButton.id="blue";
 	}else if(playerAtSetup === 1){
@@ -42,13 +42,14 @@ Turns.end = function(){
 Turns.switchPlayer = function(){
 	Menu.emptyNav();
 	if(playerAtSetup === 0){
-		Menu.displayMessage("Geef door aan de Rode speler","start beurt",Turns.startNewTurn,1);
+		Menu.displayMessage("Geef door aan de rode speler","start beurt",Turns.startNewTurn,1);
 	}
 	else if(playerAtSetup === 1){
-		Menu.displayMessage("Geef door aan de Rode speler","start beurt",Turns.startNewTurn,0);
+		Menu.displayMessage("Geef door aan de blauwe speler","start beurt",Turns.startNewTurn,0);
 	}
 }
 Turns.startNewTurn = function(){
+	Menu.emptyNav();
 	if(playerAtSetup === 0){
 		playerAtSetup = 1;
 	}
@@ -58,8 +59,10 @@ Turns.startNewTurn = function(){
 	if(gameStarted){
 		// otherplayers turn
 	//	 = false;
+		actionPerformed = false;
 	}else{
 		Menu.startStrategy();
+		gameStarted = true;
 	}
 	startTurnSound = game.add.audio('start_turn');
 	startTurnSound.play();
