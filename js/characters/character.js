@@ -61,8 +61,8 @@ Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) 
         if (characterMode === "move") {
             Character.move(neighbours, x, y, selectedObject);
         }
-        
-        if(enemy && characterMode === "shoot"){
+
+        if (enemy && characterMode === "shoot") {
             Character.shoot(neighbours, x, y, selectedObject);
         }
     }
@@ -104,7 +104,7 @@ Character.move = function (neighbours, x, y, objectToMove) {
     objectToMove.sprite.destroy();
 }
 
-Character.isEnemyChar = function(){
+Character.isEnemyChar = function () {
 
 }
 
@@ -113,13 +113,13 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
     tileY = tileLayer.getTileY(y);
 
     //TODO: implementeer dat alles in range kan beschoten worden en dat schieten door muur illegaal is
-    if(tileData[tileX][tileY].constructor === Character){
+    if (tileData[tileX][tileY].constructor === Character) {
         if (Character.isValidMove(tileX, tileY)) {
             console.log("you shot: " + tileData[tileX][tileY].id);
             return;
         }
-        
-    }else{
+
+    } else {
         console.log("you shot nobody");
     }
 }
@@ -163,33 +163,33 @@ Character.handleShoot = function (context, neighbours, pointer) {
 
     if (moveableCharacter && gameStarted) {
         for (var neightbour in neighbours) {
-
-            if (neightbour === "Bottom") {
-                Character.moveableLocation(
-                    neighbours[neightbour][0] + 1,
-                    neighbours[neightbour][1] + selectedObject.range,
-                    true
-                );
-            } else if (neightbour === "Left") {
-                Character.moveableLocation(
-                    neighbours[neightbour][0] - selectedObject.range,
-                    neighbours[neightbour][1] + 1,
-                    true
-                );
-            } else if (neightbour === "Right") {
-                Character.moveableLocation(
-                    neighbours[neightbour][0] + selectedObject.range,
-                    neighbours[neightbour][1] - 1,
-                    true
-                );
-            } else if (neightbour === "Top") {
-                Character.moveableLocation(
-                    neighbours[neightbour][0] - 1,
-                    neighbours[neightbour][1] - selectedObject.range,
-                    true
-                );
+            for (let rangeTile = 0; rangeTile < selectedObject.range; rangeTile++) {
+                if (neightbour === "Bottom") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0] + 1,
+                        neighbours[neightbour][1] + rangeTile + 1,
+                        true
+                    );
+                } else if (neightbour === "Left") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0] - rangeTile - 1,
+                        neighbours[neightbour][1] + 1,
+                        true
+                    );
+                } else if (neightbour === "Right") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0] + rangeTile + 1,
+                        neighbours[neightbour][1] - 1,
+                        true
+                    );
+                } else if (neightbour === "Top") {
+                    Character.moveableLocation(
+                        neighbours[neightbour][0] - 1,
+                        neighbours[neightbour][1] - rangeTile - 1,
+                        true
+                    );
+                }
             }
-
         }
     }
 
@@ -207,7 +207,7 @@ Character.events = function () {
         neighbours = Coords.neighbours(tileX, tileY);
         selectedTile = tileData[tileX][tileY];
 
-        if(selectedTile.player !== playerAtSetup){
+        if (selectedTile.player !== playerAtSetup) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
             return;
         }
