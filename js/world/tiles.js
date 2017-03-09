@@ -37,7 +37,7 @@ Tile.charToImage = function (charId) {
 
 	if(playerAtSetup === 0){
 		activePlayerPrefix = "b";
-	}else{
+	}else if(playerAtSetup === 1){
 		activePlayerPrefix = "r";
 	}
 	
@@ -57,23 +57,22 @@ Tile.charToImage = function (charId) {
 		case MenuItems.SOLDIER:
 			if (!gameStarted) {
 				if (Math.random() >= .5) {
-					randomSoldier = activePlayerPrefix + 'soldierInWhite';
+					randomSoldier = 'soldierInWhite';
 				} else {
-					randomSoldier = activePlayerPrefix + 'soldierInBlack';
+					randomSoldier = 'soldierInBlack';
 				}
 			}
-			image = randomSoldier;
-			console.log(image);
+			image = activePlayerPrefix + randomSoldier;
 			break;
 		case MenuItems.TANK:
 			if (!gameStarted) {
 				if (Math.random() >= .5) {
-					randomTank = activePlayerPrefix + 'tankInWhite';
+					randomTank = 'tankInWhite';
 				} else {
-					randomTank = activePlayerPrefix + 'tankInBlack';
+					randomTank = 'tankInBlack';
 				}
 			}
-			image = randomTank;
+			image = activePlayerPrefix + randomTank;
 			break;
 		default:
 			break;
