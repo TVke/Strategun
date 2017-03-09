@@ -170,11 +170,15 @@ Character.placeable = function (tileX, tileY) {
     console.log("shoot");
     console.log("x: " + tileX + "y: " + tileY);
 
-    if (tileX < 0 || tileY < 0 /*|| tileX < amountOfRows || tileY < amountOfFields*/) {
+    if (tileX < 0 || tileY < 0 || tileX >= amountOfRows || tileY >= amountOfFields) {
         return 0;
     }
 
     tile = tileData[tileX][tileY];
+
+    if(tile === undefined){
+        return 0;
+    }
 
     if (tile === 0) {
         return 1;
