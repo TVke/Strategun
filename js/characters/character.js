@@ -133,13 +133,12 @@ Character.heal = function (x, y, source) {
 
     target = tileData[tileX][tileY];
 
-    target.health = target.health + source.heal;
+    //TODO: fix hardcoded heal trolololo
+    target.health = target.health + 4;
 
     if(target.health > target.maxHealth){
         target.health = target.maxHealth + 0;
     }
-
-    console.log(target);
 
     if(target.constructor === Character){
         if (Character.isValidMove(tileX, tileY)) {

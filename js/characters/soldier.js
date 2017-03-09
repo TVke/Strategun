@@ -36,9 +36,6 @@ Soldier.load = function(){
 Soldier.attackAnimation = function(source, target){
   laserSprite = "laser";
 
-  console.log(target);
-  console.log(source);
-
   if(target.tilePosition.y === source.tilePosition.y){
     laserSprite = "laser_horizontal";
   }
