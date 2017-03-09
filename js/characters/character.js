@@ -99,6 +99,18 @@ Character.move = function (neighbours, x, y, objectToMove) {
     tileData[objectToMove.tilePosition.x][objectToMove.tilePosition.y] = 0;
 
     objectToMove.sprite.destroy();
+
+    movePieceSound = game.add.audio('move_piece');
+    movePieceSound.play();
+}
+
+Character.damage = function (source, target) {
+    target.health = target.health - source.attack;
+
+    console.log("source \n ");
+    console.log(source)
+    console.log("\n target \n")
+    console.log(target);
 }
 
 Character.damage = function (source, target) {

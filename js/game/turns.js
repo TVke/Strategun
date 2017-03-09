@@ -25,6 +25,8 @@ Turns.end = function(){
 	Character.destroySelected();
 	//context.startNewTurn();
 
+	endTurnSound = game.add.audio('end_turn');
+    endTurnSound.play();
 }
 
 Turns.startNewTurn = function(){
@@ -34,4 +36,7 @@ Turns.startNewTurn = function(){
 	else if(playerAtSetup === 1){
 		playerAtSetup = 0;
 	}
+
+	startTurnSound = game.add.audio('start_turn');
+    startTurnSound.play();
 }

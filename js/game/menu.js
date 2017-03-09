@@ -85,8 +85,25 @@ function toggleSelectClass(pos){
     characterItems[pos].classList.add("selected");
 }
 
-Menu.addElement = function(tag,content){
-    let object = document.createElement(tag);
-    object.innerHTML = content;
-    menuElement.appendChild(object);
+Menu.showHealth = function(value){
+    if(!menuElement.querySelector("figure.heart")){
+        let heartFig = document.createElement('figure');
+        let heartImg = document.createElement('img');
+        let heartData = document.createElement('figcaption');
+        heartFig.className = "heart";
+        heartImg.src = "assets/sprites/heart.png";
+        heartImg.alt = "hart met "+value+" in";
+        heartData.innerHTML = value;
+        heartFig.appendChild(heartImg);
+        heartFig.appendChild(heartData);
+        menuElement.appendChild(heartFig);
+    }
+    else{
+        menuElement.querySelector(".heart>figcaption").innerHTML = value;
+    }
+}
+Menu.removeHealth = function(){
+    if(menuElement.querySelector("figure.heart")){
+        menuElement.querySelector("figure.heart").remove();
+    }
 }
