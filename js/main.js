@@ -31,9 +31,9 @@ function preload() {
 		characters[character].load();
 	})
 
-	// trials turn skipping
 	game.load.image('buttonStartTurn', 'assets/sprites/buttonStartTurn.png');
 	game.load.image('buttonEndTurn', 'assets/sprites/buttonEndTurn.png');
+	game.load.sprite('heart', 'assets/sprites/heart.png');
 }
 
 function create() {
