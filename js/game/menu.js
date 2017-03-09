@@ -165,6 +165,10 @@ Menu.startStrategy = function(){
                 Menu.putCharacter(playerPrefix + "radar.png","radar");
             }
                 break;
+            case "bombs":
+            for (let i = 0; i < setup[pawn]; ++i) {
+                Menu.putCharacter(playerPrefix +"mijn out.png","snipers");
+            }
             case "snipers":
             for (let i = 0; i < setup[pawn]; ++i) {
                 Menu.putCharacter("sniper out.png","snipers");
