@@ -67,6 +67,12 @@ Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) 
 
 }
 
+Character.endTurn = function () {
+    Character.destroySelected();
+    Turns.showEndTurn();
+    actionPerformed = true;
+}
+
 Character.isValidMove = function (x, y) {
     moveable = false;
 
@@ -104,6 +110,8 @@ Character.move = function (neighbours, x, y, objectToMove) {
 
     movePieceSound = game.add.audio('move_piece');
     movePieceSound.play();
+
+    Character.endTurn();
 }
 
 Character.damage = function (source, tileX, tileY) {
@@ -124,6 +132,8 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
             shootSound = game.add.audio('fire')
             shootSound.play();
             Character.damage(selectedObject, tileX, tileY);
+
+            Character.endTurn();
             return;
         }
     } else {
@@ -242,8 +252,9 @@ Character.events = function () {
     var context = this;
 
     game.input.onTap.add(function (pointer, event) {
+        console.log(actionPerformed);
 
-        if(actionPerformed){
+        if (actionPerformed) {
             return;
         }
 
@@ -255,10 +266,6 @@ Character.events = function () {
 
         if (selectedTile.player !== playerAtSetup) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
-            actionPerformed = true;
-            if (gameStarted) {
-                Turns.showEndTurn();
-            }
             return;
         }
 
@@ -273,7 +280,7 @@ Character.events = function () {
 
         if (characterSelected) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, false);
-            
+
         } else {
             if (clickedCount === 1) {
                 context.handleMove(context, neighbours, pointer);
