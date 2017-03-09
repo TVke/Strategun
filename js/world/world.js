@@ -13,12 +13,12 @@ World.prototype.load = function () {
     this.game.load.image('blue', 'assets/grid/blue laser.png');
     this.game.load.image('metal', 'assets/grid/metal.png');
 
+    this.game.load.image('wall', 'assets/grid/wall.png');
+    this.game.load.image('olie', 'assets/grid/olie.png');
+
     grid = this.game.add.tilemap();
 
     this.game.load.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
-
-    this.game.load.image('wall', 'assets/grid/wall.png');
-    this.game.load.image('olie', 'assets/grid/olie.png');
 }
 
 World.prototype.tileProperties = function(map, layer){
