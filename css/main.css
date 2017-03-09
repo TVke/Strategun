@@ -8,10 +8,7 @@ body{
   background: #efefef;
   font-family: 'Roboto', sans-serif;
 }
-#overlay {
-    /* AANDACHT */
-    /* !!!!!!!!!!!!!!!! */ display: none; /* VERWIJDEREN, TIJDELIJK!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-    /* AAAAAAAAAAAAAAAAAAAAAAA */
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -20,17 +17,7 @@ body{
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 999;
 }
-#overlay img {
-    position: fixed;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    width: 100%;
-}
-#overlay button {
+.overlay .center {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -38,8 +25,21 @@ body{
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+}
+.overlay img {
+    top: 35% !important;
+    width: 100%;
+}
+.overlay button {
     font-size: 1.5rem;
     color: black;
+}
+.overlay h1 {
+    font-size: 5rem;
+    color: #b23ce9;
+}
+.overlay#end {
+    display: none;
 }
 nav{
     list-style: none;
