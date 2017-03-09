@@ -113,6 +113,15 @@ Character.damage = function (source, target) {
     console.log(target);
 }
 
+Character.damage = function (source, target) {
+    target.health = target.health - source.attack;
+
+    console.log("source \n ");
+    console.log(source)
+    console.log("\n target \n")
+    console.log(target);
+}
+
 Character.shoot = function (neighbours, x, y, objectToMove) {
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
