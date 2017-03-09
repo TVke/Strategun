@@ -144,7 +144,7 @@ Character.handleMove = function (context, neighbours, pointer) {
     if (moveableCharacter && gameStarted) {
         context.destroySelected();
         for (var neightbour in neighbours) {
-            if (tileData[neighbours[neightbour][0]][neighbours[neightbour][1]] === 0) {
+            if (Character.placeable(neighbours[neightbour][0], neighbours[neightbour][1]) === 1) {
                 Character.moveableLocation(
                     neighbours[neightbour][0],
                     neighbours[neightbour][1],
@@ -163,37 +163,68 @@ Character.handleShoot = function (context, neighbours, pointer) {
 
     if (moveableCharacter && gameStarted) {
         for (var neightbour in neighbours) {
-            for (let rangeTile = 0; rangeTile < selectedObject.range; rangeTile++) {
-                if (neightbour === "Bottom") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0] + 1,
-                        neighbours[neightbour][1] + rangeTile + 1,
-                        true
-                    );
-                } else if (neightbour === "Left") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0] - rangeTile - 1,
-                        neighbours[neightbour][1] + 1,
-                        true
-                    );
-                } else if (neightbour === "Right") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0] + rangeTile + 1,
-                        neighbours[neightbour][1] - 1,
-                        true
-                    );
-                } else if (neightbour === "Top") {
-                    Character.moveableLocation(
-                        neighbours[neightbour][0] - 1,
-                        neighbours[neightbour][1] - rangeTile - 1,
-                        true
-                    );
-                }
-            }
+            Character.drawShootRange(neightbour, neighbours)
         }
     }
 
     characterMode = "shoot";
+}
+
+Character.placeable = function (tileX, tileY) {
+    if (tileX < 0 || tileY < 0) {
+        return 0;
+    }
+
+    tile = tileData[tileX][tileY];
+
+    if (tile === 0) {
+        return 1;
+    } else if (tile.constructor === Character) {
+        return 2;
+    } else {
+        return 0;
+    }
+}
+
+Character.tileControl = function (tileX, tileY, rangeTile) {
+    placeable = Character.placeable(tileX, tileY);
+
+    if (placeable === 1) {
+        Character.moveableLocation(tileX, tileY, true);
+    } else if (placeable === 2) {
+        Character.moveableLocation(tileX, tileY, true);
+        rangeTile = selectedObject.range + 1;
+    } else {
+        rangeTile = selectedObject.range;
+    }
+
+    return rangeTile;
+}
+
+Character.drawShootRange = function (neightbour, neighbours) {
+    for (let rangeTile = 0; rangeTile < selectedObject.range; rangeTile++) {
+        if (neightbour === "Bottom") {
+            tileX = neighbours[neightbour][0] + 1;
+            tileY = neighbours[neightbour][1] + rangeTile + 1;
+
+            rangeTile = Character.tileControl(tileX, tileY, rangeTile);
+        } else if (neightbour === "Left") {
+            tileX = neighbours[neightbour][0] - rangeTile - 1;
+            tileY = neighbours[neightbour][1] + 1;
+
+            rangeTile = Character.tileControl(tileX, tileY, rangeTile);
+        } else if (neightbour === "Right") {
+            tileX = neighbours[neightbour][0] + rangeTile + 1;
+            tileY = neighbours[neightbour][1] - 1;
+
+            rangeTile = Character.tileControl(tileX, tileY);
+        } else if (neightbour === "Top") {
+            tileX = neighbours[neightbour][0] - 1;
+            tileY = neighbours[neightbour][1] - rangeTile - 1;
+
+            rangeTile = Character.tileControl(tileX, tileY, rangeTile);
+        }
+    }
 }
 
 Character.events = function () {
