@@ -65,16 +65,13 @@ Menu.prototype.placeChar = function(){
 }
 function checkNav(){
     if(document.querySelectorAll('nav a').length === 0){
-        var EndTurnButton = document.createElement('button');
-        EndTurnButton.innerHTML = "Einde Beurt";
         if(playerAtSetup === 0){
-            EndTurnButton.id="blue";
-        }else{
-            EndTurnButton.id="red";
-        }
-        EndTurnButton.addEventListener("click",Turns.end);
-        Menu.emptyNav();
-        menuElement.appendChild(EndTurnButton);
+    		blueSetStrategy = true;
+    	}
+    	else if(playerAtSetup === 1){
+    		redSetStrategy = true;
+    	}
+        Turns.showEndTurn();
     }
 }
 function clearSelection(){
@@ -117,11 +114,20 @@ Menu.emptyNav = function(){
 	}
 }
 
-Menu.displayMessage = function(message, buttonTekst = ""){
+Menu.displayMessage = function(message, buttonTekst = "",callback = function(){console.log("er is geen functie toegewezen");},player = 0){
     let text = document.createElement("p");
     text.innerHTML = message;
     menuElement.appendChild(text);
     if(buttonTekst !== ""){
-
+        let button = document.createElement("button");
+        if(player === 0){
+            button.id = "blue";
+        }
+        else if(player === 1){
+            button.id = "red";
+        }
+        button.innerHTML = buttonTekst;
+        button.addEventListener("click",callback);
+        menuElement.appendChild(button);
     }
 }
