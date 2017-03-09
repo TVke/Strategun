@@ -23,20 +23,27 @@ Soldier.load = function(){
   game.load.image('rsoldierInWhite','assets/grid/rsoldaat in white.png');
   game.load.image('rsoldierInBlack','assets/grid/rsoldaat in black.png');
 
+  game.load.image('laser', 'assets/grid/laser.png');
+
   // game.load.audio('soldierSelect', 'assets/sounds/soldier_fire.mp3');
   // game.load.audio('soldierHurt', 'assets/sounds/soldier_hurt.mp3');
   // game.load.audio('soldierDeath', 'assets/sounds/soldier_death.mp3');
   // game.load.audio('soldierFire', 'assets/sounds/soldier_fire.mp3');
 }
 
-Soldier.prototype.select = function(){
+Soldier.attackAnimation = function(source, target){
 
-}
+  laser = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, 'laser');
+  shoot = game.add.tween(laser);
 
-Soldier.prototype.move = function(){
-
-}
-
-Soldier.prototype.attack = function(){
-
+  
+  shoot.to({x: target.tilePosition.x*44, y: target.tilePosition.y*44}, 300);
+  shoot.start();
+  shoot.onComplete.add(function(){
+    laser.destroy();
+    if(target.health <= 0){
+        target.sprite.destroy();
+        tileData[tileX][tileY] = 0;
+    }
+  }, this)
 }

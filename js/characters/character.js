@@ -108,12 +108,9 @@ Character.move = function (neighbours, x, y, objectToMove) {
 
 Character.damage = function (source, tileX, tileY) {
     target = tileData[tileX][tileY];
-    target.health = target.health - source.attack;
 
-    if(target.health <= 0){
-        target.sprite.destroy();
-        tileData[tileX][tileY] = 0;
-    }
+    target.health = target.health - source.attack;
+    Soldier.attackAnimation(source, target)
 }
 
 Character.shoot = function (neighbours, x, y, objectToMove) {
@@ -271,8 +268,10 @@ Character.events = function () {
         } else {
             if (clickedCount === 1) {
                 context.handleMove(context, neighbours, pointer);
+                Turns.showEndTurn();
             } else if (clickedCount === 2) {
                 context.handleShoot(context, neighbours, pointer);
+                Turns.showEndTurn();
             }
         }
 
