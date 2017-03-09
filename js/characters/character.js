@@ -103,11 +103,6 @@ Character.move = function (neighbours, x, y, objectToMove) {
 
 Character.damage = function (source, target) {
     target.health = target.health - source.attack;
-
-    console.log("source \n ");
-    console.log(source)
-    console.log("\n target \n")
-    console.log(target);
 }
 
 Character.shoot = function (neighbours, x, y, objectToMove) {
@@ -146,7 +141,7 @@ Character.handleMove = function (context, neighbours, pointer) {
     if (moveableCharacter && gameStarted) {
         context.destroySelected();
         for (var neightbour in neighbours) {
-            if (Character.placeable(neighbours[neightbour][0], neighbours[neightbour][1]) === 1) {
+            if (Character.isPlaceable(neighbours[neightbour][0], neighbours[neightbour][1]) === 1) {
                 Character.moveableLocation(
                     neighbours[neightbour][0],
                     neighbours[neightbour][1],
@@ -172,7 +167,7 @@ Character.handleShoot = function (context, neighbours, pointer) {
     characterMode = "shoot";
 }
 
-Character.placeable = function (tileX, tileY) {
+Character.isPlaceable = function (tileX, tileY) {
     if (tileX < 0 || tileY < 0 || tileX >= amountOfRows || tileY >= amountOfFields) {
         return 0;
     }
@@ -193,7 +188,7 @@ Character.placeable = function (tileX, tileY) {
 }
 
 Character.tileControl = function (tileX, tileY, rangeTile) {
-    placeable = Character.placeable(tileX, tileY);
+    placeable = Character.isPlaceable(tileX, tileY);
 
     if (placeable === 1) {
         Character.moveableLocation(tileX, tileY, true);
