@@ -9,18 +9,12 @@ Turns.prototype.load = function(){
 };
 
 Turns.end = function(){
-
 	for (let i = 0,ilen = tileData.length; i < ilen; ++i) {
 		let horizontal = tileData[i];
 		for (let j = 0,jlen = horizontal.length; j < jlen; ++j) {
 			if( tileData[i][j] instanceof Character){
-				console.log(tileData[i][j]);
-				//tileData[i][j].loadTexture('blueCover');
-				//console.log(amountOFields);
 				if(j<10){
 					game.add.sprite(i*tileSize,j*tileSize,'blueCover');
-					//tileData[i][j]
-					//tileData[i][j].sprite.loadTexture('blueCover');
 				}
 				else if(j>=10){
 					tileData[i][j].sprite.loadTexture('redCover');
@@ -28,10 +22,13 @@ Turns.end = function(){
 			}
 		}
 	}
+	Character.destroySelected();
+	//context.startNewTurn();
+	Menu.addElement("p","test");
 
 }
 
-Turns.prototype.startNewTurn = function(){
+Turns.startNewTurn = function(){
 	if(playerAtSetup === 0){
 		playerAtSetup = 1;
 	}
