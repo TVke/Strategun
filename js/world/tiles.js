@@ -8,9 +8,7 @@ function Tile(game) {
 	this.game = game;
 }
 
-Tile.prototype.load = function () {
-	
-}
+Tile.prototype.load = function () {}
 
 Tile.prototype.loadChar = function () {
 	Tile.putCharacter(4, 1, 1, false);

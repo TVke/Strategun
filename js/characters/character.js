@@ -64,7 +64,7 @@ Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) 
         Character.shoot(neighbours, x, y, selectedObject);
     }
 
-    
+
 }
 
 Character.isValidMove = function (x, y) {
@@ -106,8 +106,14 @@ Character.move = function (neighbours, x, y, objectToMove) {
     movePieceSound.play();
 }
 
-Character.damage = function (source, target) {
+Character.damage = function (source, tileX, tileY) {
+    target = tileData[tileX][tileY];
     target.health = target.health - source.attack;
+
+    if(target.health <= 0){
+        target.sprite.destroy();
+        tileData[tileX][tileY] = 0;
+    }
 }
 
 Character.shoot = function (neighbours, x, y, objectToMove) {
@@ -120,7 +126,7 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
         if (Character.isValidMove(tileX, tileY)) {
             shootSound = game.add.audio('fire')
             shootSound.play();
-            Character.damage(selectedObject, tile);
+            Character.damage(selectedObject, tileX, tileY);
             return;
         }
     } else {
