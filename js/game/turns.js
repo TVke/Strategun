@@ -2,7 +2,6 @@ function Turns() {
 
 }
 
-
 Turns.prototype.load = function(){
 	game.load.image('blueCover', 'assets/grid/blue player.png');
     game.load.image('redCover', 'assets/grid/red player.png');
@@ -17,17 +16,23 @@ Turns.showEndTurn = function(){
 	}
 	EndTurnButton.addEventListener("click",Turns.end);
 	menuElement.appendChild(EndTurnButton);
-}
+};
+var blueCoverGroup;
+var redCoverGroup;
 Turns.end = function(){
+	blueCoverGroup = game.add.group();
+	redCoverGroup = game.add.group();
 	for (let i = 0,ilen = tileData.length; i < ilen; ++i) {
 		let horizontal = tileData[i];
 		for (let j = 0,jlen = horizontal.length; j < jlen; ++j) {
 			if( tileData[i][j] instanceof Character ){
-				if(j<10){
-					game.add.sprite(i*tileSize,j*tileSize,'blueCover');
+				if(tileData[i][j].player === 0){
+					let blue = game.add.sprite(i*tileSize,j*tileSize,'blueCover');
+					blueCoverGroup.add(blue);
 				}
-				else if(j>=10){
-					tileData[i][j].sprite.loadTexture('redCover');
+				else if(tileData[i][j].player === 1){
+					let red = game.add.sprite(i*tileSize,j*tileSize,'redCover');
+					redCoverGroup.add(red);
 				}
 			}
 		}
@@ -38,7 +43,16 @@ Turns.end = function(){
 	endTurnSound = game.add.audio('end_turn');
     endTurnSound.play();
 }
-
+Turns.removeCoverOfPlayer = function(player){
+	if(playerAtSetup === 0){
+		// blueCoverGroup.destroy();
+	}
+	else if(playerAtSetup === 1){
+		// for (var i = 0,ilen = redCoverGroup.children.length; i < ilen; i++) {
+		// }
+		// redCoverGroup.destroy();
+	}
+}
 Turns.switchPlayer = function(){
 	Menu.emptyNav();
 	if(playerAtSetup === 0){
@@ -60,6 +74,7 @@ Turns.startNewTurn = function(){
 	}
 	if(gameStarted){
 		// otherplayers turn
+		Turns.removeCoverOfPlayer(playerAtSetup);
 	//	 = false;
 		actionPerformed = false;
 	}else{
@@ -80,5 +95,5 @@ Turns.endGame = function(loser) {
 	}
 
 	document.getElementById('end').style.display = 'initial';
-	document.getElementById('overlay').style.display = 'initial';
+	document.getElementById('overlay').style.display = 'flex';
 }
