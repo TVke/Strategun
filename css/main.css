@@ -61,3 +61,22 @@ button#red {
     border: 1px solid red;
     color: red;
 }
+
+.heart img {
+    clear: left;
+    margin-bottom: 1px;
+    margin-right: 10px;
+    position: absolute;
+    top: 10px;
+}
+
+.heart figcaption {
+    /*z-index: 100%;*/
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    float: left;
+    position: relative;
+    top: 20px;
+    left: 17px;
+}
