@@ -110,7 +110,7 @@ Menu.removeHealth = function(){
 }
 Menu.emptyNav = function(){
     for (let i = 0,ilen = menuElement.children.length; i < ilen; ++i) {
-		menuElement.children[i].remove();
+        menuElement.removeChild(menuElement.children[i]);
 	}
 }
 
@@ -184,6 +184,7 @@ Menu.startStrategy = function(){
 document.getElementsByClassName('purple')[0].addEventListener('click', removeOverlay);
 
 function removeOverlay() {
+    Menu.emptyNav();
     Menu.startStrategy();
-    document.getElementById('overlay').remove();
+    document.getElementById('start').remove();
 }
