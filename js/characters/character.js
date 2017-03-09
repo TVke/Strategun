@@ -295,12 +295,8 @@ Character.events = function () {
         if (selectedTile.player !== playerAtSetup) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
             return;
-        }else{
-            console.log(selectedTile);
-            console.log(selectedObject);
-            
+        }else{            
             Character.heal(pointer.x, pointer.y, selectedTile);
-            
         }
 
         if (Character.isMoveable(selectedTile)) {

@@ -22,7 +22,7 @@ Turns.end = function(){
 	for (let i = 0,ilen = tileData.length; i < ilen; ++i) {
 		let horizontal = tileData[i];
 		for (let j = 0,jlen = horizontal.length; j < jlen; ++j) {
-			if( tileData[i][j] instanceof Character){
+			if( tileData[i][j] instanceof Character ){
 				if(j<10){
 					game.add.sprite(i*tileSize,j*tileSize,'blueCover');
 				}
