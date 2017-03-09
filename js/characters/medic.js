@@ -1,10 +1,12 @@
-function Medic(id, player){
+function Medic(id, player, position, sprite){
     this.id = id;
     this.assetId = 4
     this.player = player;
     this.attack = -4;
     this.health = 3;
-    this.range = [3, 3];
+    this.range = 3;
+    this.tilePosition = position;
+    this.sprite = sprite;
     this.type = "medic";
     this.icon = "";
     this.asset = "";
@@ -23,4 +25,8 @@ Medic.load = function(){
     // game.load.audio('medicHurt', 'assets/sounds/medic_hurt.mp3');
     // game.load.audio('medicDeath', 'assets/sounds/medic_death.mp3');
     // game.load.audio('medicHeal', 'assets/sounds/medic_heal.mp3');
+}
+
+Medic.healAnimation = function(source, target){
+    
 }

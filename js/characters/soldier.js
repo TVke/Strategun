@@ -42,8 +42,6 @@ Soldier.attackAnimation = function(source, target){
     laserSprite = "laser_horizontal";
   }
 
-  
-
   laser = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, laserSprite);
   shoot = game.add.tween(laser);
 
