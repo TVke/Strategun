@@ -65,6 +65,10 @@ Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) 
         Character.shoot(neighbours, x, y, selectedObject);
     }
 
+    if (characterMode === "heal"){
+
+    }
+
 
 }
 
@@ -122,13 +126,22 @@ Character.damage = function (source, tileX, tileY) {
     Soldier.attackAnimation(source, target)
 }
 
+Character.heal = function (source, tileX, tileY) {
+    target = tileData[tileX][tileY];
+
+    target.health = target.health - source.attack;
+    Medic.healAnimation(source, target)
+}
+
 Character.shoot = function (neighbours, x, y, objectToMove) {
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
     tile = tileData[tileX][tileY];
 
-    if (tile.constructor === Character) {
+    if(tile.constructor === Character && tile instanceof Medic){
+
+    } else if (tile.constructor === Character) {
         if (Character.isValidMove(tileX, tileY)) {
             shootSound = game.add.audio('fire')
             shootSound.play();
@@ -185,6 +198,7 @@ Character.handleShoot = function (context, neighbours, pointer) {
         }
     }
 
+    
     characterMode = "shoot";
 }
 
@@ -253,7 +267,8 @@ Character.events = function () {
     var context = this;
 
     game.input.onTap.add(function (pointer, event) {
-      
+        actionPerformed = false;
+        
         if (actionPerformed) {
             return;
         }
