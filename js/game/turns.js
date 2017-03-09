@@ -70,11 +70,12 @@ Turns.endGame = function(loser) {
 	let winnerElem = document.getElementById('winner');
 
 	if(loser === 0) {
-		winnerElem.innerHTML = 'Rode speler wint!';
+		winnerElem.src = '../assets/img/red_wins_text.png';
 	}
 	else if(loser === 1) {
-		winnerElem.innerHTML = 'Blauwe speler wint!';
+		winnerElem.src = '../assets/img/blue_wins_text.png';
 	}
 
 	document.getElementById('end').style.display = 'initial';
+	document.getElementById('overlay').style.display = 'initial';
 }
