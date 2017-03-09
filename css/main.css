@@ -8,7 +8,7 @@ body{
   background: #efefef;
   font-family: 'Roboto', sans-serif;
 }
-.overlay {
+#overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,7 +17,7 @@ body{
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 999;
 }
-.overlay .center {
+#overlay .center {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -26,19 +26,19 @@ body{
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
-.overlay img {
+#overlay img {
     top: 35% !important;
     width: 100%;
 }
-.overlay button {
+#overlay button {
     font-size: 1.5rem;
     color: black;
 }
-.overlay h1 {
+#overlay h1 {
     font-size: 5rem;
     color: #b23ce9;
 }
-.overlay#end {
+#overlay #end {
     display: none;
 }
 nav{

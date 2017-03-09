@@ -205,4 +205,5 @@ function removeOverlay() {
     Menu.emptyNav();
     Menu.startStrategy();
     document.getElementById('start').remove();
+    document.getElementById('overlay').style.display = 'none';
 }
