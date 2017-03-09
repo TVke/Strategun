@@ -24,6 +24,7 @@ Soldier.load = function(){
   game.load.image('rsoldierInBlack','assets/grid/rsoldaat in black.png');
 
   game.load.image('laser', 'assets/grid/laser.png');
+  game.load.image('laser_horizontal', 'assets/grid/laser_horizontal.png')
 
   // game.load.audio('soldierSelect', 'assets/sounds/soldier_fire.mp3');
   // game.load.audio('soldierHurt', 'assets/sounds/soldier_hurt.mp3');
@@ -32,8 +33,13 @@ Soldier.load = function(){
 }
 
 Soldier.attackAnimation = function(source, target){
+  laserSprite = "laser";
 
-  laser = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, 'laser');
+  if(target.tilePosition.y === source.tilePosition.y){
+    laserSprite = "laser_horizontal";
+  }
+
+  laser = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, laserSprite);
   shoot = game.add.tween(laser);
 
   

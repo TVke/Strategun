@@ -268,10 +268,14 @@ Character.events = function () {
         } else {
             if (clickedCount === 1) {
                 context.handleMove(context, neighbours, pointer);
-                Turns.showEndTurn();
+                if(gameStarted){
+                    Turns.showEndTurn();
+                }
             } else if (clickedCount === 2) {
                 context.handleShoot(context, neighbours, pointer);
-                Turns.showEndTurn();
+                if(gameStarted){
+                    Turns.showEndTurn();
+                }
             }
         }
 
