@@ -1,6 +1,6 @@
-function Sniper(id, player){
+function Sniper(id, player, position, sprite){
     this.id = id;
-    this.assetId = 1;
+    this.assetId = MenuItems.SNIPER;
     this.player = player;
     this.attack = 3;
     this.health = 3;

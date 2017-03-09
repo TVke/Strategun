@@ -1,6 +1,6 @@
 function Medic(id, player, position, sprite){
     this.id = id;
-    this.assetId = 4
+    this.assetId = MenuItems.MEDIC;
     this.player = player;
     this.attack = 1;
     this.healing = 4;

@@ -1,6 +1,6 @@
 function Soldier(id, player, position, sprite){
     this.id = id;
-    this.assetId = 4;
+    this.assetId = MenuItems.SOLDIER;
     this.player = player;
     this.attack = 2;
     this.health = 5;

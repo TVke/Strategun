@@ -1,6 +1,6 @@
-function Tank(id, player){
+function Tank(id, player, position, sprite){
     this.id = id;
-    this.assetId = 3;
+    this.assetId = MenuItems.TANK;
     this.player = player;
     this.attack = 3;
     this.health = 10;
