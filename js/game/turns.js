@@ -66,3 +66,15 @@ Turns.startNewTurn = function(){
 	startTurnSound = game.add.audio('start_turn');
 	startTurnSound.play();
 }
+Turns.endGame = function(loser) {
+	let winnerElem = document.getElementById('winner');
+
+	if(loser === 0) {
+		winnerElem.innerHTML = 'Rode speler wint!';
+	}
+	else if(loser === 1) {
+		winnerElem.innerHTML = 'Blauwe speler wint!';
+	}
+
+	winnerElem.style.display = 'initial';
+}
