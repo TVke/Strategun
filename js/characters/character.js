@@ -118,6 +118,7 @@ Character.damage = function (source, tileX, tileY) {
     target = tileData[tileX][tileY];
 
     target.health = target.health - source.attack;
+
     Soldier.attackAnimation(source, target)
 }
 
@@ -129,7 +130,11 @@ Character.heal = function (x, y, source) {
 
     console.log(source);
 
-    target.health = target.health + source.attack;
+    target.health = target.health + source.heal;
+
+    if(target.health > target.maxHealth){
+        target.health = target.maxHealth;
+    }
 
     console.log(target);
 
@@ -149,11 +154,7 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
 
     tile = tileData[tileX][tileY];
 
-    if(tile.constructor === Character && tile instanceof Medic){
-        console.log("heal");
-        Character.heal(selectedObject, tileX, tileY);
-        return;
-    } else if (tile.constructor === Character) {
+    if (tile.constructor === Character) {
         if (Character.isValidMove(tileX, tileY)) {
             shootSound = game.add.audio('fire')
             shootSound.play();
@@ -295,7 +296,10 @@ Character.events = function () {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
             return;
         }else{
+            console.log(selectedTile);
+            
             Character.heal(pointer.x, pointer.y, selectedTile);
+            
         }
 
         if (Character.isMoveable(selectedTile)) {

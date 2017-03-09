@@ -2,7 +2,8 @@ function Medic(id, player, position, sprite){
     this.id = id;
     this.assetId = 4
     this.player = player;
-    this.attack = 4;
+    this.attack = 1;
+    this.heal = 4;
     this.health = 3;
     this.maxHealth = 3;
     this.range = 3;
