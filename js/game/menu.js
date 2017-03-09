@@ -1,21 +1,17 @@
 var menuElement = document.getElementsByTagName('nav')[0];
-var characterItems = document.querySelectorAll('nav a');
+var characterItems;
+var navCounter = 0;
 var selectedChar;
+
 function Menu(){
 
 }
 
 Menu.prototype.load = function(){
     this.placeChar();
-    for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
-        context = this;
-        (function(place){
-            characterItems[place].addEventListener("click", function(){context.SelectChar(event,place)}, false);
-        })(menuItem)
-    }
 };
 
-Menu.prototype.SelectChar = function(event,arrayPos){
+Menu.SelectChar = function(event,arrayPos){
     event.preventDefault();
     toggleSelectClass(arrayPos);
     selectedChar = characterItems[arrayPos];
@@ -82,6 +78,7 @@ function clearSelection(){
     }
 }
 function toggleSelectClass(pos){
+    debugger;
     clearSelection();
     characterItems[pos].classList.add("selected");
 }
@@ -109,9 +106,18 @@ Menu.removeHealth = function(){
     }
 }
 Menu.emptyNav = function(){
-    for (let i = 0,ilen = menuElement.children.length; i < ilen; ++i) {
-        menuElement.removeChild(menuElement.children[i]);
-	}
+        menuElement.innerHTML = "";
+}
+
+
+Menu.addListeners = function(){
+    characterItems = document.querySelectorAll('nav a');
+    for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
+        context = this;
+        (function(place){
+            characterItems[place].addEventListener("click", function(){context.SelectChar(event,place)}, false);
+        })(menuItem)
+    }
 }
 
 Menu.putCharacter = function(img,naam) {
@@ -120,6 +126,16 @@ Menu.putCharacter = function(img,naam) {
     let afbl = document.createElement('img');
     let caption = document.createElement('figcaption');
     link.href = ".";
+    //link.addEventListener("click",function(){Menu.SelectChar(event,navCounter);});
+    // (function(navPos){
+    //     link.addEventListener("click",function(){Menu.SelectChar(event,navPos);},false);
+    // })(navCounter)
+    // for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
+    //     context = this;
+    //     (function(place){
+    //         characterItems[place].addEventListener("click", function(){context.SelectChar(event,place)}, false);
+    //     })(menuItem)
+    // }
     afbl.src = "assets/grid/"+img;
     afbl.alt = naam;
     caption.innerHTML = naam;
@@ -179,6 +195,8 @@ Menu.startStrategy = function(){
                 break;
         }
 	})
+    Menu.addListeners();
+    navCounter = 0;
 }
 
 document.getElementsByClassName('purple')[0].addEventListener('click', removeOverlay);
