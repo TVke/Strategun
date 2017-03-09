@@ -116,3 +116,12 @@ Menu.emptyNav = function(){
 		menuElement.children[i].remove();
 	}
 }
+
+Menu.displayMessage = function(message, buttonTekst = ""){
+    let text = document.createElement("p");
+    text.innerHTML = message;
+    menuElement.appendChild(text);
+    if(buttonTekst !== ""){
+
+    }
+}
