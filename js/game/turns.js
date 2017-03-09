@@ -58,10 +58,8 @@ Turns.startNewTurn = function(){
 	if(gameStarted){
 		// otherplayers turn
 	//	 = false;
-	}else if(playerAtSetup == 1){
-		// red strategy
-	}else if(playerAtSetup == 0){
-		// blue strategy
+	}else{
+		Menu.startStrategy();
 	}
 	startTurnSound = game.add.audio('start_turn');
 	startTurnSound.play();
