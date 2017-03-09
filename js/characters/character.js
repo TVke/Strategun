@@ -252,8 +252,6 @@ Character.events = function () {
     var context = this;
 
     game.input.onTap.add(function (pointer, event) {
-        console.log(actionPerformed);
-
         if (actionPerformed) {
             return;
         }
