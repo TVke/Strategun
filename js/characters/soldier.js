@@ -23,10 +23,10 @@ Soldier.load = function(){
   game.load.image('rsoldierInWhite','assets/grid/rsoldaat in white.png');
   game.load.image('rsoldierInBlack','assets/grid/rsoldaat in black.png');
 
-  game.load.audio('soldierSelect', 'assets/sounds/soldier_fire.mp3');
-  game.load.audio('soldierHurt', 'assets/sounds/soldier_hurt.mp3');
-  game.load.audio('soldierDeath', 'assets/sounds/soldier_death.mp3');
-  game.load.audio('soldierFire', 'assets/sounds/soldier_fire.mp3');
+  // game.load.audio('soldierSelect', 'assets/sounds/soldier_fire.mp3');
+  // game.load.audio('soldierHurt', 'assets/sounds/soldier_hurt.mp3');
+  // game.load.audio('soldierDeath', 'assets/sounds/soldier_death.mp3');
+  // game.load.audio('soldierFire', 'assets/sounds/soldier_fire.mp3');
 }
 
 Soldier.prototype.select = function(){

@@ -19,8 +19,8 @@ Medic.load = function(){
     game.load.image('bmedicIn','assets/grid/bdokter in.png');
     game.load.image('rmedicIn','assets/grid/rdokter in.png');
 
-    game.load.audio('medicSelect', 'assets/sounds/medic_select.mp3');
-    game.load.audio('medicHurt', 'assets/sounds/medic_hurt.mp3');
-    game.load.audio('medicDeath', 'assets/sounds/medic_death.mp3');
-    game.load.audio('medicHeal', 'assets/sounds/medic_heal.mp3');
+    // game.load.audio('medicSelect', 'assets/sounds/medic_select.mp3');
+    // game.load.audio('medicHurt', 'assets/sounds/medic_hurt.mp3');
+    // game.load.audio('medicDeath', 'assets/sounds/medic_death.mp3');
+    // game.load.audio('medicHeal', 'assets/sounds/medic_heal.mp3');
 }

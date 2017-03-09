@@ -19,6 +19,9 @@ Menu.prototype.SelectChar = function(event,arrayPos){
     event.preventDefault();
     toggleSelectClass(arrayPos);
     selectedChar = characterItems[arrayPos];
+
+    buttonClickSound = game.add.audio('button_click');
+    buttonClickSound.play();
 }
 
 Menu.prototype.placeChar = function(){

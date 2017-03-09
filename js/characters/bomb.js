@@ -20,5 +20,5 @@ Bomb.load = function () {
   game.load.image('rbomb','assets/grid/rmijn.png');
   game.load.image('rbombGlow','assets/grid/rmijn gloed.png');
 
-  game.load.audio('explosionSound', 'assets/sounds/explosion.mp3');
+  // game.load.audio('explosionSound', 'assets/sounds/explosion.mp3');
 }
