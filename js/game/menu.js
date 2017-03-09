@@ -8,7 +8,6 @@ function Menu(){
 }
 
 Menu.prototype.load = function(){
-    this.placeChar();
 };
 
 Menu.SelectChar = function(event,arrayPos){
@@ -20,7 +19,7 @@ Menu.SelectChar = function(event,arrayPos){
     buttonClickSound.play();
 }
 
-Menu.prototype.placeChar = function(){
+Menu.placeChar = function(){
     context = this;
     game.input.onTap.add(function (pointer, event) {
         tileX = tileLayer.getTileX(this.game.camera.x + pointer.x);
@@ -78,7 +77,6 @@ function clearSelection(){
     }
 }
 function toggleSelectClass(pos){
-    debugger;
     clearSelection();
     characterItems[pos].classList.add("selected");
 }
@@ -126,16 +124,6 @@ Menu.putCharacter = function(img,naam) {
     let afbl = document.createElement('img');
     let caption = document.createElement('figcaption');
     link.href = ".";
-    //link.addEventListener("click",function(){Menu.SelectChar(event,navCounter);});
-    // (function(navPos){
-    //     link.addEventListener("click",function(){Menu.SelectChar(event,navPos);},false);
-    // })(navCounter)
-    // for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
-    //     context = this;
-    //     (function(place){
-    //         characterItems[place].addEventListener("click", function(){context.SelectChar(event,place)}, false);
-    //     })(menuItem)
-    // }
     afbl.src = "assets/grid/"+img;
     afbl.alt = naam;
     caption.innerHTML = naam;
@@ -171,7 +159,6 @@ Menu.startStrategy = function(){
         playerPrefix = "r";
     }
     Object.keys(setup).forEach(function(pawn) {
-        console.log(pawn);
         switch (pawn) {
             case "flag":
             for (let i = 0; i < setup[pawn]; ++i) {
@@ -196,6 +183,7 @@ Menu.startStrategy = function(){
         }
 	})
     Menu.addListeners();
+    Menu.placeChar();
     navCounter = 0;
 }
 
