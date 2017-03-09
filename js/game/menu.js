@@ -131,3 +131,6 @@ Menu.displayMessage = function(message, buttonTekst = "",callback = function(){c
         menuElement.appendChild(button);
     }
 }
+Menu.startStrategy = function(){
+    
+}

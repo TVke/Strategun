@@ -55,11 +55,11 @@ Turns.startNewTurn = function(){
 	else if(playerAtSetup === 1){
 		playerAtSetup = 0;
 	}
-	if(blueSetStrategy && redSetStrategy){
+	if(gameStarted){
 		// otherplayers turn
-	}else if(blueSetStrategy){
+	}else if(playerAtSetup == 1){
 		// red strategy
-	}else{
+	}else if(playerAtSetup == 0){
 		// blue strategy
 	}
 	startTurnSound = game.add.audio('start_turn');
