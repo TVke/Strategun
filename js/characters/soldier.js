@@ -35,9 +35,14 @@ Soldier.load = function(){
 Soldier.attackAnimation = function(source, target){
   laserSprite = "laser";
 
+  console.log(target);
+  console.log(source);
+
   if(target.tilePosition.y === source.tilePosition.y){
     laserSprite = "laser_horizontal";
   }
+
+  
 
   laser = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, laserSprite);
   shoot = game.add.tween(laser);
@@ -49,7 +54,12 @@ Soldier.attackAnimation = function(source, target){
     laser.destroy();
     if(target.health <= 0){
         target.sprite.destroy();
+        if(tileData[tileX][tileY] instanceof Flag){
+          Turns.endGame(tileData[tileX][tileY].player);
+        }
         tileData[tileX][tileY] = 0;
+
+        
     }
   }, this)
 }
