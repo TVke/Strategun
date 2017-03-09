@@ -16,27 +16,21 @@ body{
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-#overlay .center {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-}
-#overlay img {
-    top: 35% !important;
-    width: 100%;
+#overlay .wrapper {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
 }
 #overlay button {
     font-size: 1.5rem;
     color: black;
 }
-#overlay h1 {
-    font-size: 5rem;
-    color: #b23ce9;
+#overlay img {
+    width: 100%;
 }
 #overlay #end {
     display: none;
