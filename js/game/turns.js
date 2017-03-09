@@ -24,7 +24,6 @@ Turns.end = function(){
 	}
 	Character.destroySelected();
 	//context.startNewTurn();
-	Menu.addElement("p","test");
 
 }
 
