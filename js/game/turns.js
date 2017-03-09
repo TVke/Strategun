@@ -7,7 +7,9 @@ Turns.prototype.load = function(){
 	game.load.image('blueCover', 'assets/grid/blue player.png');
     game.load.image('redCover', 'assets/grid/red player.png');
 };
-
+Turns.showEndTurn = function(){
+	console.log("end");
+}
 Turns.end = function(){
 	for (let i = 0,ilen = tileData.length; i < ilen; ++i) {
 		let horizontal = tileData[i];
@@ -31,7 +33,7 @@ Turns.end = function(){
 
 Turns.switchPlayer = function(){
 	Menu.emptyNav();
-	
+
 	// if(!menuElement.querySelector("figure.heart")){
     //     let heartFig = document.createElement('figure');
     //     let heartImg = document.createElement('img');
@@ -55,6 +57,7 @@ Turns.startNewTurn = function(){
 	else if(playerAtSetup === 1){
 		playerAtSetup = 0;
 	}
+	menuElement.
 	startTurnSound = game.add.audio('start_turn');
 	startTurnSound.play();
 }
