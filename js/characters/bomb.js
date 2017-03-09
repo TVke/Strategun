@@ -5,6 +5,8 @@ function Bomb(id, player, position, sprite) {
     this.attack = 3;
     this.health = 3;
     this.maxHealth = 0;
+    this.tilePosition = position;
+    this.sprite = sprite;
     this.range = [6, 6];
     this.type = "bomb";
     this.icon = "";

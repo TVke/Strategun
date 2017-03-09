@@ -5,6 +5,8 @@ function Tank(id, player, position, sprite){
     this.attack = 3;
     this.health = 10;
     this.maxHealth = 10;
+    this.tilePosition = position;
+    this.sprite = sprite;
     this.range = 1;
     this.type = "tank";
     this.icon = "";

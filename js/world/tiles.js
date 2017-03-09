@@ -34,6 +34,13 @@ Tile.calcTileFromSprite = function (x, y) {
 
 Tile.charToImage = function (charId) {
 	image = "";
+
+	if(playerAtSetup === 0){
+		activePlayerPrefix = "b";
+	}else{
+		activePlayerPrefix = "r";
+	}
+	
 	switch (charId) {
 		case MenuItems.BOMB:
 			image = activePlayerPrefix + "bomb";

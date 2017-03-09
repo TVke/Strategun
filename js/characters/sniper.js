@@ -6,6 +6,8 @@ function Sniper(id, player, position, sprite){
     this.health = 3;
     this.maxHealth = 3;
     this.range = 41;
+    this.tilePosition = position;
+    this.sprite = sprite;
     this.type = "sniper";
     this.icon = "";
     this.asset = "";
