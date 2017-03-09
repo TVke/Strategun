@@ -167,11 +167,11 @@ Menu.startStrategy = function(){
                 break;
             case "bombs":
             for (let i = 0; i < setup[pawn]; ++i) {
-                Menu.putCharacter(playerPrefix +"mijn out.png","snipers");
+                Menu.putCharacter(playerPrefix + "mijn.png","bom");
             }
             case "snipers":
             for (let i = 0; i < setup[pawn]; ++i) {
-                Menu.putCharacter("sniper out.png","snipers");
+                Menu.putCharacter("sniper out.png","sniper");
             }
                 break;
             case "tanks":
@@ -182,6 +182,11 @@ Menu.startStrategy = function(){
             case "soldiers":
             for (let i = 0; i < setup[pawn]; ++i) {
                 Menu.putCharacter("soldaat out.png","soldaat");
+            }
+                break;
+            case "medics":
+            for (let i = 0; i < setup[pawn]; ++i) {
+                Menu.putCharacter(playerPrefix + "dokter out.png","dokter");
             }
                 break;
         }
