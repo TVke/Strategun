@@ -243,6 +243,10 @@ Character.events = function () {
 
     game.input.onTap.add(function (pointer, event) {
 
+        if(actionPerformed){
+            return;
+        }
+
         tileX = tileLayer.getTileX(pointer.x);
         tileY = tileLayer.getTileY(pointer.y);
 
@@ -251,6 +255,7 @@ Character.events = function () {
 
         if (selectedTile.player !== playerAtSetup) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
+            actionPerformed = true;
             if (gameStarted) {
                 Turns.showEndTurn();
             }
@@ -268,6 +273,7 @@ Character.events = function () {
 
         if (characterSelected) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, false);
+            
         } else {
             if (clickedCount === 1) {
                 context.handleMove(context, neighbours, pointer);
