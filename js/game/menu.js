@@ -110,7 +110,7 @@ Menu.emptyNav = function(){
 }
 
 
-Menu.addListeners(){
+Menu.addListeners = function(){
     for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
         context = this;
         (function(place){
@@ -118,6 +118,7 @@ Menu.addListeners(){
         })(menuItem)
     }
 }
+
 Menu.putCharacter = function(img,naam) {
     let link = document.createElement('a');
     let fig = document.createElement('figure');
