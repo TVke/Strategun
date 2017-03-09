@@ -102,6 +102,9 @@ Character.move = function (neighbours, x, y, objectToMove) {
     tileData[objectToMove.tilePosition.x][objectToMove.tilePosition.y] = 0;
 
     objectToMove.sprite.destroy();
+
+    movePieceSound = game.add.audio('move_piece');
+    movePieceSound.play();
 }
 
 Character.shoot = function (neighbours, x, y, objectToMove) {

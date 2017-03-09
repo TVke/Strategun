@@ -34,6 +34,9 @@ function preload() {
 	game.load.image('buttonStartTurn', 'assets/sprites/buttonStartTurn.png');
 	game.load.image('buttonEndTurn', 'assets/sprites/buttonEndTurn.png');
 	game.load.image('heart', 'assets/sprites/heart.png');
+	game.load.audio('move_piece', 'assets/sounds/move_piece.mp3');
+	game.load.audio('end_turn', 'assets/sounds/end_turn.mp3');
+	game.load.audio('start_turn', 'assets/sounds/start_turn.mp3');
 }
 
 function create() {
