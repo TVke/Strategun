@@ -8,7 +8,15 @@ Turns.prototype.load = function(){
     game.load.image('redCover', 'assets/grid/red player.png');
 };
 Turns.showEndTurn = function(){
-	console.log("end");
+	var EndTurnButton = document.createElement('button');
+	EndTurnButton.innerHTML = "Einde Beurt";
+	if(playerAtSetup === 0){
+		EndTurnButton.id="blue";
+	}else if(playerAtSetup === 1){
+		EndTurnButton.id="red";
+	}
+	EndTurnButton.addEventListener("click",Turns.end);
+	menuElement.appendChild(EndTurnButton);
 }
 Turns.end = function(){
 	for (let i = 0,ilen = tileData.length; i < ilen; ++i) {
@@ -33,22 +41,12 @@ Turns.end = function(){
 
 Turns.switchPlayer = function(){
 	Menu.emptyNav();
-
-	// if(!menuElement.querySelector("figure.heart")){
-    //     let heartFig = document.createElement('figure');
-    //     let heartImg = document.createElement('img');
-    //     let heartData = document.createElement('figcaption');
-    //     heartFig.className = "heart";
-    //     heartImg.src = "assets/sprites/heart.png";
-    //     heartImg.alt = "hart met "+value+" in";
-    //     heartData.innerHTML = value;
-    //     heartFig.appendChild(heartImg);
-    //     heartFig.appendChild(heartData);
-    //     menuElement.appendChild(heartFig);
-    // }
-    // else{
-    //     menuElement.querySelector(".heart>figcaption").innerHTML = value;
-    // }
+	if(playerAtSetup === 0){
+		Menu.displayMessage("Geef door aan de Rode speler","start beurt",Turns.startNewTurn,1);
+	}
+	else if(playerAtSetup === 1){
+		Menu.displayMessage("Geef door aan de Rode speler","start beurt",Turns.startNewTurn,0);
+	}
 }
 Turns.startNewTurn = function(){
 	if(playerAtSetup === 0){
@@ -57,7 +55,13 @@ Turns.startNewTurn = function(){
 	else if(playerAtSetup === 1){
 		playerAtSetup = 0;
 	}
-	menuElement.
+	if(blueSetStrategy && redSetStrategy){
+		// otherplayers turn
+	}else if(blueSetStrategy){
+		// red strategy
+	}else{
+		// blue strategy
+	}
 	startTurnSound = game.add.audio('start_turn');
 	startTurnSound.play();
 }
