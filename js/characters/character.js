@@ -56,6 +56,7 @@ Character.destroySelected = function () {
 }
 
 Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) {
+
     if (characterMode === "move") {
         Character.move(neighbours, x, y, selectedObject);
     }
@@ -278,8 +279,11 @@ Character.events = function () {
 
         if (characterSelected) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, false);
-
         } else {
+            if(gameStarted){
+                Menu.showHealth(selectedObject.health);
+            }
+            
             if (clickedCount === 1) {
                 context.handleMove(context, neighbours, pointer);
             } else if (clickedCount === 2) {
