@@ -32,11 +32,12 @@ Medic.load = function(){
 
 Medic.healAnimation = function(source, target)
 {
-        healSheet = game.add.sprite(target.tilePosition.x, target.tilePosition.y, 'medicHeal');
+        console.log(target);
+        healSheet = game.add.sprite(target.tilePosition.x*44, target.tilePosition.y*44, 'medicHealSpritesheet');
         healAnim = healSheet.animations.add('healAnimation');
 
         healSound = game.add.audio('medicHeal');
         healSound.play();
 
-        healSheet.animations.play('healAnimation', 10, false);
+        healSheet.animations.play('healAnimation', 10, false, true);
 }

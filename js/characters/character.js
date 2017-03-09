@@ -123,17 +123,20 @@ Character.damage = function (source, tileX, tileY) {
 }
 
 Character.heal = function (x, y, source) {
+
+    if(source.type === "medic"){
+        return;
+    }
+
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
     target = tileData[tileX][tileY];
 
-    console.log(source);
-
     target.health = target.health + source.heal;
 
     if(target.health > target.maxHealth){
-        target.health = target.maxHealth;
+        target.health = target.maxHealth + 0;
     }
 
     console.log(target);
