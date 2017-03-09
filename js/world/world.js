@@ -13,7 +13,7 @@ World.prototype.load = function () {
 
     this.game.load.image('red', 'assets/grid/red laser.png');
     this.game.load.image('blue', 'assets/grid/blue laser.png');
-    this.game.load.image('black', 'assets/grid/black.png');
+    this.game.load.image('metal', 'assets/grid/metal.png');
 
     grid = this.game.add.tilemap();
 
@@ -69,10 +69,8 @@ World.prototype.makeGrid = function () {
 
     this.game.add.tileSprite(0, 0, 1, this.game.world.height - tileSize, 'blue');
     this.game.add.tileSprite(0, 0, this.game.world.width / 2, 1, 'blue');
-    this.game.add.tileSprite(this.game.world.width / 2 - 1, 0, 1, this.game.world.height, 'black');
     this.game.add.tileSprite(0, this.game.world.height - 1, this.game.world.width / 2, 1, 'blue');
 
-    this.game.add.tileSprite(this.game.world.width / 2, 0, 1, this.game.world.height, 'black');
     this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 1, 'red');
     this.game.add.tileSprite(this.game.world.width - 1, 0, 1, this.game.world.height, 'red');
     this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width / 2, 1, 'red');
@@ -89,5 +87,15 @@ World.prototype.moveMap = function () {
         this.game.origDragPoint = this.game.input.activePointer.position.clone();
     } else {
         this.game.origDragPoint = null;
+    }
+}
+
+World.prototype.metal = function() {
+    for (let y = 0; y < amountOfFields; ++y) {
+        for (let x = 0; x < amountOfRows; ++x) {
+            let metal = game.add.image(tileSize * x, tileSize * y, 'metal');
+            metal.inputEnabled = true;
+            metal.input.useHandCursor = true;
+        }
     }
 }

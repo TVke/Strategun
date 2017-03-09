@@ -37,6 +37,7 @@ function preload() {
 }
 
 function create() {
+	gameObjects.world.metal();
 	gameObjects.world.makeGrid();
 	gameObjects.world.makeMap();
 
