@@ -1,5 +1,5 @@
 var menuElement = document.getElementsByTagName('nav')[0];
-var characterItems = document.querySelectorAll('nav a');
+var characterItems;
 var navCounter = 0;
 var selectedChar;
 
@@ -111,6 +111,7 @@ Menu.emptyNav = function(){
 
 
 Menu.addListeners = function(){
+    characterItems = document.querySelectorAll('nav a');
     for(let menuItem = 0,ilen = characterItems.length; menuItem < ilen; ++menuItem){
         context = this;
         (function(place){
