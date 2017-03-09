@@ -114,6 +114,21 @@ Menu.emptyNav = function(){
 	}
 }
 
+Menu.putCharacter = function(img,naam) {
+    let link = document.createElement('a');
+    let fig = document.createElement('figure');
+    let afbl = document.createElement('img');
+    let caption = document.createElement('figcaption');
+    link.href = ".";
+    afbl.src = "assets/grid/"+img;
+    afbl.alt = naam;
+    caption.innerHTML = naam;
+    fig.appendChild(afbl);
+    fig.appendChild(caption);
+    link.appendChild(fig);
+    menuElement.appendChild(link);
+}
+
 Menu.displayMessage = function(message, buttonTekst = "",callback = function(){console.log("er is geen functie toegewezen");},player = 0){
     let text = document.createElement("p");
     text.innerHTML = message;
@@ -132,12 +147,38 @@ Menu.displayMessage = function(message, buttonTekst = "",callback = function(){c
     }
 }
 Menu.startStrategy = function(){
+    let playerPrefix;
     if(playerAtSetup === 0){
-		// blue
-	}
-	else if(playerAtSetup === 1){
-        // red
-	}
+        playerPrefix = "b";
+    }
+    else if(playerAtSetup === 1){
+        playerPrefix = "r";
+    }
+    Object.keys(setup).forEach(function(pawn) {
+        console.log(pawn);
+        switch (pawn) {
+            case "flag":
+            for (let i = 0; i < setup[pawn]; ++i) {
+                Menu.putCharacter(playerPrefix + "radar.png","radar");
+            }
+                break;
+            case "snipers":
+            for (let i = 0; i < setup[pawn]; ++i) {
+                Menu.putCharacter("sniper out.png","snipers");
+            }
+                break;
+            case "tanks":
+            for (let i = 0; i < setup[pawn]; ++i) {
+                Menu.putCharacter("tank soldaat out.png","tank");
+            }
+                break;
+            case "soldiers":
+            for (let i = 0; i < setup[pawn]; ++i) {
+                Menu.putCharacter("soldaat out.png","soldaat");
+            }
+                break;
+        }
+	})
 }
 
 document.getElementsByClassName('purple')[0].addEventListener('click', removeOverlay);

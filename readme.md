@@ -1,11 +1,7 @@
 # Strategun
 
 ## todo
-* turns (end turn, color switch)
-* shoot (range, not shooting at own, remove at health 0)
-* move op basis van active player
+* turns ( color switch)
 * health
-* replace sprites of not active player ( ``sprite.loadTexture`` )
-* green select
 * soldaat more color
 * range calcutating
