@@ -4,6 +4,7 @@ function Sniper(id, player){
     this.player = player;
     this.attack = 3;
     this.health = 3;
+    this.maxHealth = 3;
     this.range = 41;
     this.type = "sniper";
     this.icon = "";

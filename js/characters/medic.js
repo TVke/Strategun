@@ -2,8 +2,9 @@ function Medic(id, player, position, sprite){
     this.id = id;
     this.assetId = 4
     this.player = player;
-    this.attack = -4;
+    this.attack = 4;
     this.health = 3;
+    this.maxHealth = 3;
     this.range = 3;
     this.tilePosition = position;
     this.sprite = sprite;
@@ -28,5 +29,5 @@ Medic.load = function(){
 }
 
 Medic.healAnimation = function(source, target){
-    
+
 }

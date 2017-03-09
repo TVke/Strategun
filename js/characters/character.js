@@ -65,11 +65,6 @@ Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) 
         Character.shoot(neighbours, x, y, selectedObject);
     }
 
-    if (characterMode === "heal"){
-
-    }
-
-
 }
 
 Character.endTurn = function () {
@@ -126,11 +121,26 @@ Character.damage = function (source, tileX, tileY) {
     Soldier.attackAnimation(source, target)
 }
 
-Character.heal = function (source, tileX, tileY) {
+Character.heal = function (x, y, source) {
+    tileX = tileLayer.getTileX(x);
+    tileY = tileLayer.getTileY(y);
+
     target = tileData[tileX][tileY];
 
-    target.health = target.health - source.attack;
-    Medic.healAnimation(source, target)
+    console.log(source);
+
+    target.health = target.health + source.attack;
+
+    console.log(target);
+
+    if(target.constructor === Character){
+        if (Character.isValidMove(tileX, tileY)) {
+            Medic.healAnimation(source, target)
+
+            Character.endTurn();
+            return;
+        }
+    }
 }
 
 Character.shoot = function (neighbours, x, y, objectToMove) {
@@ -140,7 +150,9 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
     tile = tileData[tileX][tileY];
 
     if(tile.constructor === Character && tile instanceof Medic){
-
+        console.log("heal");
+        Character.heal(selectedObject, tileX, tileY);
+        return;
     } else if (tile.constructor === Character) {
         if (Character.isValidMove(tileX, tileY)) {
             shootSound = game.add.audio('fire')
@@ -268,7 +280,7 @@ Character.events = function () {
 
     game.input.onTap.add(function (pointer, event) {
         actionPerformed = false;
-        
+
         if (actionPerformed) {
             return;
         }
@@ -282,6 +294,8 @@ Character.events = function () {
         if (selectedTile.player !== playerAtSetup) {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
             return;
+        }else{
+            Character.heal(pointer.x, pointer.y, selectedTile);
         }
 
         if (Character.isMoveable(selectedTile)) {

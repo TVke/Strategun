@@ -4,6 +4,7 @@ function Soldier(id, player, position, sprite){
     this.player = player;
     this.attack = 2;
     this.health = 5;
+    this.maxHealth = 5;
     this.range = 2;
     this.tilePosition = position;
     this.sprite = sprite;
