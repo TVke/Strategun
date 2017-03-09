@@ -16,6 +16,8 @@ var characterMode = "";
 var selectedSprites = []
 var characterSelected = false;
 var clickedCount = 1;
+const amountOfFields = 10;
+const tileSize = 44;
 
 var clickedCoord = {
     x: "",

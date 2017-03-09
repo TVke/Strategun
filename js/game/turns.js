@@ -18,7 +18,7 @@ Turns.end = function(){
 				//tileData[i][j].loadTexture('blueCover');
 				//console.log(amountOFields);
 				if(j<10){
-					game.add.sprite(j,i,'blueCover');
+					game.add.sprite(i*tileSize,j*tileSize,'blueCover');
 					//tileData[i][j]
 					//tileData[i][j].sprite.loadTexture('blueCover');
 				}

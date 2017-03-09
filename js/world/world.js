@@ -1,5 +1,3 @@
-const tileSize = 44;
-const amountOfFields = 10;
 const amountOfRows = 20;
 const laserSize = 2;
 
