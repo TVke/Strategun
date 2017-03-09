@@ -94,9 +94,9 @@ Tile.putCharacter = function (character, tileX, tileY, onPlacement) {
 
 	if (!onPlacement) {
 		char = game.add.sprite(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
-		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
+		tileData[tileX][tileY] = Character.makeCharacter(character, idForChar, playerAtSetup, position, char);
 	} else if (Setup.handleCharacterLimit(selectedChar) && Setup.sideControl(playerAtSetup, tileX, tileY)) {
 		char = game.add.image(tileX * tileSize, tileY * tileSize, Tile.charToImage(character));
-		tileData[tileX][tileY] = Character.makeCharacter(character, setup[playerAtSetup].idForChar, playerAtSetup, position, char);
+		tileData[tileX][tileY] = Character.makeCharacter(character, idForChar, playerAtSetup, position, char);
 	}
 }
