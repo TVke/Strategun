@@ -201,10 +201,15 @@ Menu.startStrategy = function(){
 }
 
 document.getElementsByClassName('purple')[0].addEventListener('click', removeOverlay);
+document.getElementById('restart').addEventListener('click', restart);
 
 function removeOverlay() {
     Menu.emptyNav();
     Menu.startStrategy();
     document.getElementById('start').remove();
     document.getElementById('overlay').style.display = 'none';
+}
+
+function restart() {
+    location.reload();
 }
