@@ -54,10 +54,6 @@ function create() {
 	gameObjects.tile.loadChar();
 
 	characters.character.events();
-
-	window.addEventListener("deviceorientation", function(){
-		location.reload();
-	}, false);
 }
 
 function update() {

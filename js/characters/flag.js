@@ -4,7 +4,7 @@ function Flag(id, player, position, sprite){
     this.player = player;
     this.attack = 0;
     this.health = 15;
-    this.maxHealth = 0;
+    this.maxHealth = 15;
     this.range = 0;
     this.type = "flag";
     this.tilePosition = position;
