@@ -38,9 +38,9 @@ Character.makeCharacter = function (character, id, player, position, char) {
 
 Character.moveableLocation = function (x, y, shoot) {
     if (shoot) {
-        var selectedSprite = game.add.sprite(x * 44, y * 44, 'shoot');
+        var selectedSprite = game.add.sprite(x * tileSize, y * tileSize, 'shoot');
     } else {
-        var selectedSprite = game.add.sprite(x * 44, y * 44, 'selected');
+        var selectedSprite = game.add.sprite(x * tileSize, y * tileSize, 'selected');
     }
 
     selectedSprites.push(selectedSprite)

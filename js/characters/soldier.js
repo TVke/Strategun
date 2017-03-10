@@ -37,10 +37,10 @@ Soldier.attackAnimation = function (source, target) {
   }
 
   if (source.type === "bomb") {
-    glow = game.add.sprite(source.tilePosition.x * 44, source.tilePosition.y * 44, 'rbombGlow');
+    glow = game.add.sprite(source.tilePosition.x * tileSize, source.tilePosition.y * tileSize, 'rbombGlow');
     shoot = game.add.tween(glow);
   } else {
-    laser = game.add.sprite(source.tilePosition.x * 44, source.tilePosition.y * 44, laserSprite);
+    laser = game.add.sprite(source.tilePosition.x * tileSize, source.tilePosition.y * tileSize, laserSprite);
     shoot = game.add.tween(laser);
   }
 
@@ -50,8 +50,8 @@ Soldier.attackAnimation = function (source, target) {
   fireAudio.play();
 
   shoot.to({
-    x: target.tilePosition.x * 44,
-    y: target.tilePosition.y * 44
+    x: target.tilePosition.x * tileSize,
+    y: target.tilePosition.y * tileSize
   }, 300);
   shoot.start();
 
