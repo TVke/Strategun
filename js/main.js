@@ -55,17 +55,11 @@ function create() {
 
 	characters.character.events();
 
-	// window.addEventListener("deviceorientation", function(){
-	// 	location.reload();
-	// }, false);
+	window.addEventListener("deviceorientation", function(){
+		location.reload();
+	}, false);
 }
 
 function update() {
-	//window.innerWidth, window.innerHeight - document.getElementsByTagName('nav')[0].offsetHeight
-
-	// var canvas = document.getElementsByTagName("canvas")[0];
-	// canvas.width = window.innerWidth;
-	// canvas.height = window.innerHeight - document.getElementsByTagName('nav')[0].offsetHeight
-
 	gameObjects.world.moveMap();
 }
