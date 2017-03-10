@@ -35,6 +35,12 @@ body{
 #overlay #end {
     display: none;
 }
+nav > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
 nav{
     list-style: none;
     display: -webkit-flex;
@@ -94,18 +100,14 @@ button.purple {
     background-color: #b23ce9;
 }
 .heart{
-    display: block;
-    position: relative;
-}
-.heart img {
-    display: block;
     position: absolute;
-    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
 .heart figcaption{
     font-size: 1.3em;
     font-weight: bold;
     position: absolute;
-    top: 20px;
-    left: 17px;
 }
