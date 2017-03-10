@@ -77,12 +77,11 @@ Turns.startNewTurn = function(){
 	Menu.emptyNav();
 	if(playerAtSetup === 0){
 		playerAtSetup = 1;
-		actionPerformed = true;
 	}
 	else if(playerAtSetup === 1){
 		playerAtSetup = 0;
-		actionPerformed = true;
 	}
+	actionPerformed = true;
 	if(gameStarted){
 		Turns.removeCoverOfPlayer(playerAtSetup);
 		actionPerformed = false;
