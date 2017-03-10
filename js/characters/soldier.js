@@ -26,11 +26,6 @@ Soldier.load = function(){
 
   game.load.image('laser', 'assets/grid/laser.png');
   game.load.image('laser_horizontal', 'assets/grid/laser_horizontal.png')
-
-  // game.load.audio('soldierSelect', 'assets/sounds/soldier_fire.mp3');
-  // game.load.audio('soldierHurt', 'assets/sounds/soldier_hurt.mp3');
-  // game.load.audio('soldierDeath', 'assets/sounds/soldier_death.mp3');
-  // game.load.audio('soldierFire', 'assets/sounds/soldier_fire.mp3');
 }
 
 Soldier.attackAnimation = function(source, target){
@@ -42,7 +37,6 @@ Soldier.attackAnimation = function(source, target){
   }
 
   if(source.type === "bomb"){
-    //laserSprite = "rbombGlow";
     glow = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, 'rbombGlow');
     shoot = game.add.tween(glow);
     }else{
@@ -66,7 +60,7 @@ Soldier.attackAnimation = function(source, target){
     if(target.type === "bomb" || source.type === "bomb"){
       tileData[target.tilePosition.x][target.tilePosition.y] = 0;
       tileData[source.tilePosition.x][source.tilePosition.y] = 0;
-      //debugger;
+      
       target.sprite.destroy();
       source.sprite.destroy();
 

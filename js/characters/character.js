@@ -137,9 +137,6 @@ Character.heal = function (x, y, source) {
 
     target = tileData[tileX][tileY];
 
-    console.log(source);
-    console.log(target);
-
     if (source !== null) {
         if (source.type !== "medic") {
             return;
