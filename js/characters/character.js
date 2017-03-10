@@ -120,42 +120,46 @@ Character.damage = function (source, tileX, tileY) {
     target.health = target.health - source.attack;
 
     //bom knalt u dood
-    if(target.type === "bomb"){
+    if (target.type === "bomb") {
         source.health = 0;
         Soldier.attackAnimation(target, source);
     }
 
-    
+
 
     Soldier.attackAnimation(source, target)
 }
 
 Character.heal = function (x, y, source) {
-
-    if (source.type !== "medic") {
-        return;
-    }
-
     tileX = tileLayer.getTileX(x);
     tileY = tileLayer.getTileY(y);
 
     target = tileData[tileX][tileY];
 
-    //TODO: fix hardcoded heal trolololo
-    target.health = target.health + 4;
+    console.log(source);
+    console.log(target);
 
-    if (target.health > target.maxHealth) {
-        target.health = target.maxHealth + 0;
-    }
-
-    if (target.constructor === Character) {
-        if (Character.isValidMove(tileX, tileY)) {
-            Medic.healAnimation(source, target)
-
-            Character.endTurn();
+    if (source !== null) {
+        if (source.type !== "medic") {
             return;
         }
+
+        target.health = target.health + source.healing;
+
+        if (target.health > target.maxHealth) {
+            target.health = target.maxHealth + 0;
+        }
+
+        if (target.constructor === Character) {
+            if (Character.isValidMove(tileX, tileY)) {
+                Medic.healAnimation(source, target)
+
+                Character.endTurn();
+                return;
+            }
+        }
     }
+
 }
 
 Character.shoot = function (neighbours, x, y, objectToMove) {
@@ -304,7 +308,7 @@ Character.events = function () {
             context.selectedListener(neighbours, pointer.x, pointer.y, selectedObject, true);
             return;
         } else {
-            Character.heal(pointer.x, pointer.y, selectedTile);
+            Character.heal(pointer.x, pointer.y, selectedObject);
         }
 
         if (Character.isMoveable(selectedTile)) {
