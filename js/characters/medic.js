@@ -27,7 +27,7 @@ Medic.load = function(){
     // game.load.audio('medicSelect', 'assets/sounds/medic_select.mp3');
     // game.load.audio('medicHurt', 'assets/sounds/medic_hurt.mp3');
     // game.load.audio('medicDeath', 'assets/sounds/medic_death.mp3');
-    game.load.audio('medicHeal', 'assets/sounds/medic_heal.mp3');
+    
 }
 
 
