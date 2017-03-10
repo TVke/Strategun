@@ -39,12 +39,27 @@ var idForChar = 0;
 
 var playerAtSetup = 0;
 //controleert het plaatsen van de karakters bij het opzetten van het spelbord. Speler kan pas klaar zijn als alles op 0 staat
+
+/**
+ * Setup voor echt spel
+ */
+// var setup = {
+//     flag: 1,
+//     bombs: 5, 
+//     medics: 1,
+//     snipers: 2, 
+//     tanks: 4,
+//     soldiers: 10,
+// }
+
+/**
+ * Setup voor demo
+ */
 var setup = {
     flag: 1,
-    bombs: 1, //TODO: switch later nog naar 5 terug
-    // medics: 1,
-    // snipers: 1, //TODO: terug naar 2 zetten later
-    // tanks: 4,
-    // soldiers: 10,
-
+    bombs: 1, 
+    medics: 1,
+    snipers: 0, 
+    tanks: 1,
+    soldiers: 1,
 }

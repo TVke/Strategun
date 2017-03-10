@@ -41,8 +41,6 @@ Soldier.attackAnimation = function(source, target){
     laserSprite = "laser_horizontal";
   }
 
-  console.log("is: " + target.type);
-
   if(source.type === "bomb"){
     //laserSprite = "rbombGlow";
     glow = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, 'rbombGlow');
@@ -75,5 +73,7 @@ Soldier.attackAnimation = function(source, target){
       laser.destroy();
       glow.destroy();
     }
+
+    laser.destroy();
   }, this)
 }
