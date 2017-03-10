@@ -126,8 +126,6 @@ Character.damage = function (source, tileX, tileY) {
         Soldier.attackAnimation(target, source);
     }
 
-
-
     Soldier.attackAnimation(source, target)
 }
 
@@ -178,6 +176,31 @@ Character.shoot = function (neighbours, x, y, objectToMove) {
     } else {
 
     }
+}
+
+Character.checkMoveableExist = function(){
+    moveableExists = false;
+
+    if(playerAtSetup === 0){
+        loose = 1;
+    }else if(playerAtSetup == 1){
+        loose = 0;
+    }
+
+    for(let tileX = 0; tileX < amountOfRows; tileX++){
+        for(let tileY = 0; tileY < amountOfFields; tileY++){
+            tile = tileData[tileX][tileY];
+
+            console.log(tile);
+            if(tile instanceof Character){
+                if(Character.isMoveable(tile) && tile.player === loose){
+                    moveableExists = true;
+                }
+            }
+        }
+    }
+
+    return moveableExists;
 }
 
 Character.isMoveable = function (selectedTile) {

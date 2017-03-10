@@ -41,6 +41,7 @@ function preload() {
 	game.load.audio('fire_hit', 'assets/sounds/explosion.mp3');
 	game.load.audio('start_turn', 'assets/sounds/start_turn.mp3');
 	game.load.audio('button_click', 'assets/sounds/button_click.mp3');
+	game.load.audio('medicHeal', 'assets/sounds/medic_heal.mp3');
 	game.load.spritesheet('heartSpritesheet', 'assets/sprites/heart_spritesheet.png', 46, 46);
 	game.load.spritesheet('medicHealSpritesheet', 'assets/sprites/healing_spritesheet.png', 46, 46);
 }
@@ -54,9 +55,9 @@ function create() {
 
 	characters.character.events();
 
-	window.addEventListener("deviceorientation", function(){
-		location.reload();
-	}, false);
+	// window.addEventListener("deviceorientation", function(){
+	// 	location.reload();
+	// }, false);
 }
 
 function update() {

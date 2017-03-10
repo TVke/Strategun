@@ -57,9 +57,9 @@ var playerAtSetup = 0;
  */
 var setup = {
     flag: 1,
-    bombs: 0, 
+    bombs: 2, 
     medics: 1,
     snipers: 0, 
-    tanks: 1,
-    soldiers: 0,
+    tanks: 2,
+    soldiers: 2,
 }
