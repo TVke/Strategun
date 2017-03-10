@@ -43,6 +43,7 @@ nav{
     overflow: auto;
     background: #efefef;
     height: 70px;
+    overflow-x: hidden;
 }
 nav a{
     display: block;
