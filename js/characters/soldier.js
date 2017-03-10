@@ -45,9 +45,12 @@ Soldier.attackAnimation = function(source, target){
     }
 
 
-
+  fireAudio = game.add.audio('fire');
+  fireAudio.play();
+  
   shoot.to({x: target.tilePosition.x*44, y: target.tilePosition.y*44}, 300);
   shoot.start();
+
   shoot.onComplete.add(function(){
     if(target.health < 1){
         target.sprite.destroy();
@@ -67,6 +70,9 @@ Soldier.attackAnimation = function(source, target){
       laser.destroy();
       glow.destroy();
     }
+
+    hitAudio = game.add.audio('fire_hit');
+    hitAudio.play();
 
     laser.destroy();
   }, this)

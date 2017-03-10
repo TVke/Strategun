@@ -36,7 +36,7 @@ function preload() {
 	game.load.image('heart', 'assets/sprites/heart.png');
 	game.load.audio('move_piece', 'assets/sounds/move_piece.mp3');
 	game.load.audio('end_turn', 'assets/sounds/end_turn.mp3');
-	game.load.audio('fire', 'assets/sounds/soldier_fire.mp3');
+	game.load.audio('fire', 'assets/sounds/sniper_fire.mp3');
 	game.load.audio('death', 'assets/sounds/soldier_death.mp3');
 	game.load.audio('fire_hit', 'assets/sounds/explosion.mp3');
 	game.load.audio('start_turn', 'assets/sounds/start_turn.mp3');
@@ -53,8 +53,18 @@ function create() {
 	gameObjects.tile.loadChar();
 
 	characters.character.events();
+
+	window.addEventListener("deviceorientation", function(){
+		location.reload();
+	}, false);
 }
 
 function update() {
+	//window.innerWidth, window.innerHeight - document.getElementsByTagName('nav')[0].offsetHeight
+
+	// var canvas = document.getElementsByTagName("canvas")[0];
+	// canvas.width = window.innerWidth;
+	// canvas.height = window.innerHeight - document.getElementsByTagName('nav')[0].offsetHeight
+
 	gameObjects.world.moveMap();
 }
