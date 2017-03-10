@@ -70,6 +70,7 @@ Character.selectedListener = function (neighbours, x, y, selectedObject, enemy) 
 Character.endTurn = function () {
     Character.destroySelected();
     Turns.showEndTurn();
+    clickedCount = 1;
     actionPerformed = true;
 }
 
