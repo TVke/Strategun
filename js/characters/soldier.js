@@ -34,6 +34,7 @@ Soldier.load = function(){
 }
 
 Soldier.attackAnimation = function(source, target){
+
   laserSprite = "laser";
 
   if(target.tilePosition.y === source.tilePosition.y){
@@ -43,13 +44,16 @@ Soldier.attackAnimation = function(source, target){
   console.log("is: " + target.type);
 
   if(source.type === "bomb"){
-    laserSprite = "rbombGlow";
-  }
+    //laserSprite = "rbombGlow";
+    glow = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, 'rbombGlow');
+    shoot = game.add.tween(glow);
+    }else{
+        laser = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, laserSprite);
+        shoot = game.add.tween(laser);
+    }
 
-  laser = game.add.sprite(source.tilePosition.x*44, source.tilePosition.y*44, laserSprite);
-  shoot = game.add.tween(laser);
 
-  
+
   shoot.to({x: target.tilePosition.x*44, y: target.tilePosition.y*44}, 300);
   shoot.start();
   shoot.onComplete.add(function(){
@@ -64,11 +68,12 @@ Soldier.attackAnimation = function(source, target){
     if(target.type === "bomb" || source.type === "bomb"){
       tileData[target.tilePosition.x][target.tilePosition.y] = 0;
       tileData[source.tilePosition.x][source.tilePosition.y] = 0;
-
+      //debugger;
       target.sprite.destroy();
       source.sprite.destroy();
 
       laser.destroy();
+      glow.destroy();
     }
   }, this)
 }
