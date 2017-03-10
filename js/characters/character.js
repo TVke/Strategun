@@ -132,7 +132,7 @@ Character.damage = function (source, tileX, tileY) {
 
 Character.heal = function (x, y, source) {
 
-    if (source.type === "medic") {
+    if (source.type !== "medic") {
         return;
     }
 

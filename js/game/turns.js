@@ -44,13 +44,11 @@ Turns.end = function(){
     endTurnSound.play();
 }
 Turns.removeCoverOfPlayer = function(player){
-	if(playerAtSetup === 0){
-		// blueCoverGroup.destroy();
+	if(player == 0){
+		blueCoverGroup.removeAll();
 	}
-	else if(playerAtSetup === 1){
-		// for (var i = 0,ilen = redCoverGroup.children.length; i < ilen; i++) {
-		// }
-		// redCoverGroup.destroy();
+	else if(player == 1){
+		redCoverGroup.removeAll();
 	}
 }
 Turns.switchPlayer = function(){
@@ -73,9 +71,7 @@ Turns.startNewTurn = function(){
 		actionPerformed = true;
 	}
 	if(gameStarted){
-		// otherplayers turn
 		Turns.removeCoverOfPlayer(playerAtSetup);
-	//	 = false;
 		actionPerformed = false;
 	}else{
 		Menu.startStrategy();
