@@ -45,9 +45,9 @@ var playerAtSetup = 0;
  */
 // var setup = {
 //     flag: 1,
-//     bombs: 5, 
+//     bombs: 5,
 //     medics: 1,
-//     snipers: 2, 
+//     snipers: 2,
 //     tanks: 4,
 //     soldiers: 10,
 // }
@@ -57,9 +57,9 @@ var playerAtSetup = 0;
  */
 var setup = {
     flag: 1,
-    bombs: 2, 
+    bombs: 2,
     medics: 1,
-    snipers: 0, 
+    snipers: 0,
     tanks: 2,
     soldiers: 2,
 }
