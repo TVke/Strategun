@@ -17,22 +17,24 @@ Turns.showEndTurn = function(){
 	EndTurnButton.addEventListener("click",Turns.end);
 	menuElement.appendChild(EndTurnButton);
 };
-var blueCoverGroup;
-var redCoverGroup;
+var blueCoverGroup = [];
+var redCoverGroup = [];
 Turns.end = function(){
-	blueCoverGroup = game.add.group();
-	redCoverGroup = game.add.group();
+	// blueCoverGroup = game.add.group();
+	// redCoverGroup = game.add.group();
 	for (let i = 0,ilen = tileData.length; i < ilen; ++i) {
 		let horizontal = tileData[i];
 		for (let j = 0,jlen = horizontal.length; j < jlen; ++j) {
 			if( tileData[i][j] instanceof Character ){
 				if(tileData[i][j].player === 0){
-					let blue = game.add.sprite(i*tileSize,j*tileSize,'blueCover');
-					blueCoverGroup.add(blue);
+					var blue = game.add.sprite(i*tileSize,j*tileSize,'blueCover');
+					// blueCoverGroup.add(blue);
+					blueCoverGroup.push(blue);
 				}
 				else if(tileData[i][j].player === 1){
-					let red = game.add.sprite(i*tileSize,j*tileSize,'redCover');
-					redCoverGroup.add(red);
+					var red = game.add.sprite(i*tileSize,j*tileSize,'redCover');
+					// redCoverGroup.add(red);
+					redCoverGroup.push(red);
 				}
 			}
 		}
@@ -43,12 +45,23 @@ Turns.end = function(){
 	endTurnSound = game.add.audio('end_turn');
     endTurnSound.play();
 }
+
+Turns.removeSpritesFromArray = function(array){
+	for(let sprite = 0; sprite < array.length; sprite++){
+		array[sprite].body = null;
+		array[sprite].destroy();
+	}
+}
+
 Turns.removeCoverOfPlayer = function(player){
 	if(player == 0){
-		blueCoverGroup.removeAll();
+		console.log("console log want anders werkt cover niet");
+		Turns.removeSpritesFromArray(blueCoverGroup);
+		// blueCoverGroup.removeAll();
 	}
 	else if(player == 1){
-		redCoverGroup.removeAll();
+		Turns.removeSpritesFromArray(redCoverGroup)
+		// redCoverGroup.removeAll();
 	}
 }
 Turns.switchPlayer = function(){
