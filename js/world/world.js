@@ -1,5 +1,3 @@
-const tileSize = 44;
-const amountOfFields = 10;
 const amountOfRows = 20;
 const laserSize = 2;
 
@@ -13,14 +11,14 @@ World.prototype.load = function () {
 
     this.game.load.image('red', 'assets/grid/red laser.png');
     this.game.load.image('blue', 'assets/grid/blue laser.png');
-    this.game.load.image('black', 'assets/grid/black.png');
+    this.game.load.image('metal', 'assets/grid/metal.png');
+
+    this.game.load.image('wall', 'assets/grid/wall.png');
+    this.game.load.image('olie', 'assets/grid/olie.png');
 
     grid = this.game.add.tilemap();
 
     this.game.load.tilemap('map', 'assets/maps/map.json', null, Phaser.Tilemap.TILED_JSON);
-
-    this.game.load.image('wall', 'assets/grid/wall.png');
-    this.game.load.image('olie', 'assets/grid/olie.png');
 }
 
 World.prototype.tileProperties = function(map, layer){
@@ -54,7 +52,6 @@ World.prototype.makeMap = function () {
     tileMap = map;
 
     this.tileProperties(map, layer)
-
 }
 
 World.prototype.makeGrid = function () {
@@ -67,15 +64,13 @@ World.prototype.makeGrid = function () {
         this.game.add.tileSprite(this.game.world.width / 2, i * tileSize, this.game.world.width / 2, laserSize, 'red');
     }
 
-    this.game.add.tileSprite(0, 0, 1, this.game.world.height - tileSize, 'blue');
-    this.game.add.tileSprite(0, 0, this.game.world.width / 2, 1, 'blue');
-    this.game.add.tileSprite(this.game.world.width / 2 - 1, 0, 1, this.game.world.height, 'black');
-    this.game.add.tileSprite(0, this.game.world.height - 1, this.game.world.width / 2, 1, 'blue');
+    this.game.add.tileSprite(0, 0, 2, this.game.world.height, 'blue');
+    this.game.add.tileSprite(0, 0, this.game.world.width / 2, 2, 'blue');
+    this.game.add.tileSprite(0, this.game.world.height - 1, this.game.world.width / 2, 2, 'blue');
 
-    this.game.add.tileSprite(this.game.world.width / 2, 0, 1, this.game.world.height, 'black');
-    this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 1, 'red');
-    this.game.add.tileSprite(this.game.world.width - 1, 0, 1, this.game.world.height, 'red');
-    this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width / 2, 1, 'red');
+    this.game.add.tileSprite(this.game.world.width / 2, 0, this.game.world.width / 2, 2, 'red');
+    this.game.add.tileSprite(this.game.world.width - 1, 0, 2, this.game.world.height, 'red');
+    this.game.add.tileSprite(this.game.world.width / 2, this.game.world.height - 1, this.game.world.width / 2, 2, 'red');
 }
 
 World.prototype.moveMap = function () {
@@ -89,5 +84,15 @@ World.prototype.moveMap = function () {
         this.game.origDragPoint = this.game.input.activePointer.position.clone();
     } else {
         this.game.origDragPoint = null;
+    }
+}
+
+World.prototype.metal = function() {
+    for (let y = 0; y < amountOfFields; ++y) {
+        for (let x = 0; x < amountOfRows; ++x) {
+            let metal = game.add.image(tileSize * x, tileSize * y, 'metal');
+            metal.inputEnabled = true;
+            metal.input.useHandCursor = true;
+        }
     }
 }

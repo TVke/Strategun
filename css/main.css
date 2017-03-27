@@ -8,6 +8,39 @@ body{
   background: #efefef;
   font-family: 'Roboto', sans-serif;
 }
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#overlay .wrapper {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+#overlay button {
+    font-size: 1.5rem;
+    color: black;
+}
+#overlay img {
+    width: 100%;
+}
+#overlay #end {
+    display: none;
+}
+nav > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
 nav{
     list-style: none;
     display: -webkit-flex;
@@ -16,6 +49,7 @@ nav{
     overflow: auto;
     background: #efefef;
     height: 70px;
+    overflow-x: hidden;
 }
 nav a{
     display: block;
@@ -60,4 +94,20 @@ button#blue {
 button#red {
     border: 1px solid red;
     color: red;
+}
+button.purple {
+    border: 1px solid #b23ce9;
+    background-color: #b23ce9;
+}
+.heart{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.heart figcaption{
+    font-size: 1.3em;
+    font-weight: bold;
+    position: absolute;
 }

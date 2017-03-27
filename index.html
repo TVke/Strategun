@@ -1,33 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Strategun</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 </head>
 <body>
-    <nav>
-        <a href="."><figure><img src="assets/grid/bradar.png" alt="radar"><figcaption>Radar</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-        <a href="."><figure><img src="assets/grid/soldaat out.png" alt="soldaat"><figcaption>Soldaat</figcaption></figure></a>
-    </nav>
+    <div id="overlay">
+        <div class="wrapper">
+            <div id="start">
+                <img src="assets/img/strategun_logo.png" alt="Strategun logo">
+                <button class="purple">Start spel</button>
+            </div>
+            <div id="end">
+                <img id="winner" src="" alt="Winnaar">
+                <button class="purple" id="restart">Herstart</button>
+            </div>
+        </div>
+    </div>
+    <nav></nav>
     <script src="node_modules/phaser/build/phaser.min.js"></script>
 
     <script src="js/global.js"></script>
@@ -48,7 +42,6 @@
     <script src="js/world/scale.js"></script>
     <script src="js/world/world.js"></script>
     <script src="js/world/tiles.js"></script>
-    <script src='js/shame.js'></script> <!-- temp -->
 
     <script src="js/main.js"></script>
 

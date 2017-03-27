@@ -1,9 +1,12 @@
-function Bomb(id, player) {
+function Bomb(id, player, position, sprite) {
     this.id = id;
-    this.assetId = 5;
+    this.assetId = MenuItems.BOMB;
     this.player = player;
     this.attack = 3;
-    this.health = 3;
+    this.health = 1;
+    this.maxHealth = 0;
+    this.tilePosition = position;
+    this.sprite = sprite;
     this.range = [6, 6];
     this.type = "bomb";
     this.icon = "";
@@ -20,5 +23,5 @@ Bomb.load = function () {
   game.load.image('rbomb','assets/grid/rmijn.png');
   game.load.image('rbombGlow','assets/grid/rmijn gloed.png');
 
-  game.load.audio('explosionSound', 'assets/sounds/explosion.mp3');
+  // game.load.audio('explosionSound', 'assets/sounds/explosion.mp3');
 }
